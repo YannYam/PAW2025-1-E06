@@ -1,3 +1,6 @@
+<?php include "function.php";
+	$user = getPemustaka();
+ ?>
 <main>
 	<table>
 		<caption>Daftar Pemustaka</caption>
@@ -9,11 +12,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+			<?php foreach ($user as $detail): ?>
+				<tr>
+					<td><?= $detail['NAMA_USER'] ?></td>
+					<td><?= $detail['ALAMAT_USER'] ?></td>
+					<td><?= $detail['TELEPON'] ?></td>
+				</tr>
+			<?php endforeach?>
 		</tbody>
 	</table>
 </main>	

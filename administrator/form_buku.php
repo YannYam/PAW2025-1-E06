@@ -1,10 +1,9 @@
 <form action="#" method="POST">
-	<input type="text" name="judul" placeholder="judul">
-	<input type="text" name="deskripsi" placeholder="deskripsi">
-	<input type="text" name="penulis" placeholder="penulis">
-	<input type="text" name="penerbit" placeholder="penerbit">
-	<input type="text" name="tahun" placeholder="tahun">
-	<input type="text" name="isbn" placeholder="isbn">
-	<input type="text" name="stok" placeholder="stok">
+	<input type="text" name="judul" placeholder="judul" value="<?= $detail['JUDUL_BUKU'] ?? '' ?>">
+	<input type="text" name="deskripsi" placeholder="deskripsi" value="<?= $detail['DESKRIPSI'] ?? '' ?>">
+	<input type="text" name="penulis" placeholder="penulis" value="<?= $detail['PENULIS'] ?? '' ?>">
+	<input type="text" name="penerbit" placeholder="penerbit" value="<?= $detail['PENERBIT'] ?? '' ?>">
+	<input type="text" name="tahun" placeholder="tahun" value="<?= $detail['TAHUN'] ?? '' ?>">
+	<input type="text" name="stok" placeholder="stok" value="<?= $detail['STOK'] ?? '' ?>">
 	<button type="submit" name="simpan">Simpan</button>
 </form>

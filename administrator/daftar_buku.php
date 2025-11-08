@@ -1,30 +1,37 @@
+<?php require_once "function.php";
+	$buku = getBuku();
+
+ ?>
+
 <body>
-	<table>
-		<caption>Daftar buku perpustakaan</caption>
-		<thead>
-			<tr>
-				<th>Judul</th>
-				<th>Deskripsi</th>
-				<th>Penulis</th>
-				<th>Penerbit</th>
-				<th>tahun</th>
-				<th>isbn</th>
-				<th>Stok</th>
-				<th>Edit</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><button type="button" class="btn btn-edit"><a href="edit.php">Edit</a></button><button type="button" class="btn btn-delete"><a href="delete.php">Delete</a></button></td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="table table-books">
+		<table border="1">
+			<caption>Daftar buku perpustakaan</caption>
+			<thead>
+				<tr>
+					<th>Judul</th>
+					<th>Deskripsi</th>
+					<th>Penulis</th>
+					<th>Penerbit</th>
+					<th>tahun</th>
+					<th>Stok</th>
+					<th>Option</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($buku as $book): ?>
+					<tr>
+						<td><?= $book['JUDUL_BUKU'] ?></td>
+						<td><?= $book['DESKRIPSI'] ?></td>
+						<td><?= $book['PENULIS'] ?></td>
+						<td><?= $book['PENERBIT'] ?></td>
+						<td><?= $book['TAHUN'] ?></td>
+						<td><?= $book['STOK'] ?></td>
+						<td><button type="button" class="btn btn-edit"><a href="edit.php?id_buku=<?= $book['ID_BUKU'] ?>">Edit</a></button><button type="button" class="btn btn-delete"><a href="delete.php?id_buku=<?= $book['ID_BUKU'] ?>">Delete</a></button></td>
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+	</div>
 	<a href="add.php">Tambah buku</a>
 </body>
