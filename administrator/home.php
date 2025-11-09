@@ -1,0 +1,2 @@
+<h1>Halaman home</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, temporibus suscipit dolorum quod cum aperiam ducimus delectus numquam repellendus excepturi reprehenderit quae nihil voluptas aut obcaecati culpa nulla necessitatibus corrupti?</p>

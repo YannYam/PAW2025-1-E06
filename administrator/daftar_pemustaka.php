@@ -9,6 +9,7 @@
 				<th>Nama Lengkap</th>
 				<th>Alamat</th>
 				<th>No Telepon</th>
+				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -17,6 +18,7 @@
 					<td><?= $detail['NAMA_USER'] ?></td>
 					<td><?= $detail['ALAMAT_USER'] ?></td>
 					<td><?= $detail['TELEPON'] ?></td>
+					<td></td>
 				</tr>
 			<?php endforeach?>
 		</tbody>
