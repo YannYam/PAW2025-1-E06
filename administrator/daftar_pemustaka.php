@@ -1,5 +1,6 @@
-<?php include "function.php";
+<?php require_once "../service/database.php";
 	$user = getPemustaka();
+	//update status peminjaman buku
  ?>
 <main>
 	<table>
