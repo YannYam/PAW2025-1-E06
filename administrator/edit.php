@@ -1,4 +1,4 @@
-<?php require_once "function.php";
+<?php require_once "../service/database.php";
   $id = $_GET['id_buku'];
   $detail = getBukuOne($id);
   if (isset($_POST['simpan'])) {

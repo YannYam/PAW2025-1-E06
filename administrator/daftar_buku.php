@@ -1,11 +1,12 @@
-<?php require_once "function.php";
+<?php require_once "../service/database.php";
 	$buku = getBuku();
-
  ?>
-
+<head>
+	<link rel="stylesheet" type="text/css" href="../asset/daftar_buku.css">
+</head>
 <body>
 	<div class="table table-books">
-		<table border="1">
+		<table>
 			<caption>Daftar buku perpustakaan</caption>
 			<thead>
 				<tr>
