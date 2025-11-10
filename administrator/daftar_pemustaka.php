@@ -19,7 +19,7 @@
 					<td><?= $detail['NAMA_USER'] ?></td>
 					<td><?= $detail['ALAMAT_USER'] ?></td>
 					<td><?= $detail['TELEPON'] ?></td>
-					<td></td>
+					<td><?= $detail['STATUS'] ?></td>
 				</tr>
 			<?php endforeach?>
 		</tbody>
