@@ -13,7 +13,8 @@
 				<th>tahun</th>
 				<th>Status</th>
 				<th>Oleh</th>
-				<th>Tanggal</th>
+				<th>Tanggal Pinjam</th>
+				<th>Tanggal Rencana</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,6 +27,7 @@
                     <td><?= $hasil['STATUS'] ?><button><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>">Edit</a></button></td>
                     <td><?= $hasil['NAMA_USER'] ?></td>
                     <td><?= $hasil['TANGGAL_PINJAM'] ?></td>
+                    <td><?= $hasil['TANGGAL_RENCANA'] ?></td>
                 </tr>
 			<?php endforeach ?>
 		</tbody>

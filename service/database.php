@@ -45,7 +45,7 @@
 	function getDaftarPeminjaman() {
 	    global $db;
 	    $sql = "SELECT buku.JUDUL_BUKU, buku.PENULIS, buku.PENERBIT, buku.TAHUN,
-	                   peminjaman.STATUS,peminjaman.ID_PEMINJAMAN, pemustaka.NAMA_USER, peminjaman.TANGGAL_PINJAM
+	                   peminjaman.STATUS,peminjaman.ID_PEMINJAMAN, pemustaka.NAMA_USER, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA
 	            FROM peminjaman
 	            JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
 	            JOIN pemustaka ON peminjaman.ID_USER = pemustaka.ID_USER";

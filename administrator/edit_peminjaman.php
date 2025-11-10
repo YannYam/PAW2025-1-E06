@@ -20,6 +20,11 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
         $err = "Tanggal rencana wajib diisi";
     } else {
         $up = $db->prepare("UPDATE peminjaman SET STATUS=:s, TANGGAL_RENCANA=:t WHERE ID_PEMINJAMAN=:id");
+        if($statusBaru == 'pinjam'){
+            $ctime = date("Y-m-d");
+            $op = $db->prepare("UPDATE peminjaman SET TANGGAL_PINJAM=:p WHERE ID_PEMINJAMAN=:id");
+            $op->execute([':p'=>$ctime, ':id'=>$id]);
+        }
         $up->execute([':s'=>$statusBaru, ':t'=>$tglRencana, ':id'=>$id]);
         header("Location: kelola_peminjaman.php?ok=1"); exit;
     }
