@@ -6,11 +6,6 @@
 	<title>Administrator login</title>
 </head>
 <body>
-	<form action="" method="POST">
-		<input type="text" name="username" placeholder="Username">
-		<input type="text" name="password" placeholder="Password">
-		<button name="submit"></button>
-	</form>
-	
+	<?php include "home.php" ?>
 </body>
 </html>

@@ -2,9 +2,10 @@
 	$buku = getBuku();
  ?>
 <head>
-	<link rel="stylesheet" type="text/css" href="../asset/daftar_buku.css">
+	<link rel="stylesheet" type="text/css" href="../asset/main.administrator.css">
 </head>
 <body>
+	<?php include "../layout/menu.administrator.php" ?>
 	<div class="table table-books">
 		<table>
 			<caption>Daftar buku perpustakaan</caption>
@@ -33,6 +34,6 @@
 				<?php endforeach ?>
 			</tbody>
 		</table>
+		<a href="add.php">Tambah buku</a>
 	</div>
-	<a href="add.php">Tambah buku</a>
 </body>
