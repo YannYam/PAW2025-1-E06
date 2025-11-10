@@ -2,26 +2,30 @@
 	$user = getPemustaka();
 	//update status peminjaman buku
  ?>
-<main>
-	<table>
-		<caption>Daftar Pemustaka</caption>
-		<thead>
-			<tr>
+ <link rel="stylesheet" href="../asset/main.administrator.css">
+<body>
+	<?php include "../layout/menu.administrator.php" ?>
+	<div class="table">
+		<table>
+			<caption>Daftar Pemustaka</caption>
+			<thead>
+				<tr>
 				<th>Nama Lengkap</th>
+				<th>Umur</th>
 				<th>Alamat</th>
 				<th>No Telepon</th>
-				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach ($user as $detail): ?>
 				<tr>
 					<td><?= $detail['NAMA_USER'] ?></td>
+					<td><?= $detail['umur'] ?></td>
 					<td><?= $detail['ALAMAT_USER'] ?></td>
 					<td><?= $detail['TELEPON'] ?></td>
-					<td><?= $detail['STATUS'] ?></td>
 				</tr>
-			<?php endforeach?>
-		</tbody>
-	</table>
-</main>	
+				<?php endforeach?>
+			</tbody>
+		</table>
+	</div>
+</body>	

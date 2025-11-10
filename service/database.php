@@ -36,7 +36,7 @@
 
 	function getPemustaka(){
 		global $db;
-		$state = $db->prepare("SELECT * FROM pemustaka WHERE PERAN = 'pemustaka'");
+		$state = $db->prepare("SELECT NAMA_USER, ALAMAT_USER, TELEPON, TIMESTAMPDIFF(YEAR, TANGGAL_LAHIR_USER, CURDATE()) AS umur FROM pemustaka WHERE PERAN = 'pemustaka'");
 		$state->execute();
 		$artikel = $state->fetchAll();
 		return $artikel;

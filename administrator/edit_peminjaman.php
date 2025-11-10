@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
       <input type="date" name="tanggal_rencana" value="<?= htmlspecialchars($row['TANGGAL_RENCANA'] ?? date('Y-m-d')) ?>" required>
     </div>
     <div class="actions">
-      <a href="daftar_peminjaman.php">Batal</a>
+      <a href="kelola_peminjaman.php">Batal</a>
       <button type="submit">Simpan</button>
     </div>
   </form>
