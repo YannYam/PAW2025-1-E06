@@ -11,6 +11,7 @@
 			<caption>Daftar buku perpustakaan</caption>
 			<thead>
 				<tr>
+					<th>Nomer Buku</th>
 					<th>Judul</th>
 					<th>Deskripsi</th>
 					<th>Penulis</th>
@@ -23,6 +24,7 @@
 			<tbody>
 				<?php foreach ($buku as $book): ?>
 					<tr>
+						<td><?= $book['ID_BUKU'] ?></td>
 						<td><?= $book['JUDUL_BUKU'] ?></td>
 						<td><?= $book['DESKRIPSI'] ?></td>
 						<td><?= $book['PENULIS'] ?></td>

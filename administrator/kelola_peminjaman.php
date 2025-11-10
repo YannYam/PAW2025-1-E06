@@ -9,6 +9,7 @@
 			<caption>Daftar Pinjaman</caption>
 			<thead>
 				<tr>
+					<th>Nomer</th>
 					<th>Nama Buku</th>
 					<th>Penulis</th>
 					<th>Penerbit</th>
@@ -22,6 +23,7 @@
 			<tbody>
 				<?php foreach($pinjam as $hasil): ?>
         	        <tr>
+						<td><?= $hasil['ID_PEMINJAMAN'] ?></td>
         	            <td><?= $hasil['JUDUL_BUKU'] ?></td>
         	            <td><?= $hasil['PENULIS'] ?></td>
         	            <td><?= $hasil['PENERBIT'] ?></td>
