@@ -48,7 +48,22 @@
 	                   peminjaman.STATUS,peminjaman.ID_PEMINJAMAN, pemustaka.NAMA_USER, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA
 	            FROM peminjaman
 	            JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
-	            JOIN pemustaka ON peminjaman.ID_USER = pemustaka.ID_USER";
+	            JOIN pemustaka ON peminjaman.ID_USER = pemustaka.ID_USER
+				WHERE peminjaman.STATUS != 'kembali'";
+	    
+	    $stmt = $db->prepare($sql);
+	    $stmt->execute();
+	    return $stmt->fetchAll();
+	}
+
+	function getDaftarKembali() {
+	    global $db;
+	    $sql = "SELECT buku.JUDUL_BUKU, buku.PENULIS, buku.PENERBIT, buku.TAHUN,
+	                   peminjaman.STATUS,peminjaman.ID_PEMINJAMAN, pemustaka.NAMA_USER, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA
+	            FROM peminjaman
+	            JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
+	            JOIN pemustaka ON peminjaman.ID_USER = pemustaka.ID_USER
+				WHERE peminjaman.STATUS = 'kembali'";
 	    
 	    $stmt = $db->prepare($sql);
 	    $stmt->execute();
