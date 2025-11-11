@@ -63,7 +63,7 @@
         		            <td><?= $hasil['PENULIS'] ?></td>
         		            <td><?= $hasil['PENERBIT'] ?></td>
         		            <td><?= $hasil['TAHUN'] ?></td>
-        		            <td><?= $hasil['STATUS'] ?><button class="btn btn-edit"><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>">Edit</a></button></td>
+        		            <td><?= $hasil['STATUS'] ?></td>
         		            <td><?= $hasil['NAMA_USER'] ?></td>
         		            <td><?= $hasil['TANGGAL_PINJAM'] ?></td>
         		            <td><?= $hasil['TANGGAL_RENCANA'] ?></td>
