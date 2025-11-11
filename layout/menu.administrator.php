@@ -1,3 +1,4 @@
+
 <div class="side">
     <?php include '../layout/profile.php' ?>
     <p>MAIN NAVIGATION</p>

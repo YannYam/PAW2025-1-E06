@@ -6,7 +6,7 @@
 	];
 	include_once(BASE_PATH . '/layout/header.php');
  ?>
-	<?php include "../layout/menu.administrator.php" ?>
+	<?php include_once(BASE_PATH . "/layout/menu.administrator.php")?>
 
 	<div class="table table-books">
 		<table>
@@ -34,7 +34,7 @@
 					<td><?= $book['PENERBIT'] ?></td>
 					<td><?= $book['TAHUN'] ?></td>
 					<td><?= $book['STOK'] ?></td>
-					<td><button type="button" class="btn btn-edit"><a href="edit.php?id_buku=<?= $book['ID_BUKU'] ?>">Edit</a></button><button type="button" class="btn btn-delete"><a href="delete.php?id_buku=<?= $book['ID_BUKU'] ?>">Delete</a></button></td>
+					<td><a href="<?= BASE_URL . '/administrator/edit.php' ?>?id_buku=<?= $book['ID_BUKU'] ?>" class="btn btn-edit">Edit</a><a href="<?= BASE_URL . '/administrator/delete.php' ?>?id_buku=<?= $book['ID_BUKU'] ?>" class="btn btn-delete">Delete</a></td>
 				</tr>
 				<?php endforeach ?>
 			</tbody>
