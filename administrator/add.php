@@ -10,15 +10,20 @@
     $query->bindValue(':stok', $_POST['stok']);
     $query->execute();
   }
- ?>
+$list_css_tambahan = ['menu.administrator.css','form-buku.css'];
+include_once(BASE_PATH . '/layout/header.php');
+include_once(BASE_PATH . '/layout/menu.administrator.php'); 
+?>
 
-<main>
-	 <div class="page-header">
-      <h1>Tambah Buku</h1>
-
-      <a href="daftar_buku.php">
-        &larr; Kembali
-      </a>
-    </div>
-    <?php include "form_buku.php"; ?>
-</main>
+<div class="form container-form">
+  <div class="page-header">
+    <h1>Tambah Buku</h1>
+    
+    <a href="daftar_buku.php">
+      &larr; Kembali
+    </a>
+  </div>
+  <?php include_once "form_buku.php"; ?>
+  
+</div>
+</body>
