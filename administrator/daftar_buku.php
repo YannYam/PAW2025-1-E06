@@ -1,11 +1,13 @@
 <?php require_once "../service/database.php";
 	$buku = getBuku();
+	$list_css_tambahan = [
+		'main.administrator.css',
+		'menu.administrator.css'
+	];
+	include_once(BASE_PATH . '/layout/header.php');
  ?>
-<head>
-	<link rel="stylesheet" type="text/css" href="../asset/main.administrator.css">
-</head>
-<body>
 	<?php include "../layout/menu.administrator.php" ?>
+
 	<div class="table table-books">
 		<table>
 			<caption>Daftar buku perpustakaan</caption>
@@ -23,16 +25,17 @@
 			</thead>
 			<tbody>
 				<?php foreach ($buku as $book): ?>
-					<tr>
-						<td><?= $book['ID_BUKU'] ?></td>
-						<td><?= $book['JUDUL_BUKU'] ?></td>
-						<td><?= $book['DESKRIPSI'] ?></td>
-						<td><?= $book['PENULIS'] ?></td>
-						<td><?= $book['PENERBIT'] ?></td>
-						<td><?= $book['TAHUN'] ?></td>
-						<td><?= $book['STOK'] ?></td>
-						<td><button type="button" class="btn btn-edit"><a href="edit.php?id_buku=<?= $book['ID_BUKU'] ?>">Edit</a></button><button type="button" class="btn btn-delete"><a href="delete.php?id_buku=<?= $book['ID_BUKU'] ?>">Delete</a></button></td>
-					</tr>
+
+				<tr>
+					<td><?= $book['ID_BUKU'] ?></td>
+					<td><?= $book['JUDUL_BUKU'] ?></td>
+					<td><?= $book['DESKRIPSI'] ?></td>
+					<td><?= $book['PENULIS'] ?></td>
+					<td><?= $book['PENERBIT'] ?></td>
+					<td><?= $book['TAHUN'] ?></td>
+					<td><?= $book['STOK'] ?></td>
+					<td><button type="button" class="btn btn-edit"><a href="edit.php?id_buku=<?= $book['ID_BUKU'] ?>">Edit</a></button><button type="button" class="btn btn-delete"><a href="delete.php?id_buku=<?= $book['ID_BUKU'] ?>">Delete</a></button></td>
+				</tr>
 				<?php endforeach ?>
 			</tbody>
 		</table>

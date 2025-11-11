@@ -1,11 +1,6 @@
 <?php
-	try {
-		$db = new PDO("mysql:host=localhost;dbname=perpustakaan;charset=utf8mb4", "root", "");
-	
-	} catch (PDOException $e) {
-		echo "Koneksi Gagal";
-	}
-
+require_once('../base.php');
+require_once(BASE_PATH . '/service/connect.php');
 	function required($data) {
 		return $data == "";
 	}

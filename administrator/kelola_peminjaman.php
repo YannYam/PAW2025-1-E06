@@ -1,10 +1,14 @@
 <?php require_once "../service/database.php";
-	$pinjam = getDaftarPeminjaman();
-	$kembali = getDaftarKembali();
- ?>
-<link rel="stylesheet" href="../asset/main.administrator.css">
-<body>
+$pinjam = getDaftarPeminjaman();
+$kembali = getDaftarKembali();
+$list_css_tambahan = [
+	'main.administrator.css',
+	'menu.administrator.css'
+];
+include_once(BASE_PATH . '/layout/header.php');
+?>
 	<?php include "../layout/menu.administrator.php" ?>
+
 	<div class="table">
 		<div class="pinjam">
 			<table>
@@ -23,19 +27,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($pinjam as $hasil): ?>
-    	    	        <tr>
-							<td><?= $hasil['ID_PEMINJAMAN'] ?></td>
-    	    	            <td><?= $hasil['JUDUL_BUKU'] ?></td>
-    	    	            <td><?= $hasil['PENULIS'] ?></td>
-    	    	            <td><?= $hasil['PENERBIT'] ?></td>
-    	    	            <td><?= $hasil['TAHUN'] ?></td>
-    	    	            <td><?= $hasil['STATUS'] ?><button class="btn btn-edit"><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>">Edit</a></button></td>
-    	    	            <td><?= $hasil['NAMA_USER'] ?></td>
-    	    	            <td><?= $hasil['TANGGAL_PINJAM'] ?></td>
-    	    	            <td><?= $hasil['TANGGAL_RENCANA'] ?></td>
-    	    	        </tr>
+					<?php foreach ($pinjam as $hasil): ?>
+
+					<tr>
+						<td><?= $hasil['ID_PEMINJAMAN'] ?></td>
+						<td><?= $hasil['JUDUL_BUKU'] ?></td>
+						<td><?= $hasil['PENULIS'] ?></td>
+						<td><?= $hasil['PENERBIT'] ?></td>
+						<td><?= $hasil['TAHUN'] ?></td>
+						<td><?= $hasil['STATUS'] ?><button class="btn btn-edit"><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>">Edit</a></button></td>
+						<td><?= $hasil['NAMA_USER'] ?></td>
+						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
+						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
+					</tr>
 					<?php endforeach ?>
+
 				</tbody>
 			</table>
 		</div>
@@ -56,21 +62,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($kembali as $hasil): ?>
-        		        <tr>
-							<td><?= $hasil['ID_PEMINJAMAN'] ?></td>
-        		            <td><?= $hasil['JUDUL_BUKU'] ?></td>
-        		            <td><?= $hasil['PENULIS'] ?></td>
-        		            <td><?= $hasil['PENERBIT'] ?></td>
-        		            <td><?= $hasil['TAHUN'] ?></td>
-        		            <td><?= $hasil['STATUS'] ?></td>
-        		            <td><?= $hasil['NAMA_USER'] ?></td>
-        		            <td><?= $hasil['TANGGAL_PINJAM'] ?></td>
-        		            <td><?= $hasil['TANGGAL_RENCANA'] ?></td>
-        		        </tr>
+					<?php foreach ($kembali as $hasil): ?>
+
+					<tr>
+						<td><?= $hasil['ID_PEMINJAMAN'] ?></td>
+						<td><?= $hasil['JUDUL_BUKU'] ?></td>
+						<td><?= $hasil['PENULIS'] ?></td>
+						<td><?= $hasil['PENERBIT'] ?></td>
+						<td><?= $hasil['TAHUN'] ?></td>
+						<td><?= $hasil['STATUS'] ?></td>
+						<td><?= $hasil['NAMA_USER'] ?></td>
+						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
+						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
+					</tr>
 					<?php endforeach ?>
+
 				</tbody>
 			</table>
 		</div>
 	</div>
-</body>	
+</body>
