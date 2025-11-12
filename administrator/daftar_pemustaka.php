@@ -11,7 +11,7 @@ include_once(BASE_PATH . '/layout/header.php');
 
 	<?php include "../layout/menu.administrator.php" ?>
 
-	<div class="table">
+	<div class="table table-pemustaka">
 		<table>
 			<caption>Daftar Pemustaka</caption>
 			<thead>

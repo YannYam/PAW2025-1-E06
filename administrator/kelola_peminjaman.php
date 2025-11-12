@@ -9,7 +9,7 @@ include_once(BASE_PATH . '/layout/header.php');
 ?>
 	<?php include "../layout/menu.administrator.php" ?>
 
-	<div class="table">
+	<div class="table table-peminjaman">
 		<div class="pinjam">
 			<table>
 				<caption>Daftar Pinjaman</caption>
@@ -35,7 +35,7 @@ include_once(BASE_PATH . '/layout/header.php');
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>
-						<td><?= $hasil['STATUS'] ?><button class="btn btn-edit"><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>">Edit</a></button></td>
+						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>" class="btn btn-edit">Edit</a></td>
 						<td><?= $hasil['NAMA_USER'] ?></td>
 						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
@@ -70,7 +70,7 @@ include_once(BASE_PATH . '/layout/header.php');
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>
-						<td><?= $hasil['STATUS'] ?></td>
+						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
 						<td><?= $hasil['NAMA_USER'] ?></td>
 						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
