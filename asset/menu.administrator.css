@@ -22,37 +22,49 @@ body {
     background-color: #e8f0ff;
 }
 
+.name-option {
+  color: #2E4A68;
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.name-option.first {
+  margin-top: 20px;
+}
+
 .side {
     box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.3);
     min-height: 100vh;
     width: 200px;
     padding: 30px;
-    background-color: antiquewhite;
+    background-color: #0C2644;
 }
 
 .side > a {
     display: block;       /* agar link tersusun vertikal */
     margin-bottom: 30px;  /* jarak antar menu */
-    color: #333;
+    color: white;
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
 }
 
 .side > a:hover {
-    color: #000;
-    text-decoration: underline;
+    color: #1E90FF;
+    text-decoration: none;
 }
 
 .mini-profile {
     display: flex;
-    align-items: center;
     gap: 12px;
-    padding: 12px 16px;
+    align-items: center;
+    padding: 15px 20px;
     background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: fit-content;
+    width: 85%;
     font-family: Arial, sans-serif;
 }
 
