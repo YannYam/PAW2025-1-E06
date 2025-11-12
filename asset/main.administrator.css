@@ -1,5 +1,18 @@
 .table {
+    background-color: white;
+    box-shadow: 0 -4px 0 -1px #0066FF;
+}
+
+.table-pemustaka, .table-peminjaman {
+    margin: 20px;
     padding: 50px;
+    height: 100%;
+}
+
+.table-books{
+    margin: 10px;
+    padding: 20px;
+    height: 100%;
 }
 
 .table table {
@@ -43,6 +56,29 @@
     text-align: center;
 }
 
+/* Untuk Coloum Status */
+
+td.status {
+    text-transform: capitalize;
+    gap: 10px;
+}
+
+td.status.pinjam {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold; 
+}
+td.status.kembali { 
+    background-color: #6c757d;
+    color: white; 
+    font-style: italic; 
+}
+td.status.proses { 
+    background-color: #ffc107;
+    color: white; 
+    font-weight: 600; 
+}
+
 /* Tombol */
 .btn {
     padding: 6px 12px;
@@ -59,6 +95,7 @@ td > a  {
 .btn-edit {
     background: #3498db;
     margin-right: 5px;
+    margin-left: 10px;
 }
 
 .btn-edit:hover {

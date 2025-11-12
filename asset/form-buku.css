@@ -9,20 +9,20 @@
     margin-bottom: 20px;
 }
 
-a[href="daftar_buku.php"] {
+a[href="daftar_buku.php"],a[href="kelola_peminjaman.php"] {
     text-decoration: none;
     color: white;
     font-weight: 500;
     background-color: red;
-    padding: 8px 12px;
+    padding: 11px 12px;
     border-radius: 5px;
 }
 
-a[href="daftar_buku.php"]:hover {
+a[href="daftar_buku.php"]:hover,a[href="kelola_peminjaman.php"]:hover {
     background-color: darkred;
 }
 
-form > input[type="text"]{
+form > input[type="text"], input[type="date"],select {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
