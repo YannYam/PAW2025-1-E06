@@ -1,0 +1,1 @@
+<?php include_once BASE_PATH . '/layout/footer.php'; ?>

@@ -26,3 +26,5 @@
   <?php include_once "form_buku.php"; ?>
   
 </div>
+
+<?php include_once BASE_PATH . '/layout/footer.php'; ?>

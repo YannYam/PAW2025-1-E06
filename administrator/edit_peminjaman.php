@@ -43,23 +43,26 @@ $list_css_tambahan = ['menu.administrator.css', 'form-buku.css'];
 include_once(BASE_PATH . '/layout/header.php');
 include_once(BASE_PATH . '/layout/menu.administrator.php');
 ?>
-<div class="form">
-  <h1>Edit Peminjaman</h1>
-  <?php if (!empty($err)): ?>
-    <div class="error"><?= htmlspecialchars($err) ?></div>
-  <?php endif; ?>
-  <form method="post">
-    <div class="field">
-      <label>Status</label>
-      <select name="status_baru">
-        <option value="Pinjam"  <?= $row['STATUS']==='Pinjam'?'selected':'' ?>>Pinjam</option>
-        <option value="Kembali" <?= $row['STATUS']==='Kembali'?'selected':'' ?>>Kembali</option>
-        <option value="Proses"  <?= $row['STATUS']==='Proses'?'selected':'' ?>>Proses</option>
-      </select>
-    </div>
-    <label>Tanggal Rencana</label>
-    <input type="date" name="tanggal_rencana" value="<?= htmlspecialchars($row['TANGGAL_RENCANA'] ?? date('Y-m-d')) ?>">
-    <a href="kelola_peminjaman.php">Batal</a>
-    <button type="submit">Simpan</button>
-  </form>
-</div>
+
+  <div class="form">
+    <h1>Edit Peminjaman</h1>
+    <?php if (!empty($err)): ?>
+      <div class="error"><?= htmlspecialchars($err) ?></div>
+    <?php endif; ?>
+    <form method="post">
+      <div class="field">
+        <label>Status</label>
+        <select name="status_baru">
+          <option value="Pinjam"  <?= $row['STATUS']==='Pinjam'?'selected':'' ?>>Pinjam</option>
+          <option value="Kembali" <?= $row['STATUS']==='Kembali'?'selected':'' ?>>Kembali</option>
+          <option value="Proses"  <?= $row['STATUS']==='Proses'?'selected':'' ?>>Proses</option>
+        </select>
+      </div>
+      <label>Tanggal Rencana</label>
+      <input type="date" name="tanggal_rencana" value="<?= htmlspecialchars($row['TANGGAL_RENCANA'] ?? date('Y-m-d')) ?>">
+      <a href="kelola_peminjaman.php">Batal</a>
+      <button type="submit">Simpan</button>
+    </form>
+  </div>
+
+<?php include_once BASE_PATH . '/layout/footer.php'; ?>
