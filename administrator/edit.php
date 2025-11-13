@@ -1,6 +1,6 @@
 <?php
   require_once("../base.php");
-  require_once(BASE_PATH . '/service/database.php');
+  require_once(BASE_PATH . '/database.php');
 
   $detail = getBukuOne($id);
   if (isset($_POST['simpan'])) {
