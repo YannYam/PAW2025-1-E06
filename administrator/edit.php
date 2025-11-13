@@ -1,39 +1,14 @@
 <?php
-require_once("../base.php");
-require_once(BASE_PATH . '/service/database.php');
+  require_once("../base.php");
+  require_once(BASE_PATH . '/service/database.php');
 
-$id = $_GET['id_buku'];
-$detail = getBukuOne($id);
-if (isset($_POST['simpan'])) {
-  // Query update dengan prepared statement
-  $query = $db->prepare("UPDATE buku SET 
-          JUDUL_BUKU = :judul, 
-          DESKRIPSI = :deskripsi, 
-          PENULIS = :penulis, 
-          PENERBIT = :penerbit, 
-          TAHUN = :tahun, 
-          STOK = :stok 
-          WHERE ID_BUKU = :id_buku");
-
-  $query->bindValue(':judul', $_POST['judul']);
-  $query->bindValue(':deskripsi', $_POST['deskripsi']);
-  $query->bindValue(':penulis', $_POST['penulis']);
-  $query->bindValue(':penerbit', $_POST['penerbit']);
-  $query->bindValue(':tahun', $_POST['tahun']);
-  $query->bindValue(':stok', $_POST['stok']);
-  $query->bindValue(':id_buku', $id);
-
-  if ($query->execute()) {
-    echo "Data buku berhasil diperbarui.";
-    // Redirect ke daftar buku setelah update, misalnya:
-    header('Location: daftar_buku.php');
-    exit;
-  } else {
-    echo "Gagal memperbarui data buku.";
+  $detail = getBukuOne($id);
+  if (isset($_POST['simpan'])) {
+    editBuku($_GET['id_buku'], $_POST);
+    header('location: ' . BASE_URL . '/administrator/daftar_buku.php');
+    exit();
   }
-}
-
-$list_css_tambahan = ['form-buku.css', 'menu.administrator.css'];
+  $list_css_tambahan = ['form-buku.css', 'menu.administrator.css'];
 ?>
 <?php 
 include_once(BASE_PATH . '/layout/header.php');
