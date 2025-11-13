@@ -32,7 +32,7 @@ include_once(BASE_PATH . '/layout/header.php');
                 <tbody>
                     <?php foreach ($buku as $book):?> 
                     <tr>
-                        <td><a href=""><?= $book['JUDUL_BUKU'] ?></a></td>
+                        <td><a href=""><?= $book['JUDUL'] ?></a></td>
                         <td><?= $book['DESKRIPSI'] ?></td>
                         <td><?= $book['PENULIS'] ?></td>
                         <td><?= $book['PENERBIT'] ?></td>

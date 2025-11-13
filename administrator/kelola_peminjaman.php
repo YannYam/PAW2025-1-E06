@@ -81,4 +81,3 @@ include_once(BASE_PATH . '/layout/header.php');
 			</table>
 		</div>
 	</div>
-</body>
