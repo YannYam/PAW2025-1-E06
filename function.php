@@ -1,6 +1,7 @@
 <?php
 require_once('base.php');
 require_once(BASE_PATH . '/service/connect.php');
+require_once(BASE_PATH . '/service/session.php');
 	function required($data) {
 		return $data == "";
 	}

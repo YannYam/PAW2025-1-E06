@@ -1,4 +1,6 @@
-<?php require_once "../function.php";
+<?php 
+require_once "../function.php";
+
 	$buku = getBuku();
 	$list_css_tambahan = [
 		'main.administrator.css',
@@ -41,4 +43,3 @@
 		</table>
 		<a href="add.php">Tambah buku</a>
 	</div>
-</body>

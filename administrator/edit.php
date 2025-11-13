@@ -9,8 +9,7 @@
     exit();
   }
   $list_css_tambahan = ['form-buku.css', 'menu.administrator.css'];
-?>
-<?php 
+
 include_once(BASE_PATH . '/layout/header.php');
 include_once(BASE_PATH . '/layout/menu.administrator.php'); 
 ?>
@@ -26,4 +25,3 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
   <?php include_once "form_buku.php"; ?>
   
 </div>
-</body>

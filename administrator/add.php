@@ -1,4 +1,5 @@
-<?php require_once '../function.php';
+<?php 
+require_once '../function.php';
   if(isset($_POST['simpan'])){
     tambahBuku($_POST);
     header('location: ' . BASE_URL . '/administrator/daftar_buku.php');
@@ -20,4 +21,3 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
   <?php include_once "form_buku.php"; ?>
   
 </div>
-</body>

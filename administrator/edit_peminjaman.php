@@ -65,5 +65,3 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
     <button type="submit">Simpan</button>
   </form>
 </div>
-</body>
-</html>

@@ -1,4 +1,10 @@
+<?php 
+	// if(!$_SESSION['isAdmin']){
+	// 	header('location: ' . BASE_URL . '/index.php');
+	// 	exit();
+	// }
 
+?>
 <div class="side">
     <?php include '../layout/profile.php' ?>
     <span class="name-option first">MAIN NAVIGATION</span>

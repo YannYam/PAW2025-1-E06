@@ -1,4 +1,5 @@
-<?php require_once "../function.php";
+<?php 
+require_once "../function.php";
 $user = getPemustaka();
 //update status peminjaman buku
 
@@ -38,4 +39,3 @@ include_once(BASE_PATH . '/layout/header.php');
 			</tbody>
 		</table>
 	</div>
-</body>
