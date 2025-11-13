@@ -1,8 +1,8 @@
 <?php
   require_once("../base.php");
-  require_once(BASE_PATH . '/database.php');
+  require_once(BASE_PATH . '/function.php');
 
-  $detail = getBukuOne($id);
+  $detail = getBukuOne($_GET['id_buku']);
   if (isset($_POST['simpan'])) {
     editBuku($_GET['id_buku'], $_POST);
     header('location: ' . BASE_URL . '/administrator/daftar_buku.php');

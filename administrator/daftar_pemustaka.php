@@ -1,4 +1,4 @@
-<?php require_once "../database.php";
+<?php require_once "../function.php";
 $user = getPemustaka();
 //update status peminjaman buku
 
@@ -28,9 +28,9 @@ include_once(BASE_PATH . '/layout/header.php');
 
 				<tr>
 					<td><?= $detail['ID_USER'] ?></td>
-					<td><?= $detail['NAMA_USER'] ?></td>
+					<td><?= $detail['NAMA_LENGKAP'] ?></td>
 					<td><?= $detail['umur'] ?></td>
-					<td><?= $detail['ALAMAT_USER'] ?></td>
+					<td><?= $detail['ALAMAT'] ?></td>
 					<td><?= $detail['TELEPON'] ?></td>
 				</tr>
 				<?php endforeach ?>

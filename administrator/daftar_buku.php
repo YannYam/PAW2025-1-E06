@@ -1,4 +1,4 @@
-<?php require_once "../database.php";
+<?php require_once "../function.php";
 	$buku = getBuku();
 	$list_css_tambahan = [
 		'main.administrator.css',
@@ -28,7 +28,7 @@
 
 				<tr>
 					<td><?= $book['ID_BUKU'] ?></td>
-					<td><?= $book['JUDUL_BUKU'] ?></td>
+					<td><?= $book['JUDUL'] ?></td>
 					<td><?= $book['DESKRIPSI'] ?></td>
 					<td><?= $book['PENULIS'] ?></td>
 					<td><?= $book['PENERBIT'] ?></td>
