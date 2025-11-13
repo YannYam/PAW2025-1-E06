@@ -13,6 +13,45 @@ require_once(BASE_PATH . '/service/connect.php');
 		return preg_match("/^[0-9]+$/", $data);
 	}
 
+	function tambahBuku(array $data){
+		$state = DBH->prepare("INSERT INTO buku (JUDUL_BUKU, DESKRIPSI, PENULIS, PENERBIT, TAHUN, STOK) VALUES (:judul, :deskripsi, :penulis, :penerbit, :tahun, :stok)");
+		$state->execute([
+			':judul' => $data['judul'],
+			':deskripsi' => $data['deskripsi'],
+			':penulis' => $data['penulis'],
+			':penerbit' => $data['penerbit'],
+			':tahun' => $data['tahun'],
+			':stok' => $data['stok']
+		]);
+	}
+
+	function editBuku(int $id, array $data){
+  		$state = DBH->prepare("UPDATE buku SET 
+        			JUDUL_BUKU = :judul, 
+        			DESKRIPSI = :deskripsi, 
+        			PENULIS = :penulis, 
+        			PENERBIT = :penerbit, 
+        			TAHUN = :tahun, 
+        			STOK = :stok 
+        			WHERE ID_BUKU = :id_buku");
+		$state->execute([
+			':judul'=> $data['judul'],
+			':deskripsi'=> $data['deskripsi'],
+			':penulis'=> $data['penulis'],
+			':penerbit'=> $data['penerbit'],
+			':tahun'=> $data['tahun'],
+			':stok'=> $data['stok'],
+			':id_buku'=> $id
+		]);
+	}
+
+	function deleteBuku(int $id){
+		$state = DBH->prepare("DELETE FROM buku WHERE ID_BUKU = :id_buku");
+  		$state->execute([':id_buku' => $id]);
+  		header("location: daftar_buku.php");
+  		exit();
+	}
+
 	function getBuku(){
 		$state = DBH->prepare('SELECT * FROM buku');
 		$state->execute();
@@ -20,9 +59,9 @@ require_once(BASE_PATH . '/service/connect.php');
 		return $artikel;
 	}
 
-	function getBukuOne($data){
-		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = '$data'");
-		$state->execute();
+	function getBukuOne(int $id){
+		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id");
+		$state->execute([':id' => $id]);
 		$artikel = $state->fetch();
 		return $artikel;
 	}

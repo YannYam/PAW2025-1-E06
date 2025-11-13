@@ -1,14 +1,8 @@
 <?php require_once '../service/database.php';
   if(isset($_POST['simpan'])){
-    $query = $db->prepare("INSERT INTO buku (JUDUL_BUKU, DESKRIPSI, PENULIS, PENERBIT, TAHUN, STOK) VALUES (:judul, :deskripsi, :penulis, :penerbit, :tahun, :stok)");
-  
-    $query->bindValue(':judul', $_POST['judul']);
-    $query->bindValue(':deskripsi', $_POST['deskripsi']);
-    $query->bindValue(':penulis', $_POST['penulis']);
-    $query->bindValue(':penerbit', $_POST['penerbit']);
-    $query->bindValue(':tahun', $_POST['tahun']);
-    $query->bindValue(':stok', $_POST['stok']);
-    $query->execute();
+    tambahBuku($_POST);
+    header('location: ' . BASE_URL . '/administrator/daftar_buku.php');
+    exit();
   }
 $list_css_tambahan = ['menu.administrator.css','form-buku.css'];
 include_once(BASE_PATH . '/layout/header.php');

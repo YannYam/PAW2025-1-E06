@@ -5,7 +5,7 @@ require_once(BASE_PATH . '/service/database.php');
 if (!isset($_GET['id'])) { http_response_code(400); exit("ID tidak ada"); }
 $id = $_GET['id'];
 
-$stmt = $db->prepare("SELECT ID_PEMINJAMAN, STATUS, TANGGAL_RENCANA FROM peminjaman WHERE ID_PEMINJAMAN = :id");
+$stmt = DBH->prepare("SELECT ID_PEMINJAMAN, STATUS, TANGGAL_RENCANA FROM peminjaman WHERE ID_PEMINJAMAN = :id");
 $stmt->execute([':id'=>$id]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$row) { http_response_code(404); exit("Data tidak ditemukan"); }
