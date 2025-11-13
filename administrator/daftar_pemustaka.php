@@ -1,16 +1,18 @@
 <?php 
 require_once "../function.php";
+
+// mengambil data dari tabel user dengan peran pemustaka
 $user = getPemustaka();
-//update status peminjaman buku
 
 $list_css_tambahan = [
 	'main.administrator.css',
 	'menu.administrator.css'
 ];
-include_once(BASE_PATH . '/layout/header.php');
-?>
 
-	<?php include "../layout/menu.administrator.php" ?>
+include_once(BASE_PATH . '/layout/header.php');
+include "../layout/menu.administrator.php" 
+
+?>
 
 	<div class="table table-pemustaka">
 		<table>
@@ -25,6 +27,7 @@ include_once(BASE_PATH . '/layout/header.php');
 				</tr>
 			</thead>
 			<tbody>
+				<!-- melakukan perulangan pada variable $user  -->
 				<?php foreach ($user as $detail): ?>
 
 				<tr>

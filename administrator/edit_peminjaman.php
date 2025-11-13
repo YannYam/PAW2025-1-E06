@@ -2,13 +2,11 @@
 require_once("../base.php");
 require_once(BASE_PATH . '/function.php');
 
-if (!isset($_GET['id'])) { http_response_code(400); exit("ID tidak ada"); }
-$id = $_GET['id'];
+$id = $_GET['id'] ?? 1;
 
 $stmt = DBH->prepare("SELECT ID_PEMINJAMAN, STATUS, TANGGAL_RENCANA FROM peminjaman WHERE ID_PEMINJAMAN = :id");
 $stmt->execute([':id'=>$id]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!$row) { http_response_code(404); exit("Data tidak ditemukan"); }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $statusBaru = $_POST['status_baru'] ?? '';
@@ -36,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $up = DBH->prepare("UPDATE peminjaman SET STATUS=:s, TANGGAL_RENCANA=:t WHERE ID_PEMINJAMAN=:id");
         $up->execute([':s'=>$statusBaru, ':t'=>$tglRencana, ':id'=>$id]);
 
-        header("Location: kelola_peminjaman.php?ok=1");
+        header("Location: kelola_peminjaman.php");
         exit;
     }
 }
@@ -53,14 +51,14 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
   <form method="post">
     <div class="field">
       <label>Status</label>
-      <select name="status_baru" required>
+      <select name="status_baru">
         <option value="Pinjam"  <?= $row['STATUS']==='Pinjam'?'selected':'' ?>>Pinjam</option>
         <option value="Kembali" <?= $row['STATUS']==='Kembali'?'selected':'' ?>>Kembali</option>
         <option value="Proses"  <?= $row['STATUS']==='Proses'?'selected':'' ?>>Proses</option>
       </select>
     </div>
     <label>Tanggal Rencana</label>
-    <input type="date" name="tanggal_rencana" value="<?= htmlspecialchars($row['TANGGAL_RENCANA'] ?? date('Y-m-d')) ?>" required>
+    <input type="date" name="tanggal_rencana" value="<?= htmlspecialchars($row['TANGGAL_RENCANA'] ?? date('Y-m-d')) ?>">
     <a href="kelola_peminjaman.php">Batal</a>
     <button type="submit">Simpan</button>
   </form>

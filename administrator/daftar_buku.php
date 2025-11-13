@@ -1,14 +1,20 @@
 <?php 
 require_once "../function.php";
 
+	#mengmbil isi database dari tabel buku melalui function
 	$buku = getBuku();
+
+	#menambahkan css
 	$list_css_tambahan = [
 		'main.administrator.css',
 		'menu.administrator.css'
 	];
+
+	#header dan menu administrator
 	include_once(BASE_PATH . '/layout/header.php');
- ?>
-	<?php include_once(BASE_PATH . "/layout/menu.administrator.php")?>
+	include_once(BASE_PATH . "/layout/menu.administrator.php")
+	
+?>
 
 	<div class="table table-books">
 		<table>
@@ -26,6 +32,7 @@ require_once "../function.php";
 				</tr>
 			</thead>
 			<tbody>
+				<!-- melakukan perulangan untuk array dari variable buku -->
 				<?php foreach ($buku as $book): ?>
 
 				<tr>
@@ -41,5 +48,6 @@ require_once "../function.php";
 				<?php endforeach ?>
 			</tbody>
 		</table>
+		<!-- Button untuk menambahkan buku -->
 		<a href="add.php">Tambah buku</a>
 	</div>
