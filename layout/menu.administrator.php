@@ -1,8 +1,8 @@
 <?php 
-	// if(!$_SESSION['isAdmin']){
-	// 	header('location: ' . BASE_URL . '/index.php');
-	// 	exit();
-	// }
+	if(!$_SESSION['isAdmin']){
+		header('location: ' . BASE_URL . '/index.php');
+		exit();
+	}
 
 ?>
 <div class="side">

@@ -1,5 +1,6 @@
-<?php 
+<?php require_once '../function.php';
     if(isset($_POST['logout'])){
+        unset($_SESSION['isAdmin']);
         header('location: ../index.php');
         exit();
     }
