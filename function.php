@@ -2,6 +2,27 @@
 require_once('base.php');
 require_once(BASE_PATH . '/service/connect.php');
 require_once(BASE_PATH . '/service/session.php');
+
+	function checkUser($data) {
+		$stmt = DBH->prepare("SELECT * FROM user WHERE USERNAME = :username");
+        $stmt->execute([':username' => $data]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	function checkPassword($data1, $data2){
+		$stmnt = DBH->prepare("SELECT * FROM user WHERE USERNAME = :username and PASSWORD = SHA2(:password, 0)");
+		$stmnt->execute([
+			':username' => $data1,
+			':password' => $data2
+		]);
+
+		return $stmnt->rowCount() > 0;
+	}
+
+	function isAdmin() {
+	    return isset($_SESSION['peran']) && $_SESSION['peran'] === 'Administrator';
+	}
+
 	function required($data) {
 		return $data == "";
 	}

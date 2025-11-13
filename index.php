@@ -1,4 +1,4 @@
-<?php  
+<?php 
 require_once 'function.php'; 
 
 $username = $password = '';
@@ -27,8 +27,31 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $error_password = 'Password minimal 5 karakter.';
     }
 
+    // Jika tidak ada error, lanjut cek ke database
     if (empty($error_username) && empty($error_password)) {
-        echo "Sukses Login!";
+        $user = checkUser($username);
+        if ($user) {
+            // Jika password-nya belum di-hash, bandingkan langsung:
+            if (checkPassword($username,$password)) {
+                // Simpan ke session
+                $_SESSION['nama'] = $user['NAMA_LENGKAP'];
+                $_SESSION['peran'] = $user['PERAN'];
+
+                // Arahkan berdasarkan peran
+                if ($user['PERAN'] === 'Administrator') {
+                    $_SESSION['isAdmin'] = true;
+                    header('Location: administrator/index.php');
+                    exit;
+                } else {
+                    header('Location: daftar_buku.php');
+                    exit;
+                }
+            } else {
+                $error_password = "Password salah.";
+            }
+        } else {
+            $error_username = "Username tidak ditemukan.";
+        }
     }
 }
 ?>
