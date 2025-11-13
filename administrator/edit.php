@@ -8,10 +8,11 @@
     header('location: ' . BASE_URL . '/administrator/daftar_buku.php');
     exit();
   }
+
   $list_css_tambahan = ['form-buku.css', 'menu.administrator.css'];
 
-include_once(BASE_PATH . '/layout/header.php');
-include_once(BASE_PATH . '/layout/menu.administrator.php'); 
+  include_once(BASE_PATH . '/layout/header.php');
+  include_once(BASE_PATH . '/layout/menu.administrator.php'); 
 ?>
 
 <div class="form container-form">
