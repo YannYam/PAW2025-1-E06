@@ -1,5 +1,5 @@
 <?php
-require_once('service/database.php');
+require_once('function.php');
 
 // nampilin buku
 $buku = getBuku();
@@ -28,7 +28,6 @@ include_once(BASE_PATH . '/layout/header.php');
                     <?php foreach ($buku as $book):?> 
                     <tr>
                         <td><a href=""><?= $book['judul'] ?></a></td>
-                        <td><?= $book[''] ?></td>
                         <td><?= $book['nama_lengkap'] ?></td>
                         <td><?= $book['status'] ?></td>
                         <td><?= $book['created_at'] ?></td>
