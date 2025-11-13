@@ -51,3 +51,5 @@ require_once "../function.php";
 		<!-- Button untuk menambahkan buku -->
 		<a href="add.php">Tambah buku</a>
 	</div>
+
+<?php include_once BASE_PATH . '/layout/footer.php'; ?>

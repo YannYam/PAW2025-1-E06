@@ -6,8 +6,8 @@ $list_css_tambahan = [
 	'menu.administrator.css'
 ];
 include_once(BASE_PATH . '/layout/header.php');
+include "../layout/menu.administrator.php" 
 ?>
-	<?php include "../layout/menu.administrator.php" ?>
 
 	<div class="table table-peminjaman">
 		<div class="pinjam">
@@ -20,10 +20,11 @@ include_once(BASE_PATH . '/layout/header.php');
 						<th>Penulis</th>
 						<th>Penerbit</th>
 						<th>tahun</th>
-						<th>Status</th>
 						<th>Oleh</th>
 						<th>Tanggal Pinjam</th>
 						<th>Tanggal Rencana</th>
+						<th>Status</th>
+						<th>Option</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -35,10 +36,11 @@ include_once(BASE_PATH . '/layout/header.php');
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>
-						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>" class="btn btn-edit">Edit</a></td>
 						<td><?= $hasil['NAMA_LENGKAP'] ?></td>
 						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
+						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
+						<td><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>" class="btn btn-edit">Edit</a></td>
 					</tr>
 					<?php endforeach ?>
 
@@ -55,10 +57,10 @@ include_once(BASE_PATH . '/layout/header.php');
 						<th>Penulis</th>
 						<th>Penerbit</th>
 						<th>tahun</th>
-						<th>Status</th>
 						<th>Oleh</th>
 						<th>Tanggal Pinjam</th>
 						<th>Tanggal Rencana</th>
+						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -70,10 +72,10 @@ include_once(BASE_PATH . '/layout/header.php');
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>
-						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
 						<td><?= $hasil['NAMA_LENGKAP'] ?></td>
 						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
+						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
 					</tr>
 					<?php endforeach ?>
 
@@ -81,3 +83,5 @@ include_once(BASE_PATH . '/layout/header.php');
 			</table>
 		</div>
 	</div>
+
+<?php include_once BASE_PATH . '/layout/footer.php'; ?>

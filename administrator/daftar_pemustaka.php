@@ -42,3 +42,5 @@ include "../layout/menu.administrator.php"
 			</tbody>
 		</table>
 	</div>
+
+<?php include_once BASE_PATH . '/layout/footer.php'; ?>
