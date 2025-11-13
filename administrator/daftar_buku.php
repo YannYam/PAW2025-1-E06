@@ -1,4 +1,4 @@
-<?php require_once "../service/database.php";
+<?php require_once "../database.php";
 	$buku = getBuku();
 	$list_css_tambahan = [
 		'main.administrator.css',

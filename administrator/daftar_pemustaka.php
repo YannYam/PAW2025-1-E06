@@ -1,4 +1,4 @@
-<?php require_once "../service/database.php";
+<?php require_once "../database.php";
 $user = getPemustaka();
 //update status peminjaman buku
 

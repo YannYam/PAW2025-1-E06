@@ -1,6 +1,6 @@
 <?php
 require_once("../base.php");
-require_once(BASE_PATH . '/service/database.php');
+require_once(BASE_PATH . '/database.php');
 
 if (!isset($_GET['id'])) { http_response_code(400); exit("ID tidak ada"); }
 $id = $_GET['id'];

@@ -1,4 +1,4 @@
-<?php require_once "../service/database.php";
+<?php require_once "../database.php";
 $pinjam = getDaftarPeminjaman();
 $kembali = getDaftarKembali();
 $list_css_tambahan = [
