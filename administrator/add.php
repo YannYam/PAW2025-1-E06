@@ -1,4 +1,4 @@
-<?php require_once '../database.php';
+<?php require_once '../function.php';
   if(isset($_POST['simpan'])){
     tambahBuku($_POST);
     header('location: ' . BASE_URL . '/administrator/daftar_buku.php');

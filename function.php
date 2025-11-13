@@ -52,7 +52,7 @@ require_once(BASE_PATH . '/service/connect.php');
 
 
 	function tambahBuku(array $data){
-		$state = DBH->prepare("INSERT INTO buku (JUDUL_BUKU, DESKRIPSI, PENULIS, PENERBIT, TAHUN, STOK) VALUES (:judul, :deskripsi, :penulis, :penerbit, :tahun, :stok)");
+		$state = DBH->prepare("INSERT INTO buku (JUDUL, DESKRIPSI, PENULIS, PENERBIT, TAHUN, STOK) VALUES (:judul, :deskripsi, :penulis, :penerbit, :tahun, :stok)");
 		$state->execute([
 			':judul' => $data['judul'],
 			':deskripsi' => $data['deskripsi'],
@@ -65,7 +65,7 @@ require_once(BASE_PATH . '/service/connect.php');
 
 	function editBuku(int $id, array $data){
   		$state = DBH->prepare("UPDATE buku SET 
-        			JUDUL_BUKU = :judul, 
+        			JUDUL = :judul, 
         			DESKRIPSI = :deskripsi, 
         			PENULIS = :penulis, 
         			PENERBIT = :penerbit, 
@@ -105,30 +105,52 @@ require_once(BASE_PATH . '/service/connect.php');
 	}
 
 	function getPemustaka(){
-		$state = DBH->prepare("SELECT ID_USER, NAMA_USER, ALAMAT_USER, TELEPON, TIMESTAMPDIFF(YEAR, TANGGAL_LAHIR_USER, CURDATE()) AS umur FROM user WHERE PERAN = 'pemustaka'");
+		$state = DBH->prepare("SELECT ID_USER, NAMA_LENGKAP, ALAMAT, TELEPON, TIMESTAMPDIFF(YEAR, TANGGAL_LAHIR, CURDATE()) AS umur FROM user WHERE PERAN = 'pemustaka'");
 		$state->execute();
 		$artikel = $state->fetchAll();
 		return $artikel;
 	}
 
 	function getDaftarPeminjaman() {
-	    $stmt = DBH->prepare("SELECT buku.JUDUL_BUKU, buku.PENULIS, buku.PENERBIT, buku.TAHUN,
-	                   peminjaman.STATUS,peminjaman.ID_PEMINJAMAN, user.NAMA_USER, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA
-	            FROM peminjaman
-	            JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
-	            JOIN user ON peminjaman.ID_USER = user.ID_USER
-				WHERE peminjaman.STATUS != 'kembali'");
+	    $stmt = DBH->prepare("
+	        SELECT 
+	            buku.JUDUL, 
+	            buku.PENULIS, 
+	            buku.PENERBIT, 
+	            buku.TAHUN,
+	            peminjaman.STATUS,
+	            peminjaman.ID_PEMINJAMAN, 
+	            user.NAMA_LENGKAP, 
+	            peminjaman.TANGGAL_PINJAM, 
+	            peminjaman.TANGGAL_RENCANA
+	        FROM peminjaman
+	        JOIN pinjam ON peminjaman.ID_PEMINJAMAN = pinjam.ID_PEMINJAMAN
+	        JOIN buku ON pinjam.ID_BUKU = buku.ID_BUKU
+	        JOIN user ON peminjaman.ID_USER = user.ID_USER
+	        WHERE peminjaman.STATUS != 'Kembali'
+	    ");
 	    $stmt->execute();
 	    return $stmt->fetchAll();
 	}
 
 	function getDaftarKembali() {
-	    $stmt = DBH->prepare("SELECT buku.JUDUL_BUKU, buku.PENULIS, buku.PENERBIT, buku.TAHUN,
-	                   peminjaman.STATUS,peminjaman.ID_PEMINJAMAN, user.NAMA_USER, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA
-	            FROM peminjaman
-	            JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
-	            JOIN user ON peminjaman.ID_USER = user.ID_USER
-				WHERE peminjaman.STATUS = 'kembali'");
+	    $stmt = DBH->prepare("
+	        SELECT 
+	            buku.JUDUL, 
+	            buku.PENULIS, 
+	            buku.PENERBIT, 
+	            buku.TAHUN,
+	            peminjaman.STATUS,
+	            peminjaman.ID_PEMINJAMAN, 
+	            user.NAMA_LENGKAP, 
+	            peminjaman.TANGGAL_PINJAM, 
+	            peminjaman.TANGGAL_RENCANA
+	        FROM peminjaman
+	        JOIN pinjam ON peminjaman.ID_PEMINJAMAN = pinjam.ID_PEMINJAMAN
+	        JOIN buku ON pinjam.ID_BUKU = buku.ID_BUKU
+	        JOIN user ON peminjaman.ID_USER = user.ID_USER
+	        WHERE peminjaman.STATUS = 'Kembali'
+	    ");
 	    $stmt->execute();
 	    return $stmt->fetchAll();
 	}

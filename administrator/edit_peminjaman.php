@@ -1,6 +1,6 @@
 <?php
 require_once("../base.php");
-require_once(BASE_PATH . '/database.php');
+require_once(BASE_PATH . '/function.php');
 
 if (!isset($_GET['id'])) { http_response_code(400); exit("ID tidak ada"); }
 $id = $_GET['id'];
@@ -13,7 +13,7 @@ if (!$row) { http_response_code(404); exit("Data tidak ditemukan"); }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $statusBaru = $_POST['status_baru'] ?? '';
     $tglRencana = $_POST['tanggal_rencana'] ?? '';
-    $allowed = ['pinjam','kembali','proses'];
+    $allowed = ['Pinjam','Kembali','Proses'];
 
     if (!in_array($statusBaru, $allowed, true)) {
         $err = "Status tidak valid";
@@ -21,19 +21,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $err = "Tanggal rencana wajib diisi";
     } else {
         // cek status lama
-        $check = $db->prepare("SELECT STATUS FROM peminjaman WHERE ID_PEMINJAMAN = :id");
+        $check = DBH->prepare("SELECT STATUS FROM peminjaman WHERE ID_PEMINJAMAN = :id");
         $check->execute([':id'=>$id]);
         $current = $check->fetchColumn();
 
         // jika baru dipinjam, isi tanggal pinjam
-        if ($statusBaru === 'pinjam' && $current !== 'pinjam') {
+        if ($statusBaru === 'Pinjam' && $current !== 'Pinjam') {
             $ctime = date("Y-m-d");
-            $op = $db->prepare("UPDATE peminjaman SET TANGGAL_PINJAM=:p WHERE ID_PEMINJAMAN=:id");
+            $op = DBH->prepare("UPDATE peminjaman SET TANGGAL_PINJAM=:p WHERE ID_PEMINJAMAN=:id");
             $op->execute([':p'=>$ctime, ':id'=>$id]);
         }
 
         // update status dan tanggal rencana
-        $up = $db->prepare("UPDATE peminjaman SET STATUS=:s, TANGGAL_RENCANA=:t WHERE ID_PEMINJAMAN=:id");
+        $up = DBH->prepare("UPDATE peminjaman SET STATUS=:s, TANGGAL_RENCANA=:t WHERE ID_PEMINJAMAN=:id");
         $up->execute([':s'=>$statusBaru, ':t'=>$tglRencana, ':id'=>$id]);
 
         header("Location: kelola_peminjaman.php?ok=1");
@@ -54,9 +54,9 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
     <div class="field">
       <label>Status</label>
       <select name="status_baru" required>
-        <option value="pinjam"  <?= $row['STATUS']==='pinjam'?'selected':'' ?>>pinjam</option>
-        <option value="kembali" <?= $row['STATUS']==='kembali'?'selected':'' ?>>kembali</option>
-        <option value="proses"  <?= $row['STATUS']==='proses'?'selected':'' ?>>proses</option>
+        <option value="Pinjam"  <?= $row['STATUS']==='Pinjam'?'selected':'' ?>>Pinjam</option>
+        <option value="Kembali" <?= $row['STATUS']==='Kembali'?'selected':'' ?>>Kembali</option>
+        <option value="Proses"  <?= $row['STATUS']==='Proses'?'selected':'' ?>>Proses</option>
       </select>
     </div>
     <label>Tanggal Rencana</label>

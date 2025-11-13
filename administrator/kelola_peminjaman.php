@@ -1,4 +1,4 @@
-<?php require_once "../database.php";
+<?php require_once "../function.php";
 $pinjam = getDaftarPeminjaman();
 $kembali = getDaftarKembali();
 $list_css_tambahan = [
@@ -31,12 +31,12 @@ include_once(BASE_PATH . '/layout/header.php');
 
 					<tr>
 						<td><?= $hasil['ID_PEMINJAMAN'] ?></td>
-						<td><?= $hasil['JUDUL_BUKU'] ?></td>
+						<td><?= $hasil['JUDUL'] ?></td>
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>
 						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>" class="btn btn-edit">Edit</a></td>
-						<td><?= $hasil['NAMA_USER'] ?></td>
+						<td><?= $hasil['NAMA_LENGKAP'] ?></td>
 						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
 					</tr>
@@ -66,12 +66,12 @@ include_once(BASE_PATH . '/layout/header.php');
 
 					<tr>
 						<td><?= $hasil['ID_PEMINJAMAN'] ?></td>
-						<td><?= $hasil['JUDUL_BUKU'] ?></td>
+						<td><?= $hasil['JUDUL'] ?></td>
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>
 						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
-						<td><?= $hasil['NAMA_USER'] ?></td>
+						<td><?= $hasil['NAMA_LENGKAP'] ?></td>
 						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
 					</tr>
