@@ -4,7 +4,7 @@ require_once(BASE_PATH . '/function.php');
 
 $id = $_GET['id'] ?? 1;
 
-$stmt = DBH->prepare("SELECT ID_PEMINJAMAN, STATUS, TANGGAL_RENCANA FROM peminjaman WHERE ID_PEMINJAMAN = :id");
+$stmt = DBH->prepare("SELECT detail_transaksi.ID_PEMINJAMAN, detail_transaksi.STATUS_DETAIL, peminjaman.TANGGAL_RENCANA FROM peminjaman, detail_transaksi WHERE detail_transaksi.ID_DETAIL = :id");
 $stmt->execute([':id'=>$id]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -53,9 +53,11 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
       <div class="field">
         <label>Status</label>
         <select name="status_baru">
-          <option value="Pinjam"  <?= $row['STATUS']==='Pinjam'?'selected':'' ?>>Pinjam</option>
-          <option value="Kembali" <?= $row['STATUS']==='Kembali'?'selected':'' ?>>Kembali</option>
-          <option value="Proses"  <?= $row['STATUS']==='Proses'?'selected':'' ?>>Proses</option>
+          <option value="Pinjam"  <?= $row['STATUS_DETAIL']==='pinjam'?'selected':'' ?>>Pinjam</option>
+          <option value="Kembali" <?= $row['STATUS_DETAIL']==='kembali'?'selected':'' ?>>Kembali</option>
+          <option value="Proses"  <?= $row['STATUS_DETAIL']==='proses'?'selected':'' ?>>Proses</option>
+          <option value="Rusak">Rusak</option>
+          <option value="Hilang">Hilang</option>
         </select>
       </div>
       <label>Tanggal Rencana</label>

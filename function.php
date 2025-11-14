@@ -140,16 +140,16 @@ require_once(BASE_PATH . '/service/session.php');
 	            buku.PENULIS, 
 	            buku.PENERBIT, 
 	            buku.TAHUN,
-	            peminjaman.STATUS,
+	            detail_transaksi.STATUS_DETAIL,
 	            peminjaman.ID_PEMINJAMAN, 
 	            user.NAMA_LENGKAP, 
 	            peminjaman.TANGGAL_PINJAM, 
 	            peminjaman.TANGGAL_RENCANA
 	        FROM peminjaman
-	        JOIN pinjam ON peminjaman.ID_PEMINJAMAN = pinjam.ID_PEMINJAMAN
-	        JOIN buku ON pinjam.ID_BUKU = buku.ID_BUKU
+	        JOIN detail_transaksi ON peminjaman.ID_PEMINJAMAN = detail_transaksi.ID_PEMINJAMAN
+	        JOIN buku ON detail_transaksi.ID_BUKU = buku.ID_BUKU
 	        JOIN user ON peminjaman.ID_USER = user.ID_USER
-	        WHERE peminjaman.STATUS != 'Kembali'
+	        WHERE detail_transaksi.STATUS_DETAIL != 'kembali'
 	    ");
 	    $stmt->execute();
 	    return $stmt->fetchAll();
@@ -162,16 +162,16 @@ require_once(BASE_PATH . '/service/session.php');
 	            buku.PENULIS, 
 	            buku.PENERBIT, 
 	            buku.TAHUN,
-	            peminjaman.STATUS,
+	            detail_transaksi.STATUS_DETAIL,
 	            peminjaman.ID_PEMINJAMAN, 
 	            user.NAMA_LENGKAP, 
 	            peminjaman.TANGGAL_PINJAM, 
 	            peminjaman.TANGGAL_RENCANA
 	        FROM peminjaman
-	        JOIN pinjam ON peminjaman.ID_PEMINJAMAN = pinjam.ID_PEMINJAMAN
-	        JOIN buku ON pinjam.ID_BUKU = buku.ID_BUKU
+	        JOIN detail_transaksi ON peminjaman.ID_PEMINJAMAN = detail_transaksi.ID_PEMINJAMAN
+	        JOIN buku ON detail_transaksi.ID_BUKU = buku.ID_BUKU
 	        JOIN user ON peminjaman.ID_USER = user.ID_USER
-	        WHERE peminjaman.STATUS = 'Kembali'
+	        WHERE detail_transaksi.STATUS_DETAIL = 'kembali'
 	    ");
 	    $stmt->execute();
 	    return $stmt->fetchAll();

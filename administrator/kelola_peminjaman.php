@@ -39,7 +39,7 @@ include "../layout/menu.administrator.php"
 						<td><?= $hasil['NAMA_LENGKAP'] ?></td>
 						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
-						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
+						<td class="status <?= $hasil['STATUS_DETAIL'] ?>"><?= $hasil['STATUS_DETAIL'] ?></td>
 						<td><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>" class="btn btn-edit">Edit</a></td>
 					</tr>
 					<?php endforeach ?>
@@ -75,7 +75,7 @@ include "../layout/menu.administrator.php"
 						<td><?= $hasil['NAMA_LENGKAP'] ?></td>
 						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
-						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
+						<td class="status <?= $hasil['STATUS_DETAIL'] ?>"><?= $hasil['STATUS_DETAIL'] ?></td>
 					</tr>
 					<?php endforeach ?>
 

@@ -41,10 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if ($user['PERAN'] === 'Administrator') {
                     $_SESSION['isAdmin'] = true;
                     header('Location: administrator/index.php');
-                    exit;
+                    exit();
                 } else {
                     header('Location: daftar_buku.php');
-                    exit;
+                    exit();
                 }
             } else {
                 $error_password = "Password salah.";

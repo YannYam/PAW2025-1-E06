@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2025 at 09:11 AM
+-- Generation Time: Nov 14, 2025 at 03:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `libra`
+-- Database: `library`
 --
 
 -- --------------------------------------------------------
@@ -42,12 +42,35 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`ID_BUKU`, `JUDUL`, `DESKRIPSI`, `PENULIS`, `PENERBIT`, `TAHUN`, `STOK`) VALUES
-(1, 'Petualangan Si Kancil', 'Cerita dongeng hewan yang populer untuk anak-anak.', 'Mang Udin', 'Pustaka Ceria', '2018', 3),
-(2, 'Dongeng Nusantara', 'Kumpulan cerita rakyat dari berbagai daerah Indonesia.', 'Siti Aminah', 'Penerbit Ceria', '2017', 7),
-(3, 'Misteri di Sekolah', 'Novel misteri yang seru untuk remaja.', 'Rina Dewi', 'Gramedia', '2020', 5),
-(4, 'Sahabat Sejati', 'Novel tentang persahabatan remaja dan tantangannya.', 'Budi Santoso', 'Pustaka Media', '2019', 6),
-(5, 'Komik Si Jagoan', 'Komik superhero yang menghibur untuk anak-anak.', 'Joko Susanto', 'Komik Kreatif', '2021', 8),
-(6, 'Petualangan di Dunia Ajaib', 'Novel petualangan yang cocok untuk anak dan remaja.', 'Andi Pratama', 'Pustaka Muda', '2021', 7);
+(1, 'Petualangan Si Kancil', 'Cerita dongeng hewan populer untuk anak-anak.', 'Mang Udin', 'Pustaka Ceria', '2018', 3),
+(2, 'Dongeng Nusantara', 'Cerita rakyat dari berbagai daerah Indonesia.', 'Siti Aminah', 'Penerbit Ceria', '2017', 7),
+(3, 'Misteri di Sekolah', 'Novel misteri seru untuk remaja.', 'Rina Dewi', 'Gramedia', '2020', 5),
+(4, 'Sahabat Sejati', 'Novel tentang persahabatan remaja.', 'Budi Santoso', 'Pustaka Media', '2019', 6),
+(5, 'Komik Si Jagoan', 'Komik superhero anak-anak.', 'Joko Susanto', 'Komik Kreatif', '2021', 8),
+(6, 'Petualangan di Dunia Ajaib', 'Novel petualangan fantasi.', 'Andi Pratama', 'Pustaka Muda', '2021', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_transaksi`
+--
+
+CREATE TABLE `detail_transaksi` (
+  `ID_DETAIL` int(11) NOT NULL,
+  `ID_PEMINJAMAN` int(11) NOT NULL,
+  `ID_BUKU` int(11) NOT NULL,
+  `JUMLAH` int(11) NOT NULL,
+  `STATUS_DETAIL` enum('proses','pinjam','kembali','rusak','hilang') NOT NULL DEFAULT 'proses'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `detail_transaksi`
+--
+
+INSERT INTO `detail_transaksi` (`ID_DETAIL`, `ID_PEMINJAMAN`, `ID_BUKU`, `JUMLAH`, `STATUS_DETAIL`) VALUES
+(1, 1, 1, 1, 'proses'),
+(2, 2, 3, 1, 'proses'),
+(3, 3, 5, 1, 'kembali');
 
 -- --------------------------------------------------------
 
@@ -59,37 +82,18 @@ CREATE TABLE `peminjaman` (
   `ID_PEMINJAMAN` int(11) NOT NULL,
   `ID_USER` int(11) NOT NULL,
   `TANGGAL_PINJAM` date NOT NULL,
-  `TANGGAL_RENCANA` date NOT NULL
+  `TANGGAL_RENCANA` date NOT NULL,
+  `STATUS` enum('proses','pinjam','kembali') NOT NULL DEFAULT 'proses'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`ID_PEMINJAMAN`, `ID_USER`, `TANGGAL_PINJAM`, `TANGGAL_RENCANA`) VALUES
-(1, 1, '2025-11-13', '2025-11-20'),
-(2, 2, '2025-11-13', '2025-11-20'),
-(3, 3, '2025-10-28', '2025-11-07');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pinjam`
---
-
-CREATE TABLE `pinjam` (
-  `ID_PEMINJAMAN` int(11) NOT NULL,
-  `ID_BUKU` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pinjam`
---
-
-INSERT INTO `pinjam` (`ID_PEMINJAMAN`, `ID_BUKU`) VALUES
-(1, 1),
-(2, 3),
-(3, 5);
+INSERT INTO `peminjaman` (`ID_PEMINJAMAN`, `ID_USER`, `TANGGAL_PINJAM`, `TANGGAL_RENCANA`, `STATUS`) VALUES
+(1, 1, '2025-11-13', '2025-11-20', 'proses'),
+(2, 2, '2025-11-13', '2025-11-20', 'proses'),
+(3, 3, '2025-10-28', '2025-11-07', 'kembali');
 
 -- --------------------------------------------------------
 
@@ -100,8 +104,8 @@ INSERT INTO `pinjam` (`ID_PEMINJAMAN`, `ID_BUKU`) VALUES
 CREATE TABLE `user` (
   `ID_USER` int(11) NOT NULL,
   `NAMA_LENGKAP` varchar(50) NOT NULL,
-  `USERNAME` varchar(20) NOT NULL,
-  `PASSWORD` varchar(50) NOT NULL,
+  `USERNAME` varchar(50) NOT NULL,
+  `PASSWORD` varchar(64) NOT NULL,
   `TELEPON` varchar(14) NOT NULL,
   `TANGGAL_LAHIR` date NOT NULL,
   `ALAMAT` longtext NOT NULL,
@@ -129,18 +133,19 @@ ALTER TABLE `buku`
   ADD PRIMARY KEY (`ID_BUKU`);
 
 --
+-- Indexes for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  ADD PRIMARY KEY (`ID_DETAIL`),
+  ADD KEY `ID_PEMINJAMAN` (`ID_PEMINJAMAN`),
+  ADD KEY `ID_BUKU` (`ID_BUKU`);
+
+--
 -- Indexes for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`ID_PEMINJAMAN`),
-  ADD KEY `FK_RELATIONSHIP_1` (`ID_USER`);
-
---
--- Indexes for table `pinjam`
---
-ALTER TABLE `pinjam`
-  ADD PRIMARY KEY (`ID_PEMINJAMAN`,`ID_BUKU`),
-  ADD KEY `FK_PINJAM2` (`ID_BUKU`);
+  ADD KEY `ID_USER` (`ID_USER`);
 
 --
 -- Indexes for table `user`
@@ -156,7 +161,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `ID_BUKU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_BUKU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  MODIFY `ID_DETAIL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
@@ -175,17 +186,17 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  ADD CONSTRAINT `detail_transaksi_ibfk_1` FOREIGN KEY (`ID_PEMINJAMAN`) REFERENCES `peminjaman` (`ID_PEMINJAMAN`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_transaksi_ibfk_2` FOREIGN KEY (`ID_BUKU`) REFERENCES `buku` (`ID_BUKU`) ON UPDATE CASCADE;
+
+--
 -- Constraints for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  ADD CONSTRAINT `FK_RELATIONSHIP_1` FOREIGN KEY (`ID_USER`) REFERENCES `user` (`ID_USER`);
-
---
--- Constraints for table `pinjam`
---
-ALTER TABLE `pinjam`
-  ADD CONSTRAINT `FK_PINJAM` FOREIGN KEY (`ID_PEMINJAMAN`) REFERENCES `peminjaman` (`ID_PEMINJAMAN`),
-  ADD CONSTRAINT `FK_PINJAM2` FOREIGN KEY (`ID_BUKU`) REFERENCES `buku` (`ID_BUKU`);
+  ADD CONSTRAINT `peminjaman_ibfk_1` FOREIGN KEY (`ID_USER`) REFERENCES `user` (`ID_USER`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
