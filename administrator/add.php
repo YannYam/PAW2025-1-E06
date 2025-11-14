@@ -4,7 +4,7 @@ require_once '../function.php';
 #Menambahkan buku ketika meng klik tombol simpan
   if(isset($_POST['simpan'])){
     tambahBuku($_POST);
-    header('location: ' . BASE_URL . '/administrator/daftar_buku.php');
+    header('location: ' . BASE_URL . '/administrator/index.php');
     exit();
   }
 
@@ -20,7 +20,7 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
   <div class="page-header">
     <h1>Tambah Buku</h1>
     
-    <a href="daftar_buku.php">
+    <a href="index.php">
       &larr; Kembali
     </a>
   </div>

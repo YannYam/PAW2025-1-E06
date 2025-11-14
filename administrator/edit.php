@@ -5,7 +5,7 @@
   $detail = getBukuOne($_GET['id_buku']);
   if (isset($_POST['simpan'])) {
     editBuku($_GET['id_buku'], $_POST);
-    header('location: ' . BASE_URL . '/administrator/daftar_buku.php');
+    header('location: ' . BASE_URL . '/administrator/index.php');
     exit();
   }
 
@@ -19,7 +19,7 @@
   <div class="page-header">
     <h1>Edit Buku</h1>
     
-    <a href="daftar_buku.php">
+    <a href="index.php">
       &larr; Kembali
     </a>
   </div>
