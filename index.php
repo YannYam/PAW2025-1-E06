@@ -1,7 +1,22 @@
-<h1>Halaman Utama</h1>
+<?php
+require_once('function.php');
 
-<h1> tes update </h1>
+$list_css_tambahan = [
+    'style.css'
+];
 
-<h1> menambahkan ini mengubah ini </h1>
+include_once(BASE_PATH . '/layout/header.php');
+?>
 
-<p> tes tes tes tes  </p>
+
+<main class="site-main">
+    <div class="container">
+        <div class="search-wrapper">
+            <form action="daftar_buku.php" method="GET" class="search-box">
+                <input type="text" name="search" placeholder="Cari judul buku..." class="search-input">
+                <button type="submit" class="search-btn">Cari</button>
+            </form>
+        </div>
+
+    </div>
+</main>
