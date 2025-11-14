@@ -62,18 +62,33 @@ td.status {
     gap: 10px;
 }
 
-td.status.Pinjam {
+td.status.pinjam {
     background-color: #28a745;
     color: white;
     font-weight: bold; 
 }
-td.status.Kembali { 
+td.status.kembali { 
     background-color: #6c757d;
     color: white; 
     font-style: italic; 
 }
-td.status.Proses { 
+td.status.terlambat { 
+    background-color: #ff5733;
+    color: white; 
+    font-style: italic; 
+}
+td.status.proses { 
     background-color: #ffc107;
+    color: white; 
+    font-weight: 600; 
+}
+td.status.rusak { 
+    background-color: #dc3545;
+    color: white; 
+    font-weight: 600; 
+}
+td.status.hilang { 
+    background-color: #343a40;
     color: white; 
     font-weight: 600; 
 }

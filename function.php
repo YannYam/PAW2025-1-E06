@@ -149,7 +149,7 @@ require_once(BASE_PATH . '/service/session.php');
 	        JOIN detail_transaksi ON peminjaman.ID_PEMINJAMAN = detail_transaksi.ID_PEMINJAMAN
 	        JOIN buku ON detail_transaksi.ID_BUKU = buku.ID_BUKU
 	        JOIN user ON peminjaman.ID_USER = user.ID_USER
-	        WHERE detail_transaksi.STATUS_DETAIL != 'kembali'
+	        WHERE detail_transaksi.STATUS_DETAIL IN ('proses', 'pinjam')
 	    ");
 	    $stmt->execute();
 	    return $stmt->fetchAll();
@@ -171,7 +171,51 @@ require_once(BASE_PATH . '/service/session.php');
 	        JOIN detail_transaksi ON peminjaman.ID_PEMINJAMAN = detail_transaksi.ID_PEMINJAMAN
 	        JOIN buku ON detail_transaksi.ID_BUKU = buku.ID_BUKU
 	        JOIN user ON peminjaman.ID_USER = user.ID_USER
-	        WHERE detail_transaksi.STATUS_DETAIL = 'kembali'
+	        WHERE detail_transaksi.STATUS_DETAIL IN ('kembali', 'rusak', 'terlambat')
+	    ");
+	    $stmt->execute();
+	    return $stmt->fetchAll();
+	}
+
+	function getDaftarRusak() {
+	    $stmt = DBH->prepare("
+	        SELECT 
+	            buku.JUDUL, 
+	            buku.PENULIS, 
+	            buku.PENERBIT, 
+	            buku.TAHUN,
+	            detail_transaksi.STATUS_DETAIL,
+	            peminjaman.ID_PEMINJAMAN, 
+	            user.NAMA_LENGKAP, 
+	            peminjaman.TANGGAL_PINJAM, 
+	            peminjaman.TANGGAL_RENCANA
+	        FROM peminjaman
+	        JOIN detail_transaksi ON peminjaman.ID_PEMINJAMAN = detail_transaksi.ID_PEMINJAMAN
+	        JOIN buku ON detail_transaksi.ID_BUKU = buku.ID_BUKU
+	        JOIN user ON peminjaman.ID_USER = user.ID_USER
+	        WHERE detail_transaksi.STATUS_DETAIL = 'rusak'
+	    ");
+	    $stmt->execute();
+	    return $stmt->fetchAll();
+	}
+
+	function getDaftarHilang() {
+	    $stmt = DBH->prepare("
+	        SELECT 
+	            buku.JUDUL, 
+	            buku.PENULIS, 
+	            buku.PENERBIT, 
+	            buku.TAHUN,
+	            detail_transaksi.STATUS_DETAIL,
+	            peminjaman.ID_PEMINJAMAN, 
+	            user.NAMA_LENGKAP, 
+	            peminjaman.TANGGAL_PINJAM, 
+	            peminjaman.TANGGAL_RENCANA
+	        FROM peminjaman
+	        JOIN detail_transaksi ON peminjaman.ID_PEMINJAMAN = detail_transaksi.ID_PEMINJAMAN
+	        JOIN buku ON detail_transaksi.ID_BUKU = buku.ID_BUKU
+	        JOIN user ON peminjaman.ID_USER = user.ID_USER
+	        WHERE detail_transaksi.STATUS_DETAIL = 'hilang'
 	    ");
 	    $stmt->execute();
 	    return $stmt->fetchAll();
