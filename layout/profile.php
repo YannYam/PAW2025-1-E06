@@ -5,8 +5,8 @@
                 <div class="mini-profile">
                     <img src="<?= $_SESSION['PHOTO'] ?? 'default.png' ?>" alt="Foto Profil">
                     <div class="mini-profile-info">
-                        <p class="username"><?= $_SESSION['USERNAME'] ?? 'Guest' ?></p>
-                        <p class="role"><?= $_SESSION['ROLE'] ?? 'Pengguna' ?></p>
+                        <p class="username"><?= $_SESSION['nama'] ?? 'Guest' ?></p>
+                        <p class="role"><?= $_SESSION['peran'] ?? 'Pemustaka' ?></p>
                     </div>
                 </div>
             </a>

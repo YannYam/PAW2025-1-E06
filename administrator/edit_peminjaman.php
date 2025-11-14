@@ -1,42 +1,76 @@
 <?php
 require_once("../base.php");
-require_once(BASE_PATH . '/service/database.php');
+require_once(BASE_PATH . '/function.php');
 
-if (!isset($_GET['id'])) { http_response_code(400); exit("ID tidak ada"); }
-$id = $_GET['id'];
+$idDetail = $_GET['id'] ?? 0;
 
-$stmt = DBH->prepare("SELECT ID_PEMINJAMAN, STATUS, TANGGAL_RENCANA FROM peminjaman WHERE ID_PEMINJAMAN = :id");
-$stmt->execute([':id'=>$id]);
+// Ambil detail + peminjaman
+$stmt = DBH->prepare("
+    SELECT d.ID_DETAIL,
+           d.ID_PEMINJAMAN,
+           d.STATUS_DETAIL,
+           p.TANGGAL_RENCANA,
+           p.STATUS AS STATUS_PEMINJAMAN
+    FROM detail_transaksi d
+    JOIN peminjaman p ON d.ID_PEMINJAMAN = p.ID_PEMINJAMAN
+    WHERE d.ID_DETAIL = :id
+");
+$stmt->execute([':id' => $idDetail]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!$row) { http_response_code(404); exit("Data tidak ditemukan"); }
 
+if (!$row) {
+    die("Data tidak ditemukan");
+}
+
+$idPeminjaman = $row['ID_PEMINJAMAN']; // ID penting untuk update peminjaman
+
+// PROSES UPDATE
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $statusBaru = $_POST['status_baru'] ?? '';
+
+    $statusBaru = strtolower($_POST['status_baru'] ?? '');
     $tglRencana = $_POST['tanggal_rencana'] ?? '';
-    $allowed = ['pinjam','kembali','proses'];
+
+    $allowed = ['proses','pinjam','kembali','rusak','hilang', 'terlambat'];
 
     if (!in_array($statusBaru, $allowed, true)) {
         $err = "Status tidak valid";
     } elseif (!$tglRencana) {
         $err = "Tanggal rencana wajib diisi";
     } else {
-        // cek status lama
-        $check = $db->prepare("SELECT STATUS FROM peminjaman WHERE ID_PEMINJAMAN = :id");
-        $check->execute([':id'=>$id]);
-        $current = $check->fetchColumn();
 
-        // jika baru dipinjam, isi tanggal pinjam
-        if ($statusBaru === 'pinjam' && $current !== 'pinjam') {
-            $ctime = date("Y-m-d");
-            $op = $db->prepare("UPDATE peminjaman SET TANGGAL_PINJAM=:p WHERE ID_PEMINJAMAN=:id");
-            $op->execute([':p'=>$ctime, ':id'=>$id]);
+        // cek status lama peminjaman
+        $check = DBH->prepare("SELECT STATUS FROM peminjaman WHERE ID_PEMINJAMAN = :idp");
+        $check->execute([':idp' => $idPeminjaman]);
+        $currentStatus = $check->fetchColumn();
+
+        // Jika baru berubah ke 'pinjam' → set tanggal_pinjaman
+        if ($statusBaru === 'pinjam' && $currentStatus !== 'pinjam') {
+            $tglNow = date("Y-m-d");
+            $upPinjam = DBH->prepare("
+                UPDATE peminjaman 
+                SET TANGGAL_PINJAM = :tgl 
+                WHERE ID_PEMINJAMAN = :idp
+            ");
+            $upPinjam->execute([':tgl' => $tglNow, ':idp' => $idPeminjaman]);
         }
 
-        // update status dan tanggal rencana
-        $up = $db->prepare("UPDATE peminjaman SET STATUS=:s, TANGGAL_RENCANA=:t WHERE ID_PEMINJAMAN=:id");
-        $up->execute([':s'=>$statusBaru, ':t'=>$tglRencana, ':id'=>$id]);
+        // Update status peminjaman & tanggal rencana
+        $up = DBH->prepare("
+            UPDATE peminjaman 
+            SET STATUS = :s, TANGGAL_RENCANA = :t 
+            WHERE ID_PEMINJAMAN = :idp
+        ");
+        $up->execute([':s' => $statusBaru, ':t' => $tglRencana, ':idp' => $idPeminjaman]);
 
-        header("Location: kelola_peminjaman.php?ok=1");
+        // Update juga status detail_transaksi
+        $updDetail = DBH->prepare("
+            UPDATE detail_transaksi
+            SET STATUS_DETAIL = :s
+            WHERE ID_DETAIL = :idd
+        ");
+        $updDetail->execute([':s' => $statusBaru, ':idd' => $idDetail]);
+
+        header("Location: kelola_peminjaman.php");
         exit;
     }
 }
@@ -45,25 +79,37 @@ $list_css_tambahan = ['menu.administrator.css', 'form-buku.css'];
 include_once(BASE_PATH . '/layout/header.php');
 include_once(BASE_PATH . '/layout/menu.administrator.php');
 ?>
+
 <div class="form">
-  <h1>Edit Peminjaman</h1>
-  <?php if (!empty($err)): ?>
-    <div class="error"><?= htmlspecialchars($err) ?></div>
-  <?php endif; ?>
-  <form method="post">
-    <div class="field">
-      <label>Status</label>
-      <select name="status_baru" required>
-        <option value="pinjam"  <?= $row['STATUS']==='pinjam'?'selected':'' ?>>pinjam</option>
-        <option value="kembali" <?= $row['STATUS']==='kembali'?'selected':'' ?>>kembali</option>
-        <option value="proses"  <?= $row['STATUS']==='proses'?'selected':'' ?>>proses</option>
-      </select>
-    </div>
-    <label>Tanggal Rencana</label>
-    <input type="date" name="tanggal_rencana" value="<?= htmlspecialchars($row['TANGGAL_RENCANA'] ?? date('Y-m-d')) ?>" required>
-    <a href="kelola_peminjaman.php">Batal</a>
-    <button type="submit">Simpan</button>
-  </form>
+    <h1>Edit Peminjaman</h1>
+
+    <?php if (!empty($err)): ?>
+        <div class="error"><?= htmlspecialchars($err) ?></div>
+    <?php endif; ?>
+
+    <form method="post">
+
+        <div class="field">
+            <label>Status</label>
+            <select name="status_baru">
+                <option value="pinjam"   <?= $row['STATUS_DETAIL']==='pinjam'?'selected':'' ?>>Pinjam</option>
+                <option value="kembali"  <?= $row['STATUS_DETAIL']==='kembali'?'selected':'' ?>>Kembali</option>
+                <option value="proses"   <?= $row['STATUS_DETAIL']==='proses'?'selected':'' ?>>Proses</option>
+                <option value="rusak">Rusak</option>
+                <option value="hilang">Hilang</option>
+                <option value="terlambat">Terlambat</option>
+            </select>
+        </div>
+
+        <label>Tanggal Rencana</label>
+        <input type="date" 
+               name="tanggal_rencana"
+               value="<?= htmlspecialchars($row['TANGGAL_RENCANA'] ?? date('Y-m-d')) ?>">
+
+        <a href="kelola_peminjaman.php">Batal</a>
+        <button type="submit">Simpan</button>
+
+    </form>
 </div>
-</body>
-</html>
+
+<?php include_once BASE_PATH . '/layout/footer.php'; ?>
