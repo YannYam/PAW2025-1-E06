@@ -3,9 +3,9 @@ require_once 'function.php';
 
 if(isset($_SESSION['isLogin'])){
     if($_SESSION['isAdmin']){
-        header('location: ' . BASE_PATH . '/administrator/index.php');
+        header('location: ' . BASE_URL . '/administrator/index.php');
     }else{
-        header('location: ' . BASE_PATH . '/daftar_buku.php');
+        header('location: ' . BASE_URL . '/daftar_buku.php');
     }
     exit();
 }
