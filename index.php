@@ -1,6 +1,15 @@
 <?php 
 require_once 'function.php'; 
 
+if(isset($_SESSION['isLogin'])){
+    if($_SESSION['isAdmin']){
+        header('location: ' . BASE_PATH . '/administrator/index.php');
+    }else{
+        header('location: ' . BASE_PATH . '/daftar_buku.php');
+    }
+    exit();
+}
+
 $username = $password = '';
 
 $error_username = $error_password = '';
@@ -36,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // Simpan ke session
                 $_SESSION['nama'] = $user['NAMA_LENGKAP'];
                 $_SESSION['peran'] = $user['PERAN'];
+                $_SESSION['isLogin'] = true;
 
                 // Arahkan berdasarkan peran
                 if ($user['PERAN'] === 'Administrator') {
