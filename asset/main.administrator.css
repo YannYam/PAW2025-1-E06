@@ -167,7 +167,7 @@ td > a  {
     gap: 15px;
 }
 
-.detail-profile input[type="text"] {
+.detail-profile input[type="text"], input[type="date"] {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;

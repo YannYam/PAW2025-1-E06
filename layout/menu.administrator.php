@@ -1,5 +1,5 @@
 <?php 
-	if(!$_SESSION['isAdmin']){
+	if(!$_SESSION['peran'] === 'Administrator'){
 		header('location: ' . BASE_URL . '/index.php');
 		exit();
 	}
