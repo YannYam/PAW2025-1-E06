@@ -47,6 +47,10 @@ function checkUser($data) {
 		return is_numeric($data);
 	}
 
+	function noTelp($data){
+		return preg_match("/^(08 || 628)[0-9]{10,11}$/", $data);
+	}
+
 	function email($data) {
 		return filter_var($data, FILTER_VALIDATE_EMAIL);
 	}
@@ -60,11 +64,11 @@ function checkUser($data) {
 	}
 
 	function password($data) {
-		return preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/", $data);
+		return preg_match("/^[a-zA-Z0-9]+$/", $data);
 	}
 
 	function username($data) {
-		return preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z0-9]+$/", $data);
+		return preg_match("/^[a-zA-Z0-9\_]+$/", $data);
 	}
 
 	function alamat($data) {
