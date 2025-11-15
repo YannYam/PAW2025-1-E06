@@ -54,6 +54,10 @@ require_once(BASE_PATH . '/service/session.php');
 		return preg_match("/^[A-Za-z0-9]+$/", $data);
 	}
 
+	function alfaDesc($data){
+		return preg_match("/^[A-Za-z0-9 \s\.\,\'\?\-]+$/", $data);
+	}
+
 	function password($data) {
 		return preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/", $data);
 	}
@@ -69,6 +73,18 @@ require_once(BASE_PATH . '/service/session.php');
 	function valid_tanggal($data) {
 		$d = DateTime::createFromFormat("Y-m-d", $data);
 		return $d && $d->format("Y-m-d") === $data;
+	}
+
+	function year($data){
+		return preg_match("/^[0-9]{4}$/", $data);
+	}
+
+	function alfabetOrAlfanumerik($data){
+		return alfanumerik($data) || alfabet($data) || alfaDesc($data);
+	}
+
+	function alfaJudul($data){
+		return alfanumerik($data) || alfabet($data);
 	}
 
 

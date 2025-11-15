@@ -49,7 +49,7 @@ require_once "../function.php";
 			</tbody>
 		</table>
 		<!-- Button untuk menambahkan buku -->
-		<a href="add.php">Tambah buku</a>
+		<a href="add.php?tambah=true">Tambah buku</a>
 	</div>
 
 <?php include_once BASE_PATH . '/layout/footer.php'; ?>

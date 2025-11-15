@@ -123,7 +123,7 @@ td > a  {
 }
 
 /* Link tambah buku */
-.table a[href="add.php"] {
+.table a[href="add.php?tambah=true"] {
     display: inline-block;
     margin-top: 15px;
     background: #2ecc71;
@@ -133,7 +133,7 @@ td > a  {
     text-decoration: none;
 }
 
-.table a[href="add.php"]:hover {
+.table a[href="add.php?tambah=true"]:hover {
     background: #27ae60;
 }
 
@@ -183,7 +183,7 @@ td > a  {
         padding: 10px;
     }
 
-    .table a[href="add.php"] {
+    .table a[href="add.php?tambah=true"] {
         margin-top: 10px;
         padding: 3px 7px;
         font-size: 7px;

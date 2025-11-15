@@ -2,12 +2,10 @@
   require_once("../base.php");
   require_once(BASE_PATH . '/function.php');
 
+
   $detail = getBukuOne($_GET['id_buku']);
-  if (isset($_POST['simpan'])) {
-    editBuku($_GET['id_buku'], $_POST);
-    header('location: ' . BASE_URL . '/administrator/index.php');
-    exit();
-  }
+
+  
 
   $list_css_tambahan = ['form-buku.css', 'menu.administrator.css'];
 
