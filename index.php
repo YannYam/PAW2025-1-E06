@@ -45,14 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // Simpan ke session
                 $_SESSION['nama'] = $user['NAMA_LENGKAP'];
                 $_SESSION['peran'] = $user['PERAN'];
+                $_SESSION['id'] = $user['ID_USER'];
                 $_SESSION['isLogin'] = true;
 
                 // Arahkan berdasarkan peran
                 if ($user['PERAN'] === 'Administrator') {
-                    $_SESSION['isAdmin'] = true;
                     header('Location: administrator/index.php');
                     exit();
-                } else {
+                } elseif($user['PERAN'] === 'Pemustaka') {
                     header('Location: daftar_buku.php');
                     exit();
                 }

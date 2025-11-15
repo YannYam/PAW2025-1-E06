@@ -3,17 +3,8 @@ require_once('base.php');
 require_once(BASE_PATH . '/service/connect.php');
 require_once(BASE_PATH . '/service/session.php');
 
-	function gantiNama($data){
-		$stmnt = DBH->prepare("UPDATE user SET NAMA_LENGKAP = :nama, ALAMAT = :alamat, TANGGAL_LAHIR = :tanggal, TELEPON = :telepon WHERE NAMA_LENGKAP = :nama");
-		$stmnt->execute([
-			':nama' => $data[''],
-			':alamat' => $data[''],
-			':tanggal' => $data[''],
-			':telepon' => $data['']
-		]);
-	}
 
-	function checkUser($data) {
+function checkUser($data) {
 		$stmt = DBH->prepare("SELECT * FROM user WHERE USERNAME = :username");
         $stmt->execute([':username' => $data]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -159,44 +150,61 @@ require_once(BASE_PATH . '/service/session.php');
 		return $artikel;
 	}
 
-function getDaftarPeminjaman() {
-    $stmt = DBH->prepare("
-        SELECT 
-            buku.JUDUL,
-            buku.PENULIS,
-            buku.PENERBIT,
-            buku.TAHUN,
-            peminjaman.STATUS,
-            peminjaman.ID_PEMINJAMAN,
-            user.NAMA_LENGKAP,
-            peminjaman.TANGGAL_PINJAM,
-            peminjaman.TANGGAL_RENCANA
-        FROM peminjaman
-        JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
-        JOIN user ON peminjaman.ID_USER = user.ID_USER
-        WHERE peminjaman.STATUS IN ('proses','pinjam')
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function getDaftarKembali() {
-    $stmt = DBH->prepare("
-        SELECT 
-            buku.JUDUL,
-            buku.PENULIS,
-            buku.PENERBIT,
-            buku.TAHUN,
-            peminjaman.STATUS,
-            peminjaman.ID_PEMINJAMAN,
-            user.NAMA_LENGKAP,
-            peminjaman.TANGGAL_PINJAM,
-            peminjaman.TANGGAL_RENCANA
-        FROM peminjaman
-        JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
-        JOIN user ON peminjaman.ID_USER = user.ID_USER
-        WHERE peminjaman.STATUS NOT IN('proses', 'pinjam')
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+	function getDaftarPeminjaman() {
+	    $stmt = DBH->prepare("
+	        SELECT 
+	            buku.JUDUL,
+	            buku.PENULIS,
+	            buku.PENERBIT,
+	            buku.TAHUN,
+	            peminjaman.STATUS,
+	            peminjaman.ID_PEMINJAMAN,
+	            user.NAMA_LENGKAP,
+	            peminjaman.TANGGAL_PINJAM,
+	            peminjaman.TANGGAL_RENCANA
+	        FROM peminjaman
+	        JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
+	        JOIN user ON peminjaman.ID_USER = user.ID_USER
+	        WHERE peminjaman.STATUS IN ('proses','pinjam')
+	    ");
+	    $stmt->execute();
+	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	function getDaftarKembali() {
+	    $stmt = DBH->prepare("
+	        SELECT 
+	            buku.JUDUL,
+	            buku.PENULIS,
+	            buku.PENERBIT,
+	            buku.TAHUN,
+	            peminjaman.STATUS,
+	            peminjaman.ID_PEMINJAMAN,
+	            user.NAMA_LENGKAP,
+	            peminjaman.TANGGAL_PINJAM,
+	            peminjaman.TANGGAL_RENCANA
+	        FROM peminjaman
+	        JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
+	        JOIN user ON peminjaman.ID_USER = user.ID_USER
+	        WHERE peminjaman.STATUS NOT IN('proses', 'pinjam')
+	    ");
+	    $stmt->execute();
+	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	function gantiDataProfil(int $id,array $data){
+		$stmnt = DBH->prepare("UPDATE user SET NAMA_LENGKAP = :nama, ALAMAT = :alamat, TANGGAL_LAHIR = :tanggal, TELEPON = :telepon WHERE ID_USER = :id");
+		$stmnt->execute([
+			':nama' => $data['nama'],
+			':alamat' => $data['alamat'],
+			':tanggal' => $data['tanggal'],
+			':telepon' => $data['telepon'],
+			':id' => $id
+		]);
+	}
+	
+	function getProfil($data){
+		$stmnt = DBH->prepare("SELECT * FROM user WHERE ID_USER = :id ");
+		$stmnt->execute([':id' => $data]);
+		return $stmnt->fetch();
+	}

@@ -2,13 +2,26 @@
 include_once '../function.php';
 
 if(!$_SESSION['isLogin']){
-    header('location: ' . BASE_PATH . '/index.php');
+    header('location: ' . BASE_URL . '/index.php');
     exit();
 }
 
-if(isset($_POST['simpan'])){
-    $nama = $_POST['nama'];
+
+if($_SERVER['REQUEST_METHOD'] = 'POST'){
+    if(isset($_POST['simpan'])){
+        gantiDataProfil($_SESSION['id'], $_POST);
+        $_SESSION['nama'] = $_POST['nama'];
+        if($_SESSION['peran'] === 'Administrator'){
+            header('location: ' . BASE_URL . '/administrator/index.php');
+            exit();
+        }elseif($_SESSION['peran'] === 'Pemustaka'){
+            header('location: ' . BASE_URL . '/index.php');
+            exit();
+        }
+    }
 }
+
+$profile = getProfil($_SESSION['id']);
 
 $list_css_tambahan = [
     'main.administrator.css',
@@ -25,8 +38,11 @@ include_once BASE_PATH . '/layout/menu.administrator.php';
             <h1>Profile</h1>
             <div class="detail-profile">
                 <form action="#" method="POST">
-                    <input type="text" value="<?= $_SESSION['nama'] ?>" name="nama">
-                    <a href="<?php if($_SESSION['isAdmin']) echo BASE_URL . '/administrator/index.php' ?? BASE_URL . 'index.php' ?>">Cancel</a><button type="submit" name="simpan">Simpan</button>
+                    <input type="text" value="<?= $profile['NAMA_LENGKAP'] ?>" name="nama">
+                    <input type="text" value="<?= $profile['ALAMAT'] ?>" name="alamat">
+                    <input type="date" value="<?= $profile['TANGGAL_LAHIR'] ?>" name="tanggal">
+                    <input type="text" value="<?= $profile['TELEPON'] ?>" name="telepon">
+                    <a href="<?php if($_SESSION['peran'] === 'Administrator') echo BASE_URL . '/administrator/index.php' ?? BASE_URL . 'index.php' ?>">Cancel</a><button type="submit" name="simpan">Simpan</button>
                 </form>
             </div>
         </div>
