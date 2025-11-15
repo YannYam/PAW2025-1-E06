@@ -16,7 +16,6 @@ include_once BASE_PATH . '/layout/menu.administrator.php';
 ?>
 
 <!-- code -->
- <p>Log</p>
 
 <?php include_once BASE_PATH . '/layout/footer.php' ?>
 
