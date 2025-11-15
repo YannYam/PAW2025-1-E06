@@ -1,12 +1,9 @@
 <?php 
 require_once '../function.php';
 
+$add = $_GET['tambah'];
 #Menambahkan buku ketika meng klik tombol simpan
-  if(isset($_POST['simpan'])){
-    tambahBuku($_POST);
-    header('location: ' . BASE_URL . '/administrator/index.php');
-    exit();
-  }
+
 
 #menambahkan css
 $list_css_tambahan = ['menu.administrator.css','form-buku.css'];

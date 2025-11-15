@@ -9,7 +9,7 @@
     margin-bottom: 20px;
 }
 
-a[href="daftar_buku.php"],a[href="kelola_peminjaman.php"] {
+a[href="index.php"],a[href="kelola_peminjaman.php"] {
     text-decoration: none;
     color: white;
     font-weight: 500;
@@ -18,7 +18,7 @@ a[href="daftar_buku.php"],a[href="kelola_peminjaman.php"] {
     border-radius: 5px;
 }
 
-a[href="daftar_buku.php"]:hover,a[href="kelola_peminjaman.php"]:hover {
+a[href="index.php"]:hover,a[href="kelola_peminjaman.php"]:hover {
     background-color: darkred;
 }
 
