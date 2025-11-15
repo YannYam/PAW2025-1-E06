@@ -3,6 +3,16 @@ require_once('base.php');
 require_once(BASE_PATH . '/service/connect.php');
 require_once(BASE_PATH . '/service/session.php');
 
+	function gantiNama($data){
+		$stmnt = DBH->prepare("UPDATE user SET NAMA_LENGKAP = :nama, ALAMAT = :alamat, TANGGAL_LAHIR = :tanggal, TELEPON = :telepon WHERE NAMA_LENGKAP = :nama");
+		$stmnt->execute([
+			':nama' => $data[''],
+			':alamat' => $data[''],
+			':tanggal' => $data[''],
+			':telepon' => $data['']
+		]);
+	}
+
 	function checkUser($data) {
 		$stmt = DBH->prepare("SELECT * FROM user WHERE USERNAME = :username");
         $stmt->execute([':username' => $data]);
