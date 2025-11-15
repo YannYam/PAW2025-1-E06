@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // Simpan ke session
                 $_SESSION['nama'] = $user['NAMA_LENGKAP'];
                 $_SESSION['peran'] = $user['PERAN'];
-                $_SESSION['id'] = $user['ID_USER'];
+                $_SESSION['id'] = $_SESSION['foto'] = $user['ID_USER'];
                 $_SESSION['isLogin'] = true;
 
                 // Arahkan berdasarkan peran
