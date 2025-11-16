@@ -143,9 +143,9 @@ td > a  {
 
 .main-profile {
     height: 100%;
-    width: auto;
-    margin: 40px auto;
-    padding: 10px;
+    width: 40%;
+    margin: 10% auto;
+    padding: 2%;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -157,7 +157,7 @@ td > a  {
 
 .profile {
     background-color: white;
-    padding: 20px 30px;
+    padding: 20%;
     border-radius: 8px;
 }
 
