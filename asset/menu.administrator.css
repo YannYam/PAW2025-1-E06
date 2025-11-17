@@ -41,6 +41,7 @@ main {
 }
 
 .side {
+    margin: 10px 0;
     box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.3);
     width: 15%;
     padding: 30px;
@@ -62,48 +63,8 @@ main {
     text-decoration: none;
 }
 
-.mini-profile {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    padding: 15px 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.mini-profile{
     width: 85%;
-}
-
-.mini-profile img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #ddd;
-}
-
-.mini-profile-info {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.2;
-}
-
-.mini-profile-info p {
-    margin: 0;
-}
-
-.username {
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.role {
-    font-size: 13px;
-    color: #555;
-}
-
-.touchable a {
-    text-decoration: none;
-    color: inherit;
 }
 
 footer {
@@ -118,24 +79,6 @@ footer {
 @media (max-width: 992px) {
     body {
         font-size: 12px;
-    }
-
-    .mini-profile {
-        padding: 12px 17px;
-        gap: 8px;
-    }
-
-    .mini-profile img {
-        width: 32px;
-        height: 32px;
-    }
-
-    .username {
-        font-size: 1.5vw;
-    }
-
-    .role {
-        font-size: 1.4vw;
     }
 
     .side > a {
@@ -156,14 +99,6 @@ footer {
 @media (max-width: 600px) {
     main {
       flex-direction: column; 
-    }
-
-    .username {
-        font-size: 14px;
-    }
-
-    .role {
-        font-size: 13px;
     }
 
     .side {
