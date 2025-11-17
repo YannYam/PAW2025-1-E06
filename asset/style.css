@@ -1,3 +1,165 @@
+
+/* Reset default */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Background full halaman */
+body {
+    background: url('cover2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+
+/* Navbar */
+.navbar {
+    background: #0B1C39; /* navy tua sesuai logo */
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Logo */
+.logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+/* Judul Navbar */
+.navbar h2 {
+    color: #D4AF37; /* gold */
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 26px;
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+/* Tombol admin */
+.admin-btn {
+    background: #D4AF37;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #0B1C39;
+    transition: background 0.3s ease;
+}
+
+.admin-btn:hover {
+    background: #c29f2d;
+}
+
+/* Card Login tengah */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+}
+
+/* Kotak Card */
+.card-login {
+    width: 420px;
+    background: #fdfdfd;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.15);
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+
+/* Judul */
+.card-login h2 {
+    color: #0B1C39;
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* Deskripsi kecil */
+.card-login p {
+    font-size: 14px;
+    margin-bottom: 25px;
+    color: #333c57;
+}
+
+/* Input */
+.card-login input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 25px;
+    border: 1px solid #b4bfd8;
+    font-size: 15px;
+    margin: 8px 0;
+    background: #ffffff;
+    transition: 0.2s ease;
+}
+
+.card-login input:focus {
+    outline: none;
+    border-color: #D4AF37;
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+}
+
+/* Tombol login */
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background: #D4AF37;
+    border: none;
+    border-radius: 7px;
+    color: #0B1C39;
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-btn a {
+    text-decoration: none;
+    color: #0B1C39;
+}
+
+.login-btn:hover {
+    background: #c29f2d;
+}
+
+/* Link daftar */
+.card-login a {
+    display: block;
+    margin-top: 12px;
+    color: #0B1C39;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.card-login a:hover {
+    text-decoration: underline;
+    color: #D4AF37;
+}
+
+/* Error message */
+.error {
+    color: red;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
 /* search input */
 .search-wrapper {
     display: flex;
