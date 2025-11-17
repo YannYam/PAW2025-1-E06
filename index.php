@@ -1,5 +1,14 @@
-<?php  
+<?php 
 require_once 'function.php'; 
+
+if(isset($_SESSION['isLogin'])){
+    if($_SESSION['isAdmin']){
+        header('location: ' . BASE_URL . '/administrator/index.php');
+    }else{
+        header('location: ' . BASE_URL . '/daftar_buku.php');
+    }
+    exit();
+}
 
 $username = $password = '';
 
@@ -27,8 +36,32 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $error_password = 'Password minimal 5 karakter.';
     }
 
+    // Jika tidak ada error, lanjut cek ke database
     if (empty($error_username) && empty($error_password)) {
-        echo "Sukses Login!";
+        $user = checkUser($username);
+        if ($user) {
+            // Jika password-nya belum di-hash, bandingkan langsung:
+            if (checkPassword($username,$password)) {
+                // Simpan ke session
+                $_SESSION['nama'] = $user['NAMA_LENGKAP'];
+                $_SESSION['peran'] = $user['PERAN'];
+                $_SESSION['id'] = $_SESSION['foto'] = $user['ID_USER'];
+                $_SESSION['isLogin'] = true;
+
+                // Arahkan berdasarkan peran
+                if ($user['PERAN'] === 'Administrator') {
+                    header('Location: administrator/index.php');
+                    exit();
+                } elseif($user['PERAN'] === 'Pemustaka') {
+                    header('Location: daftar_buku.php');
+                    exit();
+                }
+            } else {
+                $error_password = "Password salah.";
+            }
+        } else {
+            $error_username = "Username tidak ditemukan.";
+        }
     }
 }
 ?>

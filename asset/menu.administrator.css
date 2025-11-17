@@ -13,13 +13,19 @@
 }
 
 body {
+    font-size: 16px;
     font-family: 'Inter' ,'Poppins';
     line-height: 1.6;
-    display: flex;
     margin: 0;
-    /* non-white pleasant gradient */
+    padding: 0;
     background: linear-gradient(135deg, #e8f0ff 0%, #fff6e8 100%);
     background-color: #e8f0ff;
+    width: 100%;
+}
+
+main {
+    display: flex;  
+    min-height: 100vh;
 }
 
 .name-option {
@@ -36,10 +42,10 @@ body {
 
 .side {
     box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.3);
-    min-height: 100vh;
-    width: 200px;
+    width: 15%;
     padding: 30px;
     background-color: #0C2644;
+    min-height: 100vh;
 }
 
 .side > a {
@@ -47,7 +53,7 @@ body {
     margin-bottom: 30px;
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 100%;
     font-weight: 500;
 }
 
@@ -65,7 +71,6 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 85%;
-    font-family: Arial, sans-serif;
 }
 
 .mini-profile img {
@@ -88,7 +93,7 @@ body {
 
 .username {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .role {
@@ -99,4 +104,71 @@ body {
 .touchable a {
     text-decoration: none;
     color: inherit;
+}
+
+footer {
+    width: 100%;
+    background: gray;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    body {
+        font-size: 12px;
+    }
+
+    .mini-profile {
+        padding: 12px 17px;
+        gap: 8px;
+    }
+
+    .mini-profile img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .username {
+        font-size: 1.5vw;
+    }
+
+    .role {
+        font-size: 1.4vw;
+    }
+
+    .side > a {
+        margin-bottom: 20px;
+        font-weight: 350;
+    }
+
+    .name-option {
+        font-size: 13px;
+    }
+
+    .name-option.first {
+        margin-top: 13px;
+    }
+}
+
+/* HP / Mobile */
+@media (max-width: 600px) {
+    main {
+      flex-direction: column; 
+    }
+
+    .username {
+        font-size: 14px;
+    }
+
+    .role {
+        font-size: 13px;
+    }
+
+    .side {
+      width: 100%;
+      min-height: auto;
+      padding: 20px;
+    }
 }

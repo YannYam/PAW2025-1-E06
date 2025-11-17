@@ -1,5 +1,7 @@
-<?php 
+<?php require_once '../function.php';
     if(isset($_POST['logout'])){
+        unset($_SESSION['peran']);
+        unset($_SESSION['isLogin']);
         header('location: ../index.php');
         exit();
     }
@@ -87,7 +89,7 @@
         <form action="" method="POST">
             <button type="submit" name="logout" class="btn btn-logout">Logout</button>
             
-            <a class="btn btn-cancel-logout" href="daftar_buku.php">Batal</a>
+            <a class="btn btn-cancel-logout" href="index.php">Batal</a>
         </form>
     </div>
 </body>

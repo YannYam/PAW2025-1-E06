@@ -1,12 +1,12 @@
 <?php require_once '../service/session.php'; ?>
 
         <div class="touchable">
-            <a href="main-profile.php">
+            <a href="<?= BASE_URL . '/layout/main-profile.php' ?>">
                 <div class="mini-profile">
-                    <img src="<?= $_SESSION['PHOTO'] ?? 'default.png' ?>" alt="Foto Profil">
+                    <img src="<?= BASE_URL . '/asset/images/pp/' . $_SESSION['foto'] . '.jpeg' ?? 'default.png' ?>" alt="Foto Profil">
                     <div class="mini-profile-info">
-                        <p class="username"><?= $_SESSION['USERNAME'] ?? 'Guest' ?></p>
-                        <p class="role"><?= $_SESSION['ROLE'] ?? 'Pengguna' ?></p>
+                        <p class="username"><?= $_SESSION['nama'] ?? 'Guest' ?></p>
+                        <p class="role"><?= $_SESSION['peran'] ?? 'Pemustaka' ?></p>
                     </div>
                 </div>
             </a>
