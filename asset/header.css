@@ -1,0 +1,29 @@
+/* Navbar */
+.navbar {
+    background: #0B1C39; /* navy tua sesuai logo */
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Logo */
+.logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+/* Judul Navbar */
+.navbar h2 {
+    color: #D4AF37; /* gold */
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 26px;
+    margin-left: 10px;
+    flex-grow: 1;
+}
