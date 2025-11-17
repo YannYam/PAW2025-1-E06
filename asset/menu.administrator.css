@@ -25,7 +25,7 @@ body {
 
 main {
     display: flex;  
-    min-height: 100vh;
+    min-height: 50vh;
 }
 
 .name-option {
@@ -46,7 +46,7 @@ main {
     width: 15%;
     padding: 30px;
     background-color: #0C2644;
-    min-height: 100vh;
+    min-height: 50vh;
 }
 
 .side > a {
@@ -98,7 +98,8 @@ footer {
 /* HP / Mobile */
 @media (max-width: 600px) {
     main {
-      flex-direction: column; 
+      flex-direction: column;
+      min-height: 85vh; 
     }
 
     .side {
