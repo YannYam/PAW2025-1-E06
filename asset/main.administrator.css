@@ -3,15 +3,9 @@
     box-shadow: 0 -4px 0 -1px #0066FF;
 }
 
-.table-pemustaka, .table-peminjaman {
-    margin: 20px;
-    padding: 50px;
-    height: 100%;
-}
-
-.table-books{
-    margin: 10px;
-    padding: 3vw;
+.table-pemustaka, .table-peminjaman, .table-books{
+    margin: 15px;
+    padding: 20px;
     height: 100%;
 }
 
@@ -202,9 +196,9 @@ td > a  {
 
 
 @media (max-width: 1150px) {
-    .table-books {
+    .table-pemustaka, .table-peminjaman, .table-books {
         margin: 20px;
-        padding: 10px;
+        padding: 15px;
     }
 
     .table th,

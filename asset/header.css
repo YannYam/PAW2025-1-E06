@@ -1,7 +1,7 @@
 /* Navbar */
 .navbar {
     background: #0B1C39; /* navy tua sesuai logo */
-    width: 100%;
+    width:  auto;
     height: 80px;
     display: flex;
     align-items: center;
