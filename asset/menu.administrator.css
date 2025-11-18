@@ -25,7 +25,7 @@ body {
 
 main {
     display: flex;  
-    min-height: 50vh;
+    min-height: 100%;
 }
 
 .name-option {
@@ -46,7 +46,7 @@ main {
     width: 15%;
     padding: 30px;
     background-color: #0C2644;
-    min-height: 50vh;
+    min-height: 75vh;
 }
 
 .side > a {
