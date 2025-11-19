@@ -21,20 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Validasi Username
     if (!wajib($username)) {
         $error_username = 'Username wajib diisi.';
-    } elseif (!username($username)) {
-        $error_username = 'Username hanya boleh berisi huruf dan angka.';
-    } elseif (strlen($username) < 5 || strlen($username) > 20) {
-        $error_username = 'Username minimal 5 karakter dan maksimal 20 karakter.';
     }
 
     // Validasi Password
     if (!wajib($password)) {
         $error_password = 'Password wajib diisi.';
-    } elseif (!password($password)) {
-        $error_password = 'Password harus mengandung huruf dan angka.';
-    } elseif (strlen($password) < 5) {
-        $error_password = 'Password minimal 5 karakter.';
-    }
+    } 
 
     // Jika tidak ada error, lanjut cek ke database
     if (empty($error_username) && empty($error_password)) {
@@ -66,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -90,13 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <h2>Login Akun</h2>
             <p>“Selamat Datang Kembali.”</p>
 
-            <form action="" method="POST">
+            <form action="#" method="POST">
 
                 
-                <input type="text" placeholder="Username"name="username" value="<?= $username ?>">
+                <input type="text" placeholder="Username" name="username" value="<?= $username ?>">
                 <div class="error"><?= $error_username ?></div>
 
-                <input type="password" placeholder="Password"name="password" value="<?= $password ?>">
+                <input type="password" placeholder="Password" name="password" value="<?= $password ?>">
                 <div class="error"><?= $error_password ?></div>
 
                 <button type="submit" class="login-btn">Login</button>
