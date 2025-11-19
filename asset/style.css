@@ -19,7 +19,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background: #0B1C39; /* navy tua sesuai logo */
+    background: #0B1C39; 
     width: 100%;
     height: 80px;
     display: flex;
@@ -73,41 +73,40 @@ body {
 
 /* Kotak Card */
 .card-login {
-    width: 420px;
+    width: 350px;
+    max-width: 90%;
     background: #fdfdfd;
-    padding: 35px;
+    padding: 25px;
     border-radius: 14px;
     box-shadow: 0 5px 18px rgba(0,0,0,0.15);
     text-align: center;
-    animation: fadeIn 0.8s ease;
 }
 
 
 /* Judul */
 .card-login h2 {
     color: #0B1C39;
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: 22px;
+    margin-bottom: 8px;
     font-weight: 700;
 }
 
 /* Deskripsi kecil */
 .card-login p {
-    font-size: 14px;
-    margin-bottom: 25px;
+    font-size: 13px;
+    margin-bottom: 18px;
     color: #333c57;
 }
 
 /* Input */
 .card-login input {
     width: 100%;
-    padding: 14px;
-    border-radius: 25px;
+    padding: 10px;
+    border-radius: 18px;
     border: 1px solid #b4bfd8;
-    font-size: 15px;
+    font-size: 14px;
     margin: 8px 0;
     background: #ffffff;
-    transition: 0.2s ease;
 }
 
 .card-login input:focus {
@@ -119,16 +118,15 @@ body {
 /* Tombol login */
 .login-btn {
     width: 100%;
-    padding: 14px;
+    padding: 10px;
     background: #D4AF37;
     border: none;
-    border-radius: 7px;
+    border-radius: 6px;
     color: #0B1C39;
     font-weight: bold;
-    font-size: 17px;
-    margin-top: 10px;
+    font-size: 15px;
+    margin-top: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
 }
 
 .login-btn a {
@@ -160,6 +158,38 @@ body {
     font-size: 13px;
     margin-bottom: 10px;
 }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 15px;
+    row-gap: 5px;
+    width: 100%;
+}
+
+/* Setiap item form */
+.form-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Input */
+.form-item input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 18px;
+    border: 1px solid #b4bfd8;
+    font-size: 14px;
+    background: #ffffff;
+}
+
+.form-item input:focus {
+    outline: none;
+    border-color: #D4AF37;
+    box-shadow: 0 0 6px rgba(212,175,55,0.5);
+}
+=======
 /* search input */
 .search-wrapper {
     display: flex;

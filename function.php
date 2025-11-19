@@ -195,6 +195,57 @@ function checkUser($data) {
 	    $stmt->execute();
 	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+// Membersihkan input dari spasi berlebih, slash, dan karakter khusus
+function test_input($data){
+    $data = trim($data);              // menghapus spasi di awal/akhir
+    $data = stripslashes($data);      // menghapus backslash
+    $data = htmlspecialchars($data);  // mencegah XSS
+    return $data;
+}
+
+// Mengecek apakah input tidak kosong
+function wajib($data) {
+    return !empty($data);
+}
+
+// Validasi hanya huruf dan spasi
+function alfabet($data) {
+    return preg_match("/^[a-zA-Z\s]+$/", $data);
+}
+
+// Validasi hanya numerik
+function numerik($data) {
+    return is_numeric($data);
+}
+
+// Validasi huruf + angka
+function alfanumerik($data) {
+    return preg_match("/^[A-Za-z0-9]+$/", $data);
+}
+
+// Validasi password minimal mengandung:
+// 1 huruf besar, 1 huruf kecil, dan 1 angka
+function password($data) {
+    return preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/", $data);
+}
+
+// Validasi username harus huruf + angka (alfanumerik) 
+// dan wajib mengandung campuran huruf dan angka
+function username($data) {
+    return preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z0-9]+$/", $data);
+}
+
+// Validasi alamat: huruf wajib ada, boleh angka dan tanda baca umum
+function alamat($data) {
+    return preg_match("/^(?=.*[A-Za-z])[A-Za-z0-9\s.,\/#()'-]+$/", $data);
+}
+
+// Validasi format tanggal Y-m-d dan memastikan tanggal valid
+function validTanggal($data) {
+    $d = DateTime::createFromFormat("Y-m-d", $data); // parsing format tanggal
+    return $d && $d->format("Y-m-d") === $data;      // cek valid dan format sesuai
+}
 	
 	function gantiDataProfil(int $id,array $data){
 		$stmnt = DBH->prepare("UPDATE user SET NAMA_LENGKAP = :nama, ALAMAT = :alamat, TANGGAL_LAHIR = :tanggal, TELEPON = :telepon WHERE ID_USER = :id");
@@ -212,3 +263,4 @@ function checkUser($data) {
 		$stmnt->execute([':id' => $data]);
 		return $stmnt->fetch();
 	}
+?>
