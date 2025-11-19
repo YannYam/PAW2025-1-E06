@@ -1,0 +1,134 @@
+/* ====== Global Style ====== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ====== Container ====== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ====== Heading ====== */
+h1 {
+    color: #2a9d8f;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.2rem;
+}
+
+h2 {
+    color: #f4a261;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+p {
+    text-align: center;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* ====== Pesan ====== */
+.pesan-error {
+    background-color: #ffcccc;
+    color: #b00020;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.pesan-sukses {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ====== Book List ====== */
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.book-item {
+    background: #ffffff;
+    border: 2px solid #f4a261;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.book-item h3 {
+    color: #264653;
+    margin-bottom: 8px;
+}
+
+.book-item p {
+    color: #555;
+    margin-bottom: 12px;
+}
+
+/* ====== Form Pinjam ====== */
+.form-pinjam {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #2a9d8f;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus {
+    border-color: #2a9d8f;
+}
+
+/* ====== Button ====== */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #e9c46a;
+    color: #264653;
+}
+
+.btn-primary:hover {
+    background-color: #f4a261;
+    transform: scale(1.05);
+}

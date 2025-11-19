@@ -1,15 +1,18 @@
-<?php require_once "../service/database.php";
+<?php 
+require_once "../function.php";
+
+// mengambil data dari tabel user dengan peran pemustaka
 $user = getPemustaka();
-//update status peminjaman buku
 
 $list_css_tambahan = [
 	'main.administrator.css',
 	'menu.administrator.css'
 ];
-include_once(BASE_PATH . '/layout/header.php');
-?>
 
-	<?php include "../layout/menu.administrator.php" ?>
+include_once(BASE_PATH . '/layout/header.php');
+include "../layout/menu.administrator.php" 
+
+?>
 
 	<div class="table table-pemustaka">
 		<table>
@@ -24,13 +27,14 @@ include_once(BASE_PATH . '/layout/header.php');
 				</tr>
 			</thead>
 			<tbody>
+				<!-- melakukan perulangan pada variable $user  -->
 				<?php foreach ($user as $detail): ?>
 
 				<tr>
 					<td><?= $detail['ID_USER'] ?></td>
-					<td><?= $detail['NAMA_USER'] ?></td>
+					<td><?= $detail['NAMA_LENGKAP'] ?></td>
 					<td><?= $detail['umur'] ?></td>
-					<td><?= $detail['ALAMAT_USER'] ?></td>
+					<td><?= $detail['ALAMAT'] ?></td>
 					<td><?= $detail['TELEPON'] ?></td>
 				</tr>
 				<?php endforeach ?>
@@ -38,4 +42,5 @@ include_once(BASE_PATH . '/layout/header.php');
 			</tbody>
 		</table>
 	</div>
-</body>
+
+<?php include_once BASE_PATH . '/layout/footer.php'; ?>

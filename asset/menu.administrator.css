@@ -13,13 +13,19 @@
 }
 
 body {
+    font-size: 16px;
     font-family: 'Inter' ,'Poppins';
     line-height: 1.6;
-    display: flex;
     margin: 0;
-    /* non-white pleasant gradient */
+    padding: 0;
     background: linear-gradient(135deg, #e8f0ff 0%, #fff6e8 100%);
     background-color: #e8f0ff;
+    width: 100%;
+}
+
+main {
+    display: flex;  
+    min-height: 100%;
 }
 
 .name-option {
@@ -35,11 +41,12 @@ body {
 }
 
 .side {
+    margin: 10px 0;
     box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.3);
-    min-height: 100vh;
-    width: 200px;
+    width: 15%;
     padding: 30px;
     background-color: #0C2644;
+    min-height: 75vh;
 }
 
 .side > a {
@@ -47,7 +54,7 @@ body {
     margin-bottom: 30px;
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 100%;
     font-weight: 500;
 }
 
@@ -56,47 +63,48 @@ body {
     text-decoration: none;
 }
 
-.mini-profile {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    padding: 15px 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.mini-profile{
     width: 85%;
-    font-family: Arial, sans-serif;
 }
 
-.mini-profile img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #ddd;
+footer {
+    width: 100%;
+    background: gray;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
 }
 
-.mini-profile-info {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.2;
+/* Tablet */
+@media (max-width: 992px) {
+    body {
+        font-size: 12px;
+    }
+
+    .side > a {
+        margin-bottom: 20px;
+        font-weight: 350;
+    }
+
+    .name-option {
+        font-size: 13px;
+    }
+
+    .name-option.first {
+        margin-top: 13px;
+    }
 }
 
-.mini-profile-info p {
-    margin: 0;
-}
+/* HP / Mobile */
+@media (max-width: 600px) {
+    main {
+      flex-direction: column;
+      min-height: 85vh; 
+    }
 
-.username {
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.role {
-    font-size: 13px;
-    color: #555;
-}
-
-.touchable a {
-    text-decoration: none;
-    color: inherit;
+    .side {
+      width: 100%;
+      min-height: auto;
+      padding: 20px;
+    }
 }

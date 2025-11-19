@@ -3,14 +3,8 @@
     box-shadow: 0 -4px 0 -1px #0066FF;
 }
 
-.table-pemustaka, .table-peminjaman {
-    margin: 20px;
-    padding: 50px;
-    height: 100%;
-}
-
-.table-books{
-    margin: 10px;
+.table-pemustaka, .table-peminjaman, .table-books{
+    margin: 15px;
     padding: 20px;
     height: 100%;
 }
@@ -19,14 +13,13 @@
     width: 100%;
     border-collapse: collapse;
     background: white;
-    /* border-radius: 8px; */
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .table caption {
-    padding: 15px;
-    font-size: 20px;
+    padding: 1vw;
+    font-size: 1.7vw;
     font-weight: bold;
     background: #f0f0f0;
     border-bottom: 1px solid #ddd;
@@ -73,8 +66,23 @@ td.status.kembali {
     color: white; 
     font-style: italic; 
 }
+td.status.terlambat { 
+    background-color: #ff5733;
+    color: white; 
+    font-style: italic; 
+}
 td.status.proses { 
     background-color: #ffc107;
+    color: white; 
+    font-weight: 600; 
+}
+td.status.rusak { 
+    background-color: #dc3545;
+    color: white; 
+    font-weight: 600; 
+}
+td.status.hilang { 
+    background-color: #343a40;
     color: white; 
     font-weight: 600; 
 }
@@ -82,7 +90,6 @@ td.status.proses {
 /* Tombol */
 .btn {
     padding: 6px 12px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -94,8 +101,6 @@ td > a  {
 
 .btn-edit {
     background: #3498db;
-    margin-right: 5px;
-    margin-left: 10px;
 }
 
 .btn-edit:hover {
@@ -104,6 +109,7 @@ td > a  {
 
 .btn-delete {
     background: #e74c3c;
+    margin-left: 5px;
 }
 
 .btn-delete:hover {
@@ -111,7 +117,7 @@ td > a  {
 }
 
 /* Link tambah buku */
-.table a[href="add.php"] {
+.table a[href="add.php?tambah=true"] {
     display: inline-block;
     margin-top: 15px;
     background: #2ecc71;
@@ -121,7 +127,7 @@ td > a  {
     text-decoration: none;
 }
 
-.table a[href="add.php"]:hover {
+.table a[href="add.php?tambah=true"]:hover {
     background: #27ae60;
 }
 
@@ -129,3 +135,111 @@ td > a  {
     margin-bottom: 50px;
 }
 
+.main-profile {
+    height: 100%;
+    width: 40%;
+    margin: 10% auto;
+    padding: 2%;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.main-profile h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.profile {
+    background-color: white;
+    padding: 20%;
+    border-radius: 8px;
+}
+
+.detail-profile form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.detail-profile input[type="text"], input[type="date"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.detail-profile a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    margin-right: auto;
+}
+
+.detail-profile a:hover {
+    color: #1E90FF;
+}
+
+.detail-profile button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.detail-profile button:hover {
+    background-color: #218838;
+}
+
+
+
+@media (max-width: 1150px) {
+    .table-pemustaka, .table-peminjaman, .table-books {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .table th,
+    .table td {
+        padding: 5px 8px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+}
+
+/* HP / Mobile */
+@media (max-width: 600px) {
+    .table {
+      width: 100%;
+      padding: 10px;
+    }
+
+    table {
+      font-size: 7px;
+    }
+
+    .table th,
+    .table td {
+        padding: 2px 5px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    .btn {
+        padding: 3px 4px;
+        font-size: 7px;
+    }
+
+    .table-pemustaka, .table-peminjaman {
+        margin: 10px 3px;
+        padding: 10px;
+    }
+
+    .table a[href="add.php?tambah=true"] {
+        margin-top: 10px;
+        padding: 3px 7px;
+        font-size: 7px;
+    }
+}
