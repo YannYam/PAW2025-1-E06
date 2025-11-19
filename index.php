@@ -2,9 +2,9 @@
 require_once 'function.php'; 
 
 if(isset($_SESSION['isLogin'])){
-    if($_SESSION['isAdmin']){
+    if($_SESSION['peran'] == 'Administrator'){
         header('location: ' . BASE_URL . '/administrator/index.php');
-    }else{
+    }elseif($_SESSION['peran'] == 'Pemustaka'){
         header('location: ' . BASE_URL . '/daftar_buku.php');
     }
     exit();
