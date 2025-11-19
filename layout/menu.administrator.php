@@ -1,6 +1,9 @@
-<?php 
-	if(!($_SESSION['peran'] === 'Administrator')){
-		header('location: ' . BASE_URL . '/index.php');
+<?php
+    if(!($_SESSION['isLogin'])){
+		header('location: ' . BASE_URL . '/');
+		exit();
+	}elseif(!($_SESSION['peran'] === 'Administrator')){
+		header('location: ' . BASE_URL . '/daftar_buku.php');
 		exit();
 	}
 
