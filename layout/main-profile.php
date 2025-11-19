@@ -1,13 +1,12 @@
 <?php 
 include_once '../function.php';
 
-if(!$_SESSION['isLogin']){
+if(!(isset($_SESSION['id']))){
     header('location: ' . BASE_URL . '/index.php');
     exit();
 }
 
-
-if($_SERVER['REQUEST_METHOD'] = 'POST'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['simpan'])){
         gantiDataProfil($_SESSION['id'], $_POST);
         $_SESSION['nama'] = $_POST['nama'];
@@ -42,7 +41,9 @@ include_once BASE_PATH . '/layout/menu.administrator.php';
                     <input type="text" value="<?= $profile['ALAMAT'] ?>" name="alamat">
                     <input type="date" value="<?= $profile['TANGGAL_LAHIR'] ?>" name="tanggal">
                     <input type="text" value="<?= $profile['TELEPON'] ?>" name="telepon">
-                    <a href="<?php if($_SESSION['peran'] === 'Administrator') echo BASE_URL . '/administrator/index.php' ?? BASE_URL . 'index.php' ?>">Cancel</a><button type="submit" name="simpan">Simpan</button>
+
+                    <a href="<?= $_SESSION['peran'] === 'Administrator' ? BASE_URL . '/administrator/index.php' : BASE_URL . '/index.php' ?>">Cancel</a>
+                    <button type="submit" name="simpan">Simpan</button>
                 </form>
             </div>
         </div>

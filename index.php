@@ -1,7 +1,7 @@
 <?php 
 require_once 'function.php'; 
 
-if(isset($_SESSION['isLogin'])){
+if(isset($_SESSION['peran'])){
     if($_SESSION['peran'] == 'Administrator'){
         header('location: ' . BASE_URL . '/administrator/index.php');
     }elseif($_SESSION['peran'] == 'Pemustaka'){
@@ -37,8 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // Simpan ke session
                 $_SESSION['nama'] = $user['NAMA_LENGKAP'];
                 $_SESSION['peran'] = $user['PERAN'];
-                $_SESSION['id'] = $_SESSION['foto'] = $user['ID_USER'];
-                $_SESSION['isLogin'] = true;
+                $_SESSION['id'] = $user['ID_USER'];
 
                 // Arahkan berdasarkan peran
                 if ($user['PERAN'] === 'Administrator') {
