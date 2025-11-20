@@ -63,10 +63,6 @@ require_once(BASE_PATH . '/service/session.php');
 		return preg_match("/^[A-Za-z0-9 \s\.\,\'\?\-]+$/", $data);
 	}
 
-	function password($data) {
-		return preg_match("/^[a-zA-Z0-9]+$/", $data);
-	}
-
 	function username($data) {
 		return preg_match("/^[a-zA-Z0-9\_]+$/", $data);
 	}
@@ -84,12 +80,8 @@ require_once(BASE_PATH . '/service/session.php');
 		return preg_match("/^[0-9]{4}$/", $data);
 	}
 
-	function alfabetOrAlfanumerik($data){
-		return alfanumerik($data) || alfabet($data) || alfaDesc($data);
-	}
-
 	function alfaJudul($data){
-		return alfanumerik($data) || alfabet($data);
+		return preg_match("/^[A-Za-z0-9 \s\!\-]+$/", $data);
 	}
 
 	function tambahBuku(array $data){
@@ -194,6 +186,12 @@ require_once(BASE_PATH . '/service/session.php');
 	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	// Validasi password minimal mengandung:
+	// 1 huruf besar, 1 huruf kecil, dan 1 angka
+	function password($data) {
+	    return preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/", $data);
+	}
+
 	// Validasi format tanggal Y-m-d dan memastikan tanggal valid
 	function validTanggal($data) {
 	    $d = DateTime::createFromFormat("Y-m-d", $data); // parsing format tanggal
@@ -216,3 +214,11 @@ require_once(BASE_PATH . '/service/session.php');
 		$stmnt->execute([':id' => $data]);
 		return $stmnt->fetch();
 	}
+
+	function getDataPeminjaman($id){
+		$stmt = DBH->prepare("SELECT * FROM peminjaman WHERE ID_PEMINJAMAN = :id");
+		$stmt->execute([':id'=>$id]);
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	?>
