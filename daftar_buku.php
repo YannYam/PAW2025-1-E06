@@ -4,6 +4,8 @@ require_once('function.php');
 // Ambil data buku
 $buku = getBuku();
 
+$judul_halaman = "Koleksi Buku Perpustakaan";
+
 // Include header (jangan diubah)
 include_once(BASE_PATH . '/layout/header.php');
 ?>
@@ -13,7 +15,6 @@ include_once(BASE_PATH . '/layout/header.php');
 
 <main class="site-main">
     <!-- <div class="card-container"> -->
-        <h1>Koleksi buku saat ini</h1>
         <div class="card-container">
             <?php foreach ($buku as $book): ?> 
                 <div class="card-login">

@@ -1,3 +1,9 @@
+<?php 
+
+if(!(isset($_SESSION['nama']))){
+	header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -28,5 +34,11 @@
 	<header class="navbar">
         <img src="<?=BASE_URL . '/asset/images//libra.jpg' ?>" class="logo" alt="logo">
         <h2>Libra</h2>
+
+		<?php if (isset($judul_halaman)) : ?>
+        <div class="judul-spesial">
+            <h1><?= $judul_halaman ?></h1>
+        </div>
+    <?php endif; ?>
 	</header>
 	
