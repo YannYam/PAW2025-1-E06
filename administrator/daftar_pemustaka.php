@@ -23,6 +23,7 @@ include "../layout/menu.administrator.php"
 					<th>Nama Lengkap</th>
 					<th>Umur</th>
 					<th>Alamat</th>
+					<th>Email</th>
 					<th>No Telepon</th>
 				</tr>
 			</thead>
@@ -33,8 +34,9 @@ include "../layout/menu.administrator.php"
 				<tr>
 					<td><?= $detail['ID_USER'] ?></td>
 					<td><?= $detail['NAMA_LENGKAP'] ?></td>
-					<td><?= $detail['umur'] ?></td>
+					<td><?= $detail['TANGGAL_LAHIR'] ?></td>
 					<td><?= $detail['ALAMAT'] ?></td>
+					<td><?= $detail['EMAIL'] ?></td>
 					<td><?= $detail['TELEPON'] ?></td>
 				</tr>
 				<?php endforeach ?>

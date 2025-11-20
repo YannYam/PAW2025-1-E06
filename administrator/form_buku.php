@@ -4,12 +4,12 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
 
   if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    $judul = $_POST['judul'];
-    $deskripsi = $_POST['deskripsi'];
-    $penulis = $_POST['penulis'];
-    $penerbit = $_POST['penerbit'];
-    $tahun = $_POST['tahun'];
-    $stok = $_POST['stok'];
+    $judul = test_input($_POST['judul']);
+    $deskripsi = test_input($_POST['deskripsi']);
+    $penulis = test_input($_POST['penulis']);
+    $penerbit = test_input($_POST['penerbit']);
+    $tahun = test_input($_POST['tahun']);
+    $stok = test_input($_POST['stok']);
 
     if(!wajib($judul)){
         $error_judul = 'Masukan wajib diisi';
@@ -21,7 +21,7 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
 
     if(!wajib($deskripsi)){
       $error_deskripsi = 'Masukan wajib diisi';
-    }elseif(!alfabetOrAlfanumerik($deskripsi)){
+    }elseif(!alfaDesc($deskripsi)){
       $error_deskripsi = 'Masukan harus berupa alfanumerik';
     }else{
       $error_deskripsi = '';
@@ -59,7 +59,7 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
       $error_stok = '';
     }
 	
-	if(empty($error_judul) AND empty($error_deskripsi) AND empty($error_penulis) AND empty($error_penerbit) AND empty($error_tahun) AND empty($error_stok) AND $add AND isset($_POST['simpan'])){
+	  if(isset($add) AND empty($error_judul) AND empty($error_deskripsi) AND empty($error_penulis) AND empty($error_penerbit) AND empty($error_tahun) AND empty($error_stok) AND isset($_POST['simpan'])){
     	tambahBuku($_POST);
     	header('location: ' . BASE_URL . '/administrator/index.php');
     	exit();

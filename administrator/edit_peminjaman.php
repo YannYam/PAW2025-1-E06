@@ -2,27 +2,16 @@
 require_once("../base.php");
 require_once(BASE_PATH . '/function.php');
 
-$id = $_GET['id'] ?? 1;
+$current = getDataPeminjaman($_GET['id']);
 
-$stmt = DBH->prepare("SELECT ID_PEMINJAMAN, STATUS, TANGGAL_RENCANA FROM peminjaman WHERE ID_PEMINJAMAN = :id");
-$stmt->execute([':id'=>$id]);
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $statusBaru = $_POST['status_baru'] ?? '';
     $tglRencana = $_POST['tanggal_rencana'] ?? '';
-    $allowed = ['pinjam','kembali','proses','rusak','hilang','terlambat'];
 
-    if (!in_array($statusBaru, $allowed, true)) {
-        $err = "Status tidak valid";
-    } elseif (!$tglRencana) {
-        $err = "Tanggal rencana wajib diisi";
-    } else {
+    if (isset($statusBaru) && isset($_POST['submit'])) {
         // cek status lama
-        $check = DBH->prepare("SELECT STATUS FROM peminjaman WHERE ID_PEMINJAMAN = :id");
-        $check->execute([':id'=>$id]);
-        $current = $check->fetchColumn();
-
         // jika baru dipinjam, isi tanggal pinjam
         if ($statusBaru === 'pinjam' && $current !== 'pinjam') {
             $ctime = date("Y-m-d");
@@ -35,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $up->execute([':s'=>$statusBaru, ':t'=>$tglRencana, ':id'=>$id]);
 
         header("Location: kelola_peminjaman.php");
-        exit;
+        exit();
     }
 }
 
@@ -49,7 +38,7 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
     <?php if (!empty($err)): ?>
       <div class="error"><?= htmlspecialchars($err) ?></div>
     <?php endif; ?>
-    <form method="post">
+    <form method="POST">
       <div class="field">
         <label>Status</label>
         <select name="status_baru">
@@ -64,7 +53,7 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
       <label>Tanggal Rencana</label>
       <input type="date" name="tanggal_rencana" value="<?= htmlspecialchars($row['TANGGAL_RENCANA'] ?? date('Y-m-d')) ?>">
       <a href="kelola_peminjaman.php">Batal</a>
-      <button type="submit">Simpan</button>
+      <button type="submit" name="submit">Simpan</button>
     </form>
   </div>
 

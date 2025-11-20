@@ -1,8 +1,8 @@
 <?php
-    if(!($_SESSION['isLogin'])){
+    if(!(isset($_SESSION['id']))){
 		header('location: ' . BASE_URL . '/');
 		exit();
-	}elseif(!($_SESSION['peran'] === 'Administrator')){
+	}elseif(!($_SESSION['peran'] == 'Administrator')){
 		header('location: ' . BASE_URL . '/daftar_buku.php');
 		exit();
 	}

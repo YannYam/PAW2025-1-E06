@@ -1,4 +1,45 @@
 <?php 
 require_once '../function.php';
-  deleteBuku($_GET['id_buku']);
+
+  if(isset($_POST['delete'])){
+    deleteBuku($_GET['id_buku']);
+    header("location: index.php");
+    exit();
+  }
+
+  $judul = getBukuOne($_GET['id_buku']);
+
+  $list_css_tambahan = [
+    'logout.css',
+    'header.css',
+    'main.administrator.css',
+    'footer.css'
+  ];
+
+  include_once BASE_PATH . '/layout/header.php';
 ?>
+<body>
+  <div class="container-logout">
+    <div class="konten">
+      <div class="logout-box">
+        <b><?= $judul['JUDUL'] ?></b>
+        <hr>
+      <p><?= $judul['DESKRIPSI'] ?></p>
+      <span>Penulis: <i><?= $judul['PENULIS'] ?></i></span>
+      <hr>
+    </div>
+    <div class="logout-box">
+      <h2>Delete Buku ini?</h2>
+      <p>Anda yakin ingin menghapus ini?</p>
+      
+        <!-- FORM POST -->
+        <form action="" method="POST">
+            <button type="submit" name="delete" class="btn-log btn-logout">Delete</button>
+            <a class="btn-log btn-cancel-logout" href="<?= BASE_URL . '/administrator/' ?>">Batal</a>
+        </form>
+      </div>
+    </div>
+  </div>
+    
+  <?php include_once BASE_PATH . '/layout/footer.php' ?>
+  </body>

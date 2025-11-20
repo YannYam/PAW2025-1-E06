@@ -1,3 +1,33 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url('fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-Regular.ttf');
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Inter' ,'Poppins';
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e8f0ff 0%, #fff6e8 100%);
+    background-color: #e8f0ff;
+    width: 100%;
+}
+
+main {
+    display: flex;  
+    min-height: 100%;
+}
+
 .table {
     background-color: white;
     box-shadow: 0 -4px 0 -1px #0066FF;
@@ -193,7 +223,13 @@ td > a  {
     background-color: #218838;
 }
 
-
+footer {
+    width: 100%;
+    background: gray;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
 
 @media (max-width: 1150px) {
     .table-pemustaka, .table-peminjaman, .table-books {

@@ -42,7 +42,7 @@ include_once BASE_PATH . '/layout/menu.administrator.php';
                     <input type="date" value="<?= $profile['TANGGAL_LAHIR'] ?>" name="tanggal">
                     <input type="text" value="<?= $profile['TELEPON'] ?>" name="telepon">
 
-                    <a href="<?= $_SESSION['peran'] === 'Administrator' ? BASE_URL . '/administrator/index.php' : BASE_URL . '/index.php' ?>">Cancel</a>
+                    <a href="<?= $_SESSION['peran'] === 'Administrator' ? BASE_URL . '/administrator/' : BASE_URL . '/' ?>">Cancel</a>
                     <button type="submit" name="simpan">Simpan</button>
                 </form>
             </div>
