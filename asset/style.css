@@ -71,6 +71,15 @@ mny
     height: calc(100vh - 80px);
 }
 
+.card-container {
+    display: grid;
+    /* Membuat kolom otomatis responsif. 
+       Minimal lebar kartu 280px. Jika layar lebar, kolom bertambah. */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px; /* Jarak antar kartu */
+    padding: 20px 0; /* Jarak atas bawah container */
+}
+
 /* Kotak Card */
 .card-login {
     width: 350px;
@@ -82,6 +91,10 @@ mny
     text-align: center;
 }
 
+h1{
+    text-align: center;
+    
+}
 
 /* Judul */
 .card-login h2 {
