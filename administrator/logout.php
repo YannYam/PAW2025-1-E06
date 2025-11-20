@@ -1,7 +1,7 @@
 <?php require_once '../function.php';
     if(isset($_POST['logout'])){
-        unset($_SESSION['peran']);
-        unset($_SESSION['isLogin']);
+        session_unset();
+        session_destroy();
         header('location: ../index.php');
         exit();
     }
