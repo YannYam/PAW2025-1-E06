@@ -5,23 +5,19 @@ require_once(BASE_PATH . '/service/session.php');
 
 
 	function checkUser($data) {
-		$stmt = DBH->prepare("SELECT * FROM user WHERE USERNAME = :username");
+		$stmt = DBH->prepare("SELECT * FROM pemustaka WHERE USERNAME = :username");
         $stmt->execute([':username' => $data]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
 	function checkPassword($data1, $data2){
-		$stmnt = DBH->prepare("SELECT * FROM user WHERE USERNAME = :username and PASSWORD = SHA2(:password, 0)");
+		$stmnt = DBH->prepare("SELECT * FROM pemustaka WHERE USERNAME = :username and PASSWORD = SHA2(:password, 0)");
 		$stmnt->execute([
 			':username' => $data1,
 			':password' => $data2
 		]);
 
 		return $stmnt->rowCount() > 0;
-	}
-
-	function isAdmin() {
-	    return isset($_SESSION['peran']) && $_SESSION['peran'] === 'Administrator';
 	}
 
 	function required($data) {
@@ -85,14 +81,13 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function tambahBuku(array $data){
-		$state = DBH->prepare("INSERT INTO buku (JUDUL, DESKRIPSI, PENULIS, PENERBIT, TAHUN, STOK) VALUES (:judul, :deskripsi, :penulis, :penerbit, :tahun, :stok)");
+		$state = DBH->prepare("INSERT INTO buku (JUDUL, DESKRIPSI, PENULIS, PENERBIT, TAHUN) VALUES (:judul, :deskripsi, :penulis, :penerbit, :tahun)");
 		$state->execute([
 			':judul' => $data['judul'],
 			':deskripsi' => $data['deskripsi'],
 			':penulis' => $data['penulis'],
 			':penerbit' => $data['penerbit'],
-			':tahun' => $data['tahun'],
-			':stok' => $data['stok']
+			':tahun' => $data['tahun']
 		]);
 	}
 
@@ -102,8 +97,7 @@ require_once(BASE_PATH . '/service/session.php');
         			DESKRIPSI = :deskripsi, 
         			PENULIS = :penulis, 
         			PENERBIT = :penerbit, 
-        			TAHUN = :tahun, 
-        			STOK = :stok 
+        			TAHUN = :tahun
         			WHERE ID_BUKU = :id_buku");
 		$state->execute([
 			':judul'=> $data['judul'],
@@ -111,7 +105,6 @@ require_once(BASE_PATH . '/service/session.php');
 			':penulis'=> $data['penulis'],
 			':penerbit'=> $data['penerbit'],
 			':tahun'=> $data['tahun'],
-			':stok'=> $data['stok'],
 			':id_buku'=> $id
 		]);
 	}
@@ -126,40 +119,28 @@ require_once(BASE_PATH . '/service/session.php');
 	function getBuku(){
 		$state = DBH->prepare('SELECT * FROM buku');
 		$state->execute();
-		$artikel = $state->fetchAll();
-		return $artikel;
+		return $state->fetchAll();
 	}
 
 	function getBukuOne(int $id){
 		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id");
 		$state->execute([':id' => $id]);
-		$artikel = $state->fetch();
-		return $artikel;
+		return $state->fetch();
 	}
 
 	function getPemustaka(){
-		$state = DBH->prepare("SELECT * FROM user WHERE PERAN = 'pemustaka'");
+		$state = DBH->prepare("SELECT * FROM pemustaka");
 		$state->execute();
-		$artikel = $state->fetchAll();
-		return $artikel;
+		return $state->fetchAll();
 	}
 
 	function getDaftarPeminjaman() {
 	    $stmt = DBH->prepare("
-	        SELECT 
-	            buku.JUDUL,
-	            buku.PENULIS,
-	            buku.PENERBIT,
-	            buku.TAHUN,
-	            peminjaman.STATUS,
-	            peminjaman.ID_PEMINJAMAN,
-	            user.NAMA_LENGKAP,
-	            peminjaman.TANGGAL_PINJAM,
-	            peminjaman.TANGGAL_RENCANA
-	        FROM peminjaman
-	        JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
-	        JOIN user ON peminjaman.ID_USER = user.ID_USER
-	        WHERE peminjaman.STATUS IN ('proses','pinjam')
+			SELECT peminjaman.ID_PEMINJAMAN, buku.JUDUL, buku.PENULIS, buku.PENERBIT, buku.TAHUN, pemustaka.NAMA_LENGKAP, pemustaka.USERNAME, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA, peminjaman.STATUS
+			FROM peminjaman
+			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
+			JOIN buku ON peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN
+			WHERE peminjaman.STATUS IN ('Proses', 'Pinjam');
 	    ");
 	    $stmt->execute();
 	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -167,20 +148,11 @@ require_once(BASE_PATH . '/service/session.php');
 	
 	function getDaftarKembali() {
 	    $stmt = DBH->prepare("
-	        SELECT 
-	            buku.JUDUL,
-	            buku.PENULIS,
-	            buku.PENERBIT,
-	            buku.TAHUN,
-	            peminjaman.STATUS,
-	            peminjaman.ID_PEMINJAMAN,
-	            user.NAMA_LENGKAP,
-	            peminjaman.TANGGAL_PINJAM,
-	            peminjaman.TANGGAL_RENCANA
-	        FROM peminjaman
-	        JOIN buku ON peminjaman.ID_BUKU = buku.ID_BUKU
-	        JOIN user ON peminjaman.ID_USER = user.ID_USER
-	        WHERE peminjaman.STATUS NOT IN('proses', 'pinjam')
+			SELECT peminjaman.ID_PEMINJAMAN, buku.JUDUL, buku.PENULIS, buku.PENERBIT, buku.TAHUN, pemustaka.NAMA_LENGKAP, pemustaka.USERNAME, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA, peminjaman.STATUS
+			FROM peminjaman
+			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
+			JOIN buku ON peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN
+			WHERE peminjaman.STATUS NOT IN ('Proses', 'Pinjam');
 	    ");
 	    $stmt->execute();
 	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -198,20 +170,20 @@ require_once(BASE_PATH . '/service/session.php');
 	    return $d && $d->format("Y-m-d") === $data;      // cek valid dan format sesuai
 	}
 
-	function gantiDataProfil(int $id,array $data){
-		$stmnt = DBH->prepare("UPDATE user SET NAMA_LENGKAP = :nama, ALAMAT = :alamat, TANGGAL_LAHIR = :tanggal, TELEPON = :telepon WHERE ID_USER = :id");
+	function gantiDataProfil($username,array $data){
+		$stmnt = DBH->prepare("UPDATE pemustaka SET NAMA_LENGKAP = :nama, ALAMAT = :alamat, TANGGAL_LAHIR = :tanggal, TELEPON = :telepon WHERE username = :username");
 		$stmnt->execute([
 			':nama' => test_input($data['nama']),
 			':alamat' => test_input($data['alamat']),
 			':tanggal' => test_input($data['tanggal']),
 			':telepon' => test_input($data['telepon']),
-			':id' => $id
+			':username' => $username
 		]);
 	}
 	
 	function getProfil($data){
-		$stmnt = DBH->prepare("SELECT * FROM user WHERE ID_USER = :id ");
-		$stmnt->execute([':id' => $data]);
+		$stmnt = DBH->prepare("SELECT * FROM pemustaka WHERE username = :username ");
+		$stmnt->execute([':username' => $data]);
 		return $stmnt->fetch();
 	}
 

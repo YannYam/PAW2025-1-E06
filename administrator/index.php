@@ -27,7 +27,6 @@ require_once "../function.php";
 					<th>Penulis</th>
 					<th>Penerbit</th>
 					<th>tahun</th>
-					<th>Stok</th>
 					<th>Option</th>
 				</tr>
 			</thead>
@@ -42,7 +41,6 @@ require_once "../function.php";
 					<td><?= $book['PENULIS'] ?></td>
 					<td><?= $book['PENERBIT'] ?></td>
 					<td><?= $book['TAHUN'] ?></td>
-					<td><?= $book['STOK'] ?></td>
 					<td><a href="<?= BASE_URL . '/administrator/edit.php' ?>?id_buku=<?= $book['ID_BUKU'] ?>" class="btn btn-edit">Edit</a><a href="<?= BASE_URL . '/administrator/delete.php' ?>?id_buku=<?= $book['ID_BUKU'] ?>" class="btn btn-delete">Delete</a></td>
 				</tr>
 				<?php endforeach ?>

@@ -16,7 +16,7 @@
 			<link rel="stylesheet" href="<?= BASE_URL . '/asset/' . $file_css; ?>">
 		<?php endforeach; ?>
 	<?php endif; ?>
-	<?php if(isset($_SESSION['id'])): ?>
+	<?php if(isset($_SESSION['nama'])): ?>
 		<link rel="stylesheet" href="<?= BASE_URL . '/asset/profile.css' ?>">
 	<?php endif; ?>
 

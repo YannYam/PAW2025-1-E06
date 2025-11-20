@@ -19,7 +19,7 @@ include "../layout/menu.administrator.php"
 			<caption>Daftar Pemustaka</caption>
 			<thead>
 				<tr>
-					<th>Id User</th>
+					<th>Username</th>
 					<th>Nama Lengkap</th>
 					<th>Umur</th>
 					<th>Alamat</th>
@@ -32,7 +32,7 @@ include "../layout/menu.administrator.php"
 				<?php foreach ($user as $detail): ?>
 
 				<tr>
-					<td><?= $detail['ID_USER'] ?></td>
+					<td><?= $detail['USERNAME'] ?></td>
 					<td><?= $detail['NAMA_LENGKAP'] ?></td>
 					<td><?= $detail['TANGGAL_LAHIR'] ?></td>
 					<td><?= $detail['ALAMAT'] ?></td>

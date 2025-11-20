@@ -36,17 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (checkPassword($username,$password)) {
                 // Simpan ke session
                 $_SESSION['nama'] = $user['NAMA_LENGKAP'];
-                $_SESSION['peran'] = $user['PERAN'];
-                $_SESSION['id'] = $user['ID_USER'];
 
-                // Arahkan berdasarkan peran
-                if ($user['PERAN'] === 'Administrator') {
-                    header('Location: administrator/index.php');
-                    exit();
-                } elseif($user['PERAN'] === 'Pemustaka') {
-                    header('Location: daftar_buku.php');
-                    exit();
-                }
             } else {
                 $error_password = "Password salah.";
             }

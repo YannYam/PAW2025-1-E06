@@ -36,7 +36,7 @@ include "../layout/menu.administrator.php"
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>
-						<td><?= $hasil['NAMA_LENGKAP'] ?></td>
+						<td><?= $hasil['NAMA_LENGKAP'] ?>(<i><?= $hasil['USERNAME'] ?></i>)</td>
 						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
 						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
