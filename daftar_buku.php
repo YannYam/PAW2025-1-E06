@@ -1,51 +1,40 @@
 <?php
 require_once('function.php');
 
-// nampilin buku
+// Ambil data buku
 $buku = getBuku();
 
-$list_css_tambahan = [
-    'table.css'
-];
-
+// Include header (jangan diubah)
 include_once(BASE_PATH . '/layout/header.php');
 ?>
 
+<!-- <link rel="stylesheet" href="asset/table.css"> -->
+<link rel="stylesheet" href="asset/style.css?v=<?= time(); ?>">
+
 <main class="site-main">
-    <div class="container">
+    <!-- <div class="card-container"> -->
+        <h1>Koleksi buku saat ini</h1>
+        <div class="card-container">
+            <?php foreach ($buku as $book): ?> 
+                <div class="card-login">
+                    <h2 class="card-title"><?= $book['JUDUL'] ?></h2>
+                    <p class="card-desc"><?= $book['DESKRIPSI'] ?></p>
+                    
+                    <div class="card-info">
+                        <p><strong>Penulis:</strong> <?= $book['PENULIS'] ?></p>
+                        <p><strong>Penerbit:</strong> <?= $book['PENERBIT'] ?></p>
+                        <p><strong>Tahun:</strong> <?= $book['TAHUN'] ?></p>
+                        <p><strong>Stok:</strong> <?= $book['STOK'] ?></p>
+                    </div>
 
+                    <a href="edit.php?id_buku=<?= $book['ID_BUKU']; ?>" class="login-btn">Pinjam</a>
+                </div>
+            <?php endforeach ?>
+        </div>
 
-        <table class="draft-table">
-            <caption>Koleksi buku Saat Ini</caption>
-                <thead>
-                    <tr>
-						<th>Nama Buku</th>
-						<th>Deskripsi Buku</th>
-						<th>Penulis</th>
-						<th>Penerbit</th>
-						<th>tahun</th>
-						<th>Stok</th>
-						<th>tombol</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($buku as $book):?> 
-                    <tr>
-                        <td><a href=""><?= $book['JUDUL'] ?></a></td>
-                        <td><?= $book['DESKRIPSI'] ?></td>
-                        <td><?= $book['PENULIS'] ?></td>
-                        <td><?= $book['PENERBIT'] ?></td>
-                        <td><?= $book['TAHUN'] ?></td>
-                        <td><?= $book['STOK'] ?></td>
-
-                        <td>
-                            <button type="button" class="btn btn-edit"><a href="edit.php?id_artikel=<?= $article['id_artikel']; ?>">Pinjam</a></button>
-                        </td>
-                    </tr>
-                    <?php endforeach?>
-                </tbody>
-        </table>
-    </div>
-
+    <!-- </div> -->
 </main>
+
+<?php
+// include footer jika ada
+?>
