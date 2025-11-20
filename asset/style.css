@@ -58,7 +58,7 @@ body {
     color: #0B1C39;
     transition: background 0.3s ease;
 }
-mny
+
 .admin-btn:hover {
     background: #c29f2d;
 }
@@ -93,6 +93,7 @@ mny
 
 h1{
     text-align: center;
+    color: white;
     
 }
 
