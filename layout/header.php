@@ -1,7 +1,7 @@
 <?php 
 
 if(!(isset($_SESSION['nama']))){
-	header('Location: index.php');
+	header('Location: ' . BASE_URL . '/');
 }
 ?>
 <!DOCTYPE html>
