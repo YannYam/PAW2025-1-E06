@@ -3,7 +3,7 @@
         <div class="touchable">
             <a href="<?= BASE_URL . '/layout/main-profile.php' ?>">
                 <div class="mini-profile">
-                    <img src="<?= BASE_URL . '/asset/images/pp/' . $_SESSION['id'] . '.jpeg' ?? 'default.png' ?>" alt="Foto Profil">
+                    <img src="<?= BASE_URL ?>/asset/images/pp/ <?= isset($_SESSION['id']) ? $_SESSION['id'] .'.jpeg' : 'default.png' ?>" alt="Foto Profil">
                     <div class="mini-profile-info">
                         <p class="username"><?= $_SESSION['nama'] ?? 'Guest' ?></p>
                         <p class="role"><?= $_SESSION['peran'] ?? 'Pemustaka' ?></p>
