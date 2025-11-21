@@ -2,9 +2,8 @@
 require_once("../base.php");
 require_once(BASE_PATH . '/function.php');
 
-$current = getDataPeminjaman($_GET['id']);
-
-
+$id = $_GET['id'];
+$current = getDataPeminjaman($id);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $statusBaru = $_POST['status_baru'] ?? '';
@@ -13,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($statusBaru) && isset($_POST['submit'])) {
         // cek status lama
         // jika baru dipinjam, isi tanggal pinjam
-        if ($statusBaru === 'pinjam' && $current !== 'pinjam') {
+        if ($statusBaru === 'Pinjam' && $current !== 'Pinjam') {
             $ctime = date("Y-m-d");
             $op = DBH->prepare("UPDATE peminjaman SET TANGGAL_PINJAM=:p WHERE ID_PEMINJAMAN=:id");
             $op->execute([':p'=>$ctime, ':id'=>$id]);
@@ -28,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$list_css_tambahan = ['menu.administrator.css', 'form-buku.css'];
+$list_css_tambahan = ['menu.administrator.css', 'form-buku.css','main.administrator.css'];
 include_once(BASE_PATH . '/layout/header.php');
 include_once(BASE_PATH . '/layout/menu.administrator.php');
 ?>
@@ -42,12 +41,12 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
       <div class="field">
         <label>Status</label>
         <select name="status_baru">
-          <option value="proses"  <?= $row['STATUS']==='proses'?'selected':'' ?>>Proses</option>
-          <option value="pinjam"  <?= $row['STATUS']==='pinjam'?'selected':'' ?>>Pinjam</option>
-          <option value="kembali">Kembali</option>
-          <option value="rusak">Rusak</option>
-          <option value="hilang">Hilang</option>
-          <option value="terlambat">Terlambat</option>
+          <option value="Proses"  <?= $current['STATUS']=='Proses'?'selected':'' ?>>Proses</option>
+          <option value="Pinjam"  <?= $current['STATUS']=='Pinjam'?'selected':'' ?>>Pinjam</option>
+          <option value="Kembali">Kembali</option>
+          <option value="Rusak">Rusak</option>
+          <option value="Hilang">Hilang</option>
+          <option value="Terlambat">Terlambat</option>
         </select>
       </div>
       <label>Tanggal Rencana</label>
