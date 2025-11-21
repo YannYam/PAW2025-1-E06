@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Libra</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="asset/style.css">
 
 </head>
 
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <!-- Card Login -->
     <div class="container">
-        <div class="card-login">
+        <div class="card-login tengah">
             <h2>Login Akun</h2>
             <p>“Selamat Datang Kembali.”</p>
 

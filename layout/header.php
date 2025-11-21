@@ -1,8 +1,8 @@
 <?php 
 
-if(!(isset($_SESSION['nama']))){
-	header('Location: index.php');
-}
+// if(!(isset($_SESSION['nama']))){
+// 	header('Location: index.php');
+// }
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -32,7 +32,7 @@ if(!(isset($_SESSION['nama']))){
 
 	<!-- Header & Navigasi -->
 	<header class="navbar">
-        <img src="<?=BASE_URL . '/asset/images//libra.jpg' ?>" class="logo" alt="logo">
+        <img src="<?=BASE_URL . '/asset/images/libra.jpg' ?>" class="logo" alt="logo">
         <h2>Libra</h2>
 
 		<?php if (isset($judul_halaman)) : ?>
