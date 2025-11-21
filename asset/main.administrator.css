@@ -231,6 +231,13 @@ footer {
     text-align: center;
 }
 
+/* Error message */
+.error {
+    color: red;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
 @media (max-width: 1150px) {
     .table-pemustaka, .table-peminjaman, .table-books {
         margin: 20px;

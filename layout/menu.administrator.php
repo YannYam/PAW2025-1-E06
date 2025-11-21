@@ -1,5 +1,7 @@
 <?php
-
+   if(!isAdmin()) {
+    header('Location: ' . BASE_URL . '/');
+   }
 ?>
 <main>
     <div class="side">
