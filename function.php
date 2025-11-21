@@ -194,4 +194,9 @@ require_once(BASE_PATH . '/service/session.php');
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
+	function getUserByUsername($username){
+		$stmnt = DBH->prepare('SELECT * FROM pemustaka WHERE username = :username');
+		$stmnt->execute([':username' => $username]);
+		return $stmnt->fetch();
+	}
 	?>
