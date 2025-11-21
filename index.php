@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <!-- Card Login -->
     <div class="container">
-        <div class="card-login">
+        <div class="card-login tengah">
             <h2>Login Akun</h2>
             <p>“Selamat Datang Kembali.”</p>
 

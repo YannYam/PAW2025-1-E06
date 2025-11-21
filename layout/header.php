@@ -1,8 +1,8 @@
-<?php
-// Mengecek apakah sesi 'nama' tidak ada untuk melakukan redirect (saat ini dikomentari)
-// if(!(isset($_SESSION['nama']))){
-// 	header('Location: ' . BASE_URL . '/');
-// }
+<?php 
+
+if(!(isset($_SESSION['nama']))){
+	header('Location: ' . BASE_URL . '/')
+}
 
 ?>
 <!DOCTYPE html>
@@ -28,8 +28,9 @@
 
 </head>
 <body>
-    <header class="navbar">
-        <img src="<?=BASE_URL . '/asset/images//libra.jpg' ?>" class="logo" alt="logo">
+
+	<header class="navbar">
+        <img src="<?=BASE_URL . '/asset/images/libra.jpg' ?>" class="logo" alt="logo">
         <h2>Libra</h2>
 
         <?php if (isset($judul_halaman)) : ?>

@@ -25,10 +25,9 @@ include_once(BASE_PATH . '/layout/header.php');
                         <p><strong>Penulis:</strong> <?= $book['PENULIS'] ?></p>
                         <p><strong>Penerbit:</strong> <?= $book['PENERBIT'] ?></p>
                         <p><strong>Tahun:</strong> <?= $book['TAHUN'] ?></p>
-                        <p><strong>Stok:</strong> <?= $book['STOK'] ?></p>
                     </div>
 
-                    <a href="edit.php?id_buku=<?= $book['ID_BUKU']; ?>" class="login-btn">Pinjam</a>
+                    <a href="proses_pinjam.php?id_buku=<?= $book['ID_BUKU']; ?>" class="login-btn">Pinjam</a>
                 </div>
             <?php endforeach ?>
         </div>

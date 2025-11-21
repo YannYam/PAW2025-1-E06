@@ -117,16 +117,43 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function getBuku(){
-		$state = DBH->prepare('SELECT * FROM buku');
+		$state = DBH->prepare("SELECT * FROM buku LEFT JOIN peminjaman ON 
+		peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN 
+		WHERE peminjaman.STATUS NOT IN ('Hilang', 'Pinjam')");
 		$state->execute();
 		return $state->fetchAll();
 	}
-
+	
 	function getBukuOne(int $id){
 		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id");
 		$state->execute([':id' => $id]);
 		return $state->fetch();
 	}
+	
+	function insertPeminjaman(int $id,array $data){
+		$idUser = $_SESSION['username'];
+		
+		$state = DBH-> prepare("
+		INSERT INTO peminjaman (USERNAME,TANGGAL_PINJAM,TANGGAL_RENCANA,STATUS) 
+		VALUES (:username, :tanggalpinjam, :status)");
+		$state->execute([
+			'username' => $idUser,
+			'tanggalpinjam' => date("Y-m-d"),
+			'tanggalrencana' => date("Y-m-d"),
+			'status' => 'Proses'
+		]);
+
+		$idPeminjaman = DBH->lastInsertId();
+		$state2 = DBH->prepare("
+            UPDATE buku SET ID_PEMINJAMAN = :idpinjam WHERE ID_BUKU = :idbuku
+        ");
+		$state2->execute([
+            ':idpinjam' => $idPeminjaman,
+            ':idbuku' => $id
+        ]);
+
+	    return $state2->fetchAll(PDO::FETCH_ASSOC);
+	} 
 
 	function getPemustaka(){
 		$state = DBH->prepare("SELECT * FROM pemustaka");
