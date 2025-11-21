@@ -9,7 +9,6 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
     $penulis = test_input($_POST['penulis']);
     $penerbit = test_input($_POST['penerbit']);
     $tahun = test_input($_POST['tahun']);
-    $stok = test_input($_POST['stok']);
 
     if(!wajib($judul)){
         $error_judul = 'Masukan wajib diisi';
@@ -50,14 +49,6 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
     }else{
       $error_tahun = '';
     }
-
-    if(!wajib($stok)){
-      $error_stok = 'Masukan wajib diisi';
-    }elseif(!numerik($stok)){
-      $error_stok = 'Masukan harus numerik';
-    }else{
-      $error_stok = '';
-    }
 	
 	  if(isset($add) AND empty($error_judul) AND empty($error_deskripsi) AND empty($error_penulis) AND empty($error_penerbit) AND empty($error_tahun) AND empty($error_stok) AND isset($_POST['simpan'])){
     	tambahBuku($_POST);
@@ -82,7 +73,5 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
 	<input type="text" name="penerbit" placeholder="penerbit" value="<?= $detail['PENERBIT'] ?? '' ?>">
 	<span class="error"><?= $error_tahun ?></span>
 	<input type="text" name="tahun" placeholder="tahun" value="<?= $detail['TAHUN'] ?? '' ?>">
-	<span class="error"><?= $error_stok ?></span>
-	<input type="text" name="stok" placeholder="stok" value="<?= $detail['STOK'] ?? '' ?>">
 	<button type="submit" name="simpan">Simpan</button>
 </form>

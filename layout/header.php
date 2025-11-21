@@ -1,8 +1,8 @@
 <?php 
-
 if(!(isset($_SESSION['nama']))){
 	header('Location: ' . BASE_URL . '/');
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="id">
