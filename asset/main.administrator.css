@@ -1,3 +1,4 @@
+/* Font-face custom agar bisa dipakai lokal */
 @font-face {
   font-family: 'Poppins';
   src: url('fonts/Poppins-Regular.ttf');
@@ -12,49 +13,56 @@
   src: url('fonts/Inter-Regular.ttf');
 }
 
+/* Reset dan gaya dasar body */
 body {
     font-size: 16px;
     font-family: 'Inter' ,'Poppins';
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #e8f0ff 0%, #fff6e8 100%);
-    background-color: #e8f0ff;
+    background: linear-gradient(135deg, #e8f0ff 0%, #fff6e8 100%); /* Gradasi lembut */
+    background-color: #e8f0ff; /* Fallback */
     width: 100%;
 }
 
+/* Kontainer utama fleksibel: sidebar + konten */
 main {
     display: flex;  
     min-height: 100%;
 }
 
+/* Wrapper tabel umum */
 .table {
     background-color: white;
-    box-shadow: 0 -4px 0 -1px #0066FF;
+    box-shadow: 0 -4px 0 -1px #0066FF; /* Aksen garis biru atas */
 }
 
+/* Pembeda ruang untuk tiap jenis tabel */
 .table-pemustaka, .table-peminjaman, .table-books{
     margin: 15px;
     padding: 20px;
     height: 100%;
 }
 
+/* Styling elemen table dasar */
 .table table {
     width: 100%;
     border-collapse: collapse;
     background: white;
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Elevasi */
 }
 
+/* Judul tabel */
 .table caption {
     padding: 1vw;
-    font-size: 1.7vw;
+    font-size: 1.7vw; /* Skala relatif viewport */
     font-weight: bold;
     background: #f0f0f0;
     border-bottom: 1px solid #ddd;
 }
 
+/* Sel header & data */
 .table th,
 .table td {
     padding: 12px 15px;
@@ -62,30 +70,34 @@ main {
     border-bottom: 1px solid #eee;
 }
 
+/* Header tabel */
 .table th {
     background: #e0e0e0;
     font-weight: 600;
 }
 
+/* Striping baris genap */
 .table tbody tr:nth-child(even) {
     background: #fafafa;
 }
 
+/* Highlight hover baris */
 .table tbody tr:hover {
     background: #f1f1f1;
 }
 
+/* Kolom pertama rata tengah (biasanya ID / nomor) */
 .table table td:first-child {
     text-align: center;
 }
 
-/* Untuk Coloum Status */
-
+/* Kolom status: kapitalisasi & bisa diberi layout fleksibel */
 td.status {
     text-transform: capitalize;
     gap: 10px;
 }
 
+/* Variasi warna status peminjaman */
 td.status.Pinjam {
     background-color: #28a745;
     color: white;
@@ -117,36 +129,37 @@ td.status.Hilang {
     font-weight: 600; 
 }
 
-/* Tombol */
+/* Tombol aksi */
 .btn {
     padding: 6px 12px;
     border-radius: 5px;
     cursor: pointer;
 }
 
+/* Link dalam sel (tombol edit/delete) */
 td > a  {
     color: white;
     text-decoration: none;
 }
 
+/* Edit button normal + hover */
 .btn-edit {
     background: #3498db;
 }
-
 .btn-edit:hover {
     background: #2980b9;
 }
 
+/* Delete button normal + hover */
 .btn-delete {
     background: #e74c3c;
     margin-left: 5px;
 }
-
 .btn-delete:hover {
     background: #c0392b;
 }
 
-/* Link tambah buku */
+/* Link "Tambah buku" dibuat seperti tombol */
 .table a[href="add.php?tambah=true"] {
     display: inline-block;
     margin-top: 15px;
@@ -156,15 +169,16 @@ td > a  {
     border-radius: 6px;
     text-decoration: none;
 }
-
 .table a[href="add.php?tambah=true"]:hover {
     background: #27ae60;
 }
 
+/* Spasi khusus bagian peminjaman */
 .pinjam {
     margin-bottom: 50px;
 }
 
+/* Wrapper profil utama */
 .main-profile {
     height: 100%;
     width: 40%;
@@ -179,18 +193,21 @@ td > a  {
     color: #333;
 }
 
+/* Box profil internal */
 .profile {
     background-color: white;
     padding: 20%;
     border-radius: 8px;
 }
 
+/* Form detail profil (kolom vertikal) */
 .detail-profile form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* Input teks & tanggal */
 .detail-profile input[type="text"], input[type="date"] {
     padding: 10px;
     font-size: 16px;
@@ -198,17 +215,18 @@ td > a  {
     border-radius: 4px;
 }
 
+/* Link kembali / navigasi dalam profil */
 .detail-profile a {
     text-decoration: none;
     color: #555;
     font-weight: 500;
     margin-right: auto;
 }
-
 .detail-profile a:hover {
     color: #1E90FF;
 }
 
+/* Tombol submit profil */
 .detail-profile button {
     padding: 10px;
     background-color: #28a745;
@@ -218,11 +236,11 @@ td > a  {
     font-size: 16px;
     cursor: pointer;
 }
-
 .detail-profile button:hover {
     background-color: #218838;
 }
 
+/* Footer halaman */
 footer {
     width: 100%;
     background: gray;
@@ -231,13 +249,14 @@ footer {
     text-align: center;
 }
 
-/* Error message */
+/* Pesan error (validasi) */
 .error {
     color: red;
     font-size: 13px;
     margin-bottom: 10px;
 }
 
+/* Responsif medium (tablet besar) */
 @media (max-width: 1150px) {
     .table-pemustaka, .table-peminjaman, .table-books {
         margin: 20px;
@@ -252,7 +271,7 @@ footer {
     }
 }
 
-/* HP / Mobile */
+/* Responsif mobile kecil */
 @media (max-width: 600px) {
     .table {
       width: 100%;
@@ -260,7 +279,7 @@ footer {
     }
 
     table {
-      font-size: 7px;
+      font-size: 7px; /* Sangat kecil, berpotensi kurang aksesibel */
     }
 
     .table th,
