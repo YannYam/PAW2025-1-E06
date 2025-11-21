@@ -1,14 +1,5 @@
-<?php 
+<?php  
 require_once 'function.php'; 
-
-if(isset($_SESSION['peran'])){
-    if($_SESSION['peran'] == 'Administrator'){
-        header('location: ' . BASE_URL . '/administrator/index.php');
-    }elseif($_SESSION['peran'] == 'Pemustaka'){
-        header('location: ' . BASE_URL . '/daftar_buku.php');
-    }
-    exit();
-}
 
 $username = $password = '';
 
@@ -18,6 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = test_input($_POST['username']);
     $password = test_input($_POST['password']);
 
+    $user = getUserByUsername($username);
+
+
+    
     // Validasi Username
     if (!wajib($username)) {
         $error_username = 'Username wajib diisi.';
@@ -28,20 +23,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $error_password = 'Password wajib diisi.';
     } 
 
-    // Jika tidak ada error, lanjut cek ke database
     if (empty($error_username) && empty($error_password)) {
-        $user = checkUser($username);
-        if ($user) {
-            // Jika password-nya belum di-hash, bandingkan langsung:
-            if (checkPassword($username,$password)) {
-                // Simpan ke session
-                $_SESSION['nama'] = $user['NAMA_LENGKAP'];
+        if ($user && $user['USERNAME'] == $username) {
+            $_SESSION['nama'] = $user['USERNAME'];
 
-            } else {
-                $error_password = "Password salah.";
+            if (sha1($password) == $user['PASSWORD']) {
+                header('location: daftar_buku.php');
+                exit();
+            } else{
+                $error_password = 'Password salah!';
             }
         } else {
-            $error_username = "Username tidak ditemukan.";
+            $error_username = 'Username salah!';
         }
     }
 }
@@ -52,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Libra</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="asset/style.css">
 
 </head>
 
@@ -60,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <!-- navbar -->
     <header class="navbar">
-        <img src="libra.jpg" class="logo" alt="logo">
+        <img src="asset/images/libra.jpg" class="logo" alt="logo">
         <h2>Libra</h2>
 
     </header>
