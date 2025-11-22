@@ -214,7 +214,6 @@ require_once(BASE_PATH . '/service/session.php');
 		return $stmnt->fetch();
 	}
 
-
 	function getDataPeminjaman($id){
 		$stmt = DBH->prepare("SELECT * FROM peminjaman WHERE ID_PEMINJAMAN = :id");
 		$stmt->execute([':id'=>$id]);
