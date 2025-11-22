@@ -1,5 +1,8 @@
 <?php
-
+    if(!isset($_SESSION['nama'])){
+        header('Location: ' .  BASE_URL . '/' );
+        exit();
+    }
 ?>
 <main>
     <div class="side">

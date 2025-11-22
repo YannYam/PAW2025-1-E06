@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($user && $user['USERNAME'] == $username) {
             $_SESSION['nama'] = $user['USERNAME'];
 
-            if (sha1($password) == $user['PASSWORD']) {
+            if (hash('sha256', $password) == $user['PASSWORD']) {
                 header('location: daftar_buku.php');
                 exit();
             } else{

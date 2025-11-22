@@ -1,7 +1,7 @@
 <?php 
 
 if(!(isset($_SESSION['nama']))){
-	header('Location: ' . BASE_URL . '/')
+	header('Location: ' . BASE_URL . '/');
 }
 
 ?>
