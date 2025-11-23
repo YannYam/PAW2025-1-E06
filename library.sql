@@ -40,7 +40,7 @@ CREATE TABLE `administrator` (
 --
 
 INSERT INTO `administrator` (`USERNAME_ADMIN`, `PASSWORD_ADMIN`, `NAMA_ADMIN`, `TELEPON_ADMIN`, `ALAMAT_ADMIN`) VALUES
-('admin1', '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9', 'Admin Perpustakaan', '081234567890', 'Jl. Merdeka No. 1, Jakarta');
+('admin1', sha2('Admin1',256), 'Admin Perpustakaan', '081234567890', 'Jl. Merdeka No. 1, Jakarta');
 
 -- --------------------------------------------------------
 
@@ -85,8 +85,8 @@ INSERT INTO `buku` (`ID_BUKU`, `ID_PEMINJAMAN`, `JUDUL`, `DESKRIPSI`, `PENULIS`,
 CREATE TABLE `peminjaman` (
   `ID_PEMINJAMAN` int(11) NOT NULL,
   `USERNAME` varchar(50) DEFAULT NULL,
-  `TANGGAL_PINJAM` date NOT NULL,
-  `TANGGAL_RENCANA` date NOT NULL,
+  `TANGGAL_PINJAM` date NULL,
+  `TANGGAL_RENCANA` date NULL,
   `STATUS` enum('Proses','Pinjam','Rusak','Hilang','Kembali','Terlambat') NOT NULL DEFAULT 'Proses'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -129,19 +129,18 @@ CREATE TABLE `pemustaka` (
 --
 
 INSERT INTO `pemustaka` (`NAMA_LENGKAP`, `USERNAME`, `PASSWORD`, `EMAIL`, `TELEPON`, `TANGGAL_LAHIR`, `ALAMAT`) VALUES
-('Agus Salim', 'agus', '9323dd6786ebcbf3ac87357cc78ba1abfda6cf5e55cd01097b90d4a286cac90e', 'agus@example.com', '081999999999', '1990-09-09', 'Jl. Rambutan No. 11, Makassar'),
-('Andi Wijaya', 'andi', '5906ac361a137e2d286465cd6588ebb5ac3f5ae955001100bc41577c3d751764', 'andi@example.com', '081333333333', '1994-03-20', 'Jl. Mawar No. 7, Surabaya'),
-('Budi Santoso', 'budi', '0b14d501a594442a01c6859541bcb3e8164d183d32937b851835442f69d5c94e', 'budi@example.com', '081111111111', '1995-01-10', 'Jl. Melati No. 10, Bandung'),
-('Dewi Lestari', 'dewi', '8b2c86ea9cf2ea4eb517fd1e06b74f399e7fec0fef92e3b482a6cf2e2b092023', 'dewi@example.com', '081555555555', '1993-05-30', 'Jl. Anggrek No. 9, Semarang'),
-('Joko Prabowo', 'joko', '598a1a400c1dfdf36974e69d7e1bc98593f2e15015eed8e9b7e47a83b31693d5', 'joko@example.com', '081666666666', '1992-06-12', 'Jl. Teratai No. 3, Malang'),
-('Lia Hartati', 'lia', '57f3ebab63f156fd8f776ba645a55d96360a15eeffc8b0e4afe4c05fa88219aa', 'lia@example.com', '081888888888', '1998-08-18', 'Jl. Nangka No. 6, Denpasar'),
-('Maya Putri', 'maya', 'b3d17ebbe4f2b75d27b6309cfaae1487b667301a73951e7d523a039cd2dfe110', 'maya@example.com', '082333333333', '1991-12-01', 'Jl. Sawo No. 13, Pontianak'),
-('Nina Kartika', 'nina', 'aa4a9ea03fcac15b5fc63c949ac34e7b0fd17906716ac3b8e58c599cdc5a52f0', 'nina@example.com', '082111111111', '1999-10-22', 'Jl. Durian No. 2, Palembang'),
-('Rina Kurnia', 'rina', 'b97873a40f73abedd8d685a7cd5e5f85e4a9cfb83eac26886640a0813850122b', 'rina@example.com', '081444444444', '1997-04-25', 'Jl. Dahlia No. 12, Yogyakarta'),
-('Rudi Hartono', 'rudi', '53d453b0c08b6b38ae91515dc88d25fbecdd1d6001f022419629df844f8ba433', 'rudi@example.com', '082222222222', '1989-11-11', 'Jl. Pisang No. 8, Bogor'),
-('Siti Aminah', 'siti', '6cf615d5bcaac778352a8f1f3360d23f02f34ec182e259897fd6ce485d7870d4', 'siti@example.com', '081222222222', '1996-02-15', 'Jl. Kenanga No. 5, Jakarta'),
-('Tono Supriyadi', 'tono', '5860836e8f13fc9837539a597d4086bfc0299e54ad92148d54538b5c3feefb7c', 'tono@example.com', '081777777777', '1991-07-07', 'Jl. Cendana No. 4, Medan');
-
+('Agus Salim', 'agus', sha2('Password1',256), 'agus@example.com', '081999999999', '1990-09-09', 'Jl. Rambutan No. 11, Makassar'),
+('Andi Wijaya', 'andi', sha2('Password2',256), 'andi@example.com', '081333333333', '1994-03-20', 'Jl. Mawar No. 7, Surabaya'),
+('Budi Santoso', 'budi', sha2('Password3',256), 'budi@example.com', '081111111111', '1995-01-10', 'Jl. Melati No. 10, Bandung'),
+('Dewi Lestari', 'dewi', sha2('Password4',256), 'dewi@example.com', '081555555555', '1993-05-30', 'Jl. Anggrek No. 9, Semarang'),
+('Joko Prabowo', 'joko', sha2('Password5',256), 'joko@example.com', '081666666666', '1992-06-12', 'Jl. Teratai No. 3, Malang'),
+('Lia Hartati', 'lia', sha2('Password6',256), 'lia@example.com', '081888888888', '1998-08-18', 'Jl. Nangka No. 6, Denpasar'),
+('Maya Putri', 'maya', sha2('Password7',256), 'maya@example.com', '082333333333', '1991-12-01', 'Jl. Sawo No. 13, Pontianak'),
+('Nina Kartika', 'nina', sha2('Password8',256), 'nina@example.com', '082111111111', '1999-10-22', 'Jl. Durian No. 2, Palembang'),
+('Rina Kurnia', 'rina', sha2('Password9',256), 'rina@example.com', '081444444444', '1997-04-25', 'Jl. Dahlia No. 12, Yogyakarta'),
+('Rudi Hartono', 'rudi', sha2('Password10',256), 'rudi@example.com', '082222222222', '1989-11-11', 'Jl. Pisang No. 8, Bogor'),
+('Siti Aminah', 'siti', sha2('Password11',256), 'siti@example.com', '081222222222', '1996-02-15', 'Jl. Kenanga No. 5, Jakarta'),
+('Tono Supriyadi', 'tono', sha2('Password12',256), 'tono@example.com', '081777777777', '1991-07-07', 'Jl. Cendana No. 4, Medan');
 --
 -- Indexes for dumped tables
 --

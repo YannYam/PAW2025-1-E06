@@ -2,43 +2,55 @@
 require_once 'function.php'; 
 
 $username = $password = '';
-
 $error_username = $error_password = '';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = test_input($_POST['username']);
     $password = test_input($_POST['password']);
 
-    $user = getUserByUsername($username);
-
-
+    $user      = getUserByUsername($username);
+    $userAdmin = getUserByAdmin($username);
     
-    // Validasi Username
+    // Validasi input
     if (!wajib($username)) {
         $error_username = 'Username wajib diisi.';
     }
-
-    // Validasi Password
     if (!wajib($password)) {
         $error_password = 'Password wajib diisi.';
-    } 
+    }
 
+    // Jika input valid
     if (empty($error_username) && empty($error_password)) {
+
+        // Login Pemustaka
         if ($user && $user['USERNAME'] == $username) {
-            
-            if (sha1($password) == $user['PASSWORD']) {
+            if (hash('sha256', $password) == $user['PASSWORD']) {
                 $_SESSION['nama'] = $user['USERNAME'];
                 header('location: daftar_buku.php');
                 exit();
-            } else{
+            } else {
                 $error_password = 'Password salah!';
             }
+
+        // Login Admin
+        } elseif ($userAdmin && $userAdmin['USERNAME_ADMIN'] == $username) {
+
+            if (hash('sha256', $password) == $userAdmin['PASSWORD_ADMIN']) {
+                $_SESSION['nama'] = $userAdmin['USERNAME_ADMIN'];
+                header('location: administrator/index.php');
+                exit();
+            } else {
+                $error_password = 'Password admin salah!';
+            }
+
+        // Username tidak ada di kedua tabel
         } else {
-            $error_username = 'Username salah!';
+            $error_username = 'Username tidak ditemukan!';
         }
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>

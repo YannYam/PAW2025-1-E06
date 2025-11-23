@@ -123,7 +123,7 @@ require_once(BASE_PATH . '/service/session.php');
 		$state->execute();
 		return $state->fetchAll();
 	}
-	
+
 	function getBukuOne(int $id){
 		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id");
 		$state->execute([':id' => $id]);
@@ -243,4 +243,10 @@ require_once(BASE_PATH . '/service/session.php');
 		$stmnt->execute([':username' => $username]);
 		return $stmnt->fetch();
 	}
-	?>
+
+	function getUserByAdmin($username){
+		$stmnt = DBH->prepare('SELECT * FROM administrator WHERE username_admin = :username');
+		$stmnt->execute([':username' => $username]);
+		return $stmnt->fetch();
+	}
+?>

@@ -256,6 +256,12 @@ footer {
     margin-bottom: 10px;
 }
 
+/* Stabilkan kolom Option agar tombol sejajar */
+.table th:last-child,
+.table td:last-child {
+  white-space: nowrap;   /* Cegah turun baris */
+}
+
 /* Responsif medium (tablet besar) */
 @media (max-width: 1150px) {
     .table-pemustaka, .table-peminjaman, .table-books {
