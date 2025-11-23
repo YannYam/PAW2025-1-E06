@@ -22,7 +22,7 @@
             <form action="" method="POST">
                 <button type="submit" name="logout" class="btn-log btn-logout">Logout</button>
             
-                <a class="btn-log btn-cancel-logout" href="<?= BASE_URL . '/administrator/' ?>">Batal</a>
+                <a class="btn-log btn-cancel-logout" href="<?= isNotAdmin($_SESSION['nama']) ? BASE_URL . '/daftar_buku.php': BASE_URL . '/administrator/' ?>">Batal</a>
             </form>
         </div>
     </div>
