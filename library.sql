@@ -40,7 +40,7 @@ CREATE TABLE `administrator` (
 --
 
 INSERT INTO `administrator` (`USERNAME_ADMIN`, `PASSWORD_ADMIN`, `NAMA_ADMIN`, `TELEPON_ADMIN`, `ALAMAT_ADMIN`) VALUES
-('admin1', '0afb00138d8e73348ec1fe41fd3d3a8fcbd90156b263bfa5791ba0e095f42cfc', 'Admin Perpustakaan', '081234567890', 'Jl. Merdeka No. 1, Jakarta');
+('admin1', sha2('Admin1', 256), 'Admin Perpustakaan', '081234567890', 'Jl. Merdeka No. 1, Jakarta');
 
 -- --------------------------------------------------------
 
@@ -129,18 +129,18 @@ CREATE TABLE `pemustaka` (
 --
 
 INSERT INTO `pemustaka` (`NAMA_LENGKAP`, `USERNAME`, `PASSWORD`, `TELEPON`, `TANGGAL_LAHIR`, `ALAMAT`) VALUES
-('Andi Pratama', 'andi', '19513fdc9da4fb72a4a05eb66917548d3c90ff94d5419e1f2363eea89dfee1dd', '081111111111', '2010-03-15', 'Jl. Kenanga No. 1'),
-('Budi Setiawan', 'budi', '1be0222750aaf3889ab95b5d593ba12e4ff1046474702d6b4779f4b527305b23', '081222222222', '2009-07-20', 'Jl. Melati No. 4'),
-('Citra Dewi', 'citra', '2538f153f36161c45c3c90afaa3f9ccc5b0fa5554c7c582efe67193abb2d5202', '081333333333', '2011-09-10', 'Jl. Mawar No. 9'),
-('Dimas Arya', 'dimas', 'db514f5b3285acaa1ad28290f5fefc38f2761a1f297b1d24f8129dd64638825d', '081444444444', '2008-02-22', 'Jl. Anggrek No. 2'),
-('Eka Putri', 'eka', '8180d5783fea9f86479e748f6d2d1196c4a8e143643119398c16367d2c3d50f2', '081555555555', '2007-05-18', 'Jl. Dahlia No. 8'),
-('Fajar Nugraha', 'fajar', '75f9793a7639faa0b83a2707d60cb21c42fe9f50992fc692390a26ac2a21b29e', '081666666666', '2009-11-01', 'Jl. Cempaka No. 7'),
-('Gita Rahma', 'gita', '5bfdfaaf7e1b1244192a1ede1ea70f09f5642190821c0005669a9afbca2dee2e', '081777777777', '2010-01-25', 'Jl. Flamboyan No. 5'),
-('Hadi Saputra', 'hadi', '2ced6e7160a9e2cb4be29c200852bfc4fe29d7531ff3ffc51fc1407399d8d8b8', '081888888888', '2008-09-17', 'Jl. Tulip No. 3'),
-('Intan Sari', 'intan', 'b949a64fd5484e69191efb60d83f7f79195eeb2911c3eb5850af160841211f18', '081999999999', '2007-12-09', 'Jl. Teratai No. 11'),
-('Joko Santoso', 'joko', 'c0a09d876279cea6c57b4453c56737fd1b0c6c95e80b0a08ac48bcc97e719afd', '082111111111', '2011-04-12', 'Jl. Nusa Indah No. 6'),
-('Kiki Pramudita', 'kiki', '542cbab799aabae8c7b3cd571e6c73395515ebd86044358cc3603d8e965881e0', '082222222222', '2009-06-08', 'Jl. Duren No. 10'),
-('Lala Ananda', 'lala', 'f3c16dc3ef3ba55671b0ac2938730a4afc3867cf4c01ae9a09cfe4e2367666bd', '082333333333', '2008-10-30', 'Jl. Pepaya No. 12');
+('Andi Pratama', 'andi', sha2('Password1', 256), '081111111111', '2010-03-15', 'Jl. Kenanga No. 1'),
+('Budi Setiawan', 'budi', sha2('Password2', 256), '081222222222', '2009-07-20', 'Jl. Melati No. 4'),
+('Citra Dewi', 'citra', sha2('Password3', 256), '081333333333', '2011-09-10', 'Jl. Mawar No. 9'),
+('Dimas Arya', 'dimas', sha2('Password4', 256), '081444444444', '2008-02-22', 'Jl. Anggrek No. 2'),
+('Eka Putri', 'eka', sha2('Password5', 256), '081555555555', '2007-05-18', 'Jl. Dahlia No. 8'),
+('Fajar Nugraha', 'fajar', sha2('Password6', 256), '081666666666', '2009-11-01', 'Jl. Cempaka No. 7'),
+('Gita Rahma', 'gita', sha2('Password7', 256), '081777777777', '2010-01-25', 'Jl. Flamboyan No. 5'),
+('Hadi Saputra', 'hadi', sha2('Password8', 256), '081888888888', '2008-09-17', 'Jl. Tulip No. 3'),
+('Intan Sari', 'intan', sha2('Password9', 256), '081999999999', '2007-12-09', 'Jl. Teratai No. 11'),
+('Joko Santoso', 'joko', sha2('Password10', 256), '082111111111', '2011-04-12', 'Jl. Nusa Indah No. 6'),
+('Kiki Pramudita', 'kiki', sha2('Password11', 256), '082222222222', '2009-06-08', 'Jl. Duren No. 10'),
+('Lala Ananda', 'lala', sha2('Password12', 256), '082333333333', '2008-10-30', 'Jl. Pepaya No. 12');
 
 --
 -- Indexes for dumped tables
