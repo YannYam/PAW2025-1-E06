@@ -12,7 +12,9 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
 
     if(!wajib($judul)){
         $error_judul = 'Masukan wajib diisi';
-    }elseif(!alfaJudul($judul)){
+    }elseif(!digitMinim($judul)){
+        $error_judul = "Masukan minimal 3 digit";
+    } elseif(!alfaJudul($judul)){
       $error_judul = 'Masukan harus berupa Judul';
     }else{
       $error_judul = '';
@@ -20,7 +22,9 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
 
     if(!wajib($deskripsi)){
       $error_deskripsi = 'Masukan wajib diisi';
-    }elseif(!alfaDesc($deskripsi)){
+    }elseif(!digitMinim($deskripsi)){
+      $error_deskripsi = "Masukan minimal 3 digit";
+    } elseif(!alfaDesc($deskripsi)){
       $error_deskripsi = 'Masukan harus berupa alfanumerik';
     }else{
       $error_deskripsi = '';
@@ -28,7 +32,9 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
 
     if(!wajib($penulis)){
       $error_penulis = 'Masukan wajib diisi';
-    }elseif(!alfabet($penulis)){
+    }elseif(!digitMinim($penulis)){
+      $error_penulis = "Masukan minimal 3 digit";
+    } elseif(!alfabet($penulis)){
       $error_penulis = '';
     }else{
       $error_penulis = '';
@@ -36,7 +42,9 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
 
     if(!wajib($penerbit)){
       $error_penerbit = 'Masukan wajib diisi';
-    }elseif(!alfabet($penerbit)){
+    }elseif(!digitMinim($penerbit)){
+      $error_penerbit = "Masukan minimal 3 digit";
+    } elseif(!alfabet($penerbit)){
       $error_penerbit = 'Masukan harus berupa huruf';
     }else{
       $error_penerbit = '';
@@ -63,15 +71,15 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
 ?>
 
 <form action="#" method="POST">
+  <input type="text" name="judul" placeholder="judul" value="<?= $detail['JUDUL'] ?? $_POST['judul'] ?? '' ?>">
 	<span class="error"><?= $error_judul ?></span>
-	<input type="text" name="judul" placeholder="judul" value="<?= $detail['JUDUL'] ?? '' ?>">
+	<input type="text" name="deskripsi" placeholder="deskripsi" value="<?= $detail['DESKRIPSI'] ?? $_POST['deskripsi'] ?? '' ?>">
 	<span class="error"><?= $error_deskripsi ?></span>
-	<input type="text" name="deskripsi" placeholder="deskripsi" value="<?= $detail['DESKRIPSI'] ?? '' ?>">
+	<input type="text" name="penulis" placeholder="penulis" value="<?= $detail['PENULIS'] ?? $_POST['penulis'] ?? '' ?>">
 	<span class="error"><?= $error_penulis ?></span>
-	<input type="text" name="penulis" placeholder="penulis" value="<?= $detail['PENULIS'] ?? '' ?>">
+	<input type="text" name="penerbit" placeholder="penerbit" value="<?= $detail['PENERBIT'] ?? $_POST['penerbit'] ?? '' ?>">
 	<span class="error"><?= $error_penerbit ?></span>
-	<input type="text" name="penerbit" placeholder="penerbit" value="<?= $detail['PENERBIT'] ?? '' ?>">
-	<span class="error"><?= $error_tahun ?></span>
-	<input type="text" name="tahun" placeholder="tahun" value="<?= $detail['TAHUN'] ?? '' ?>">
+	<input type="text" name="tahun" placeholder="tahun" value="<?= $detail['TAHUN'] ?? $_POST['tahun'] ?? '' ?>">
+	<span class="error"><?= $error_tahun ?></span><br>
 	<button type="submit" name="simpan">Simpan</button>
 </form>

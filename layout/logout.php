@@ -1,0 +1,31 @@
+<?php require_once '../function.php';
+    if(isset($_POST['logout'])){
+        session_unset();
+        session_destroy();
+        header('location: ../index.php');
+        exit();
+    }
+    $list_css_tambahan = [
+        'logout.css',
+        'main.administrator.css',
+        'footer.css'
+    ];
+
+    include_once BASE_PATH . '/layout/header.php';
+?>
+    <div class="container-logout">
+        <div class="logout-box">
+            <h2>Keluar Akun?</h2>
+            <p>Anda yakin ingin logout dari akun ini?</p>
+
+            <!-- FORM POST -->
+            <form action="" method="POST">
+                <button type="submit" name="logout" class="btn-log btn-logout">Logout</button>
+            
+                <a class="btn-log btn-cancel-logout" href="<?= BASE_URL . '/administrator/' ?>">Batal</a>
+            </form>
+        </div>
+    </div>
+
+    <?php include_once BASE_PATH . '/layout/footer.php'; ?>
+</body>

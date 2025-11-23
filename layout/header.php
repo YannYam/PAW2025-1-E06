@@ -15,15 +15,15 @@ if(!(isset($_SESSION['nama']))){
     <link rel="icon" type="image/png" sizes="16x16" href="../asset/images/logo.jpg">
     <link rel="apple-touch-icon" href="../asset/images/logo.jpg">
 
-    <link rel="stylesheet" href="<?= BASE_URL . '/asset/header.css?v=' . time(); ?>">
+    <link rel="stylesheet" href="<?= BASE_URL . '/asset/css/header.css?v=' . time(); ?>">
     <?php if (isset($list_css_tambahan)): ?>
         <?php foreach ($list_css_tambahan as $file_css): ?>
-            <link rel="stylesheet" href="<?= BASE_URL . '/asset/' . $file_css; ?>">
+            <link rel="stylesheet" href="<?= BASE_URL . '/asset/css/' . $file_css; ?>">
         <?php endforeach; ?>
     <?php endif; ?>
 
     <?php if(isset($_SESSION['nama'])): ?>
-        <link rel="stylesheet" href="<?= BASE_URL . '/asset/profile.css' ?>">
+        <link rel="stylesheet" href="<?= BASE_URL . '/asset/css/profile.css' ?>">
     <?php endif; ?>
 
 </head>
@@ -41,6 +41,11 @@ if(!(isset($_SESSION['nama']))){
             <a href="<?= BASE_URL . '/daftar_buku.php' ?>" class="nav-link">Daftar Buku</a>
             <a href="<?= BASE_URL . '/daftar_riwayat.php' ?>" class="nav-link">Riwayat Pinjaman</a>
         </nav>
+		<?php if(!isNotAdmin($_SESSION['nama'])): ?>
+		<nav class="navbar-right">
+			<h2><?= $_SESSION['nama'] ?></h2>
+		</nav>
+		<?php endif ?>
 
         <!-- Bagian Kanan: Icon/ Profile -->
         <div class="navbar-right">
@@ -49,6 +54,3 @@ if(!(isset($_SESSION['nama']))){
 
         </div>
     </header>
-    
-</body>
-</html>
