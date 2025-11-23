@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </header>
 
 <div class="container">
-    <div class="card-login">
+    <div class="card-login tengah">
 
         <h2>Daftar Akun</h2>
         <p>“Silahkan isi data diri untuk membuat akun baru.”</p>

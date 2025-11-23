@@ -1,10 +1,14 @@
 <?php
 require_once('function.php');
 
+if (!isset($_SESSION['nama'])){
+    header('Location: index.php');
+    exit();
+}
+
+
 // Ambil data buku
 $buku = getBuku();
-
-$judul_halaman = "Koleksi Buku Perpustakaan";
 
 // Include header (jangan diubah)
 include_once(BASE_PATH . '/layout/header.php');
