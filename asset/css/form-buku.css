@@ -1,0 +1,47 @@
+.form {
+    max-width: 1200px;
+    padding: 50px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+a[href="index.php"],a[href="kelola_peminjaman.php"] {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    background-color: red;
+    padding: 11px 12px;
+    border-radius: 5px;
+}
+
+a[href="index.php"]:hover,a[href="kelola_peminjaman.php"]:hover {
+    background-color: darkred;
+}
+
+form > input[type="text"], input[type="date"],select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form > button{
+    padding: 10px 15px;
+    background-color: #D4AF37;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+form > button:hover {
+    background-color: #b3942f;
+}
+
+.page-header h1 {
+    margin-bottom: 20px;
+}

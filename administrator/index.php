@@ -2,7 +2,7 @@
 require_once "../function.php"; // Memuat file fungsi (koneksi, helper, dll)
 
     # mengambil isi database dari tabel buku melalui function
-    $buku = getBuku(); // Mendapatkan array data semua buku
+    $buku = getDaftarBuku(); // Mendapatkan array data semua buku
 
     # menambahkan css tambahan untuk halaman ini
     $list_css_tambahan = [

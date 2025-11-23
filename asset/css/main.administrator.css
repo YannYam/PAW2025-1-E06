@@ -1,0 +1,314 @@
+/* Font-face custom agar bisa dipakai lokal */
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Regular.ttf');
+}
+
+/* Reset dan gaya dasar body */
+body {
+    font-size: 16px;
+    font-family: 'Inter' ,'Poppins';
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e8f0ff 0%, #fff6e8 100%); /* Gradasi lembut */
+    background-color: #e8f0ff; /* Fallback */
+    width: 100%;
+}
+
+/* Kontainer utama fleksibel: sidebar + konten */
+main {
+    padding-top: 90px;
+    display: flex;  
+    min-height: 100%;
+}
+
+/* Wrapper tabel umum */
+.table {
+    background-color: white;
+    box-shadow: 0 -4px 0 -1px #0066FF; /* Aksen garis biru atas */
+}
+
+/* Pembeda ruang untuk tiap jenis tabel */
+.table-pemustaka, .table-peminjaman, .table-books{
+    margin: 15px;
+    padding: 20px;
+    height: 100%;
+}
+
+/* Styling elemen table dasar */
+.table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Elevasi */
+}
+
+/* Judul tabel */
+.table caption {
+    padding: 1vw;
+    font-size: 1.7vw; /* Skala relatif viewport */
+    font-weight: bold;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Sel header & data */
+.table th,
+.table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+/* Header tabel */
+.table th {
+    background: #e0e0e0;
+    font-weight: 600;
+}
+
+/* Striping baris genap */
+.table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+/* Highlight hover baris */
+.table tbody tr:hover {
+    background: #f1f1f1;
+}
+
+/* Kolom pertama rata tengah (biasanya ID / nomor) */
+.table table td:first-child {
+    text-align: center;
+    counter-increment: rowNumber;
+}
+
+/* Kolom status: kapitalisasi & bisa diberi layout fleksibel */
+td.status {
+    text-transform: capitalize;
+    gap: 10px;
+}
+
+/* Variasi warna status peminjaman */
+td.status.Pinjam {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold; 
+}
+td.status.Kembali { 
+    background-color: #6c757d;
+    color: white; 
+    font-style: italic; 
+}
+td.status.Terlambat { 
+    background-color: #ff5733;
+    color: white; 
+    font-style: italic; 
+}
+td.status.Proses { 
+    background-color: #ffc107;
+    color: white; 
+    font-weight: 600; 
+}
+td.status.Rusak { 
+    background-color: #dc3545;
+    color: white; 
+    font-weight: 600; 
+}
+td.status.Hilang { 
+    background-color: #343a40;
+    color: white; 
+    font-weight: 600; 
+}
+
+/* Tombol aksi */
+.btn {
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Link dalam sel (tombol edit/delete) */
+td > a  {
+    color: white;
+    text-decoration: none;
+}
+
+/* Edit button normal + hover */
+.btn-edit {
+    background: #3498db;
+}
+.btn-edit:hover {
+    background: #2980b9;
+}
+
+/* Delete button normal + hover */
+.btn-delete {
+    background: #e74c3c;
+    margin-left: 5px;
+}
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+/* Link "Tambah buku" dibuat seperti tombol */
+.table a[href="add.php?tambah=true"] {
+    display: inline-block;
+    margin-top: 15px;
+    background: #D4AF37;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+.table a[href="add.php?tambah=true"]:hover {
+    background: #b3942f;
+}
+
+/* Spasi khusus bagian peminjaman */
+.pinjam {
+    margin-bottom: 50px;
+}
+
+/* Wrapper profil utama */
+.main-profile {
+    height: 100%;
+    width: 40%;
+    margin: 10% auto;
+    padding: 2%;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.main-profile h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Box profil internal */
+.profile {
+    background-color: white;
+    padding: 20%;
+    border-radius: 8px;
+}
+
+/* Form detail profil (kolom vertikal) */
+.detail-profile form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input teks & tanggal */
+.detail-profile input[type="text"], input[type="date"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Link kembali / navigasi dalam profil */
+.detail-profile a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    margin-right: auto;
+}
+.detail-profile a:hover {
+    color: #1E90FF;
+}
+
+/* Tombol submit profil */
+.detail-profile button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.detail-profile button:hover {
+    background-color: #218838;
+}
+
+/* Footer halaman */
+footer {
+    width: 100%;
+    background: gray;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* Pesan error (validasi) */
+.error {
+    color: red;
+    font-size: 13px;
+}
+
+/* Stabilkan kolom Option agar tombol sejajar */
+.table th:last-child,
+.table td:last-child {
+  white-space: nowrap;   /* Cegah turun baris */
+}
+
+/* Responsif medium (tablet besar) */
+@media (max-width: 1150px) {
+    .table-pemustaka, .table-peminjaman, .table-books {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .table th,
+    .table td {
+        padding: 5px 8px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+}
+
+/* Responsif mobile kecil */
+@media (max-width: 600px) {
+    .table {
+      width: 100%;
+      padding: 10px;
+    }
+
+    table {
+      font-size: 7px; /* Sangat kecil, berpotensi kurang aksesibel */
+    }
+
+    .table th,
+    .table td {
+        padding: 2px 5px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    .btn {
+        padding: 3px 4px;
+        font-size: 7px;
+    }
+
+    .table-pemustaka, .table-peminjaman {
+        margin: 10px 3px;
+        padding: 10px;
+    }
+
+    .table a[href="add.php?tambah=true"] {
+        margin-top: 10px;
+        padding: 3px 7px;
+        font-size: 7px;
+    }
+}

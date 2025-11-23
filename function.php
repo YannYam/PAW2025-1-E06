@@ -39,6 +39,10 @@ require_once(BASE_PATH . '/service/session.php');
 		return preg_match("/^[a-zA-Z\s]+$/", $data);
 	}
 
+	function digitMinim($data){
+		return preg_match('/^.{3,}$/', $data);
+	}
+
 	function numerik($data) {
 		return is_numeric($data);
 	}
@@ -124,6 +128,12 @@ require_once(BASE_PATH . '/service/session.php');
 		return $state->fetchAll();
 	}
 
+	function getDaftarBuku(){
+		$state = DBH->prepare("SELECT * FROM buku");
+		$state->execute();
+		return $state->fetchAll();
+	}
+
 	function getBukuOne(int $id){
 		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id");
 		$state->execute([':id' => $id]);
@@ -137,10 +147,10 @@ require_once(BASE_PATH . '/service/session.php');
 		INSERT INTO peminjaman (USERNAME,TANGGAL_PINJAM,TANGGAL_RENCANA,STATUS) 
 		VALUES (:username, :tanggalpinjam, :tanggalrencana, :status)");
 		$state->execute([
-			'username' => $idUser,
-			'tanggalpinjam' => date("Y-m-d"),
-			'tanggalrencana' => date("Y-m-d"),
-			'status' => 'Proses'
+			':username' => $idUser,
+			':tanggalpinjam' => date("Y-m-d"),
+			':tanggalrencana' => date("Y-m-d"),
+			':status' => 'Proses'
 		]);
 
 		$idPeminjaman = DBH->lastInsertId();
@@ -248,5 +258,11 @@ require_once(BASE_PATH . '/service/session.php');
 		$stmnt = DBH->prepare('SELECT * FROM administrator WHERE username_admin = :username');
 		$stmnt->execute([':username' => $username]);
 		return $stmnt->fetch();
+	}
+
+	function isNotAdmin($data){
+		$stmnt = DBH->prepare("SELECT * FROM administrator WHERE USERNAME_ADMIN = :user");
+		$stmnt->execute([':user' => $data]);
+		return !$stmnt->rowCount() > 0;
 	}
 ?>
