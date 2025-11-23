@@ -1,5 +1,10 @@
 <?php 
 
+if(!isset($_SESSION['nama'])){
+  header('Location: ../');
+  exit();
+}
+
 $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahun = $error_stok = '';
 
   if ($_SERVER['REQUEST_METHOD'] == "POST") {

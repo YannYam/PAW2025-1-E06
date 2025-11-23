@@ -3,7 +3,7 @@
   require_once(BASE_PATH . '/function.php');
 
 
-  $detail = getBukuOne($_GET['id_buku']);
+  $detail = getBukuOne($_GET['id_buku']) ?? 1;
 
   $list_css_tambahan = ['form-buku.css', 'menu.administrator.css', 'main.administrator.css'];
 
