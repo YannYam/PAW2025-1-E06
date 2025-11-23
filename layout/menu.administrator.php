@@ -1,8 +1,5 @@
 <?php
-    if(!isset($_SESSION['nama'])){
-        header('Location: ' .  BASE_URL . '/' );
-        exit();
-    }elseif(isNotAdmin($_SESSION['nama'])){
+    if(isNotAdmin($_SESSION['nama'])){
         header('Location: ' . BASE_URL . '/daftar_buku.php');
         exit();
     }

@@ -1,11 +1,6 @@
 <?php 
 include_once '../function.php';
 
-if(!(isset($_SESSION['id']))){
-    header('location: ' . BASE_URL . '/index.php');
-    exit();
-}
-
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['simpan'])){
         gantiDataProfil($_SESSION['id'], $_POST);

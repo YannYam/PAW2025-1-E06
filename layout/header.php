@@ -1,7 +1,8 @@
 <?php 
 
-if(!(isset($_SESSION['nama']))){
+if(!$_SESSION['nama']){
 	header('Location: ' . BASE_URL . '/');
+    exit();
 }
 
 ?>

@@ -1,6 +1,11 @@
 <?php 
 require_once '../function.php';
 
+  if(isNotAdmin($_SESSION['nama'])){
+    header('Location: ' . BASE_URL . '/');
+    exit();
+  }
+
   if(isset($_POST['delete'])){
     deleteBuku($_GET['id_buku']);
     header("location: index.php");

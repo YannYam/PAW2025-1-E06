@@ -2,7 +2,7 @@
 require_once("../base.php");
 require_once(BASE_PATH . '/function.php');
 
-$id = $_GET['id'];
+$id = $_GET['id'] ?? 1;
 $current = getDataPeminjaman($id);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
