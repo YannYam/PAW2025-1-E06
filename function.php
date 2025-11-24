@@ -4,20 +4,17 @@ require_once(BASE_PATH . '/service/connect.php');
 require_once(BASE_PATH . '/service/session.php');
 
 
-	function checkUser($data) {
-		$stmt = DBH->prepare("SELECT * FROM pemustaka WHERE USERNAME = :username");
-        $stmt->execute([':username' => $data]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+	
+	function getUserByUsername($username){
+		$stmnt = DBH->prepare('SELECT * FROM pemustaka WHERE username = :username');
+		$stmnt->execute([':username' => $username]);
+		return $stmnt->fetch();
 	}
 
-	function checkPassword($data1, $data2){
-		$stmnt = DBH->prepare("SELECT * FROM pemustaka WHERE USERNAME = :username and PASSWORD = SHA2(:password, 0)");
-		$stmnt->execute([
-			':username' => $data1,
-			':password' => $data2
-		]);
-
-		return $stmnt->rowCount() > 0;
+	function getUserByAdmin($username){
+		$stmnt = DBH->prepare('SELECT * FROM administrator WHERE username_admin = :username');
+		$stmnt->execute([':username' => $username]);
+		return $stmnt->fetch();
 	}
 
 	function required($data) {
@@ -84,6 +81,19 @@ require_once(BASE_PATH . '/service/session.php');
 		return preg_match("/^[A-Za-z0-9 \s\!\-]+$/", $data);
 	}
 
+	// Validasi password minimal mengandung:
+	// 1 huruf besar, 1 huruf kecil, dan 1 angka
+	function password($data) {
+	    return preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/", $data);
+	}
+
+	// Validasi format tanggal Y-m-d dan memastikan tanggal valid
+	function validTanggal($data) {
+	    $d = DateTime::createFromFormat("Y-m-d", $data); // parsing format tanggal
+	    return $d && $d->format("Y-m-d") === $data;      // cek valid dan format sesuai
+	}
+
+	#Fungsi menambakan buku di administrator
 	function tambahBuku(array $data){
 		$state = DBH->prepare("INSERT INTO buku (JUDUL, DESKRIPSI, PENULIS, PENERBIT, TAHUN) VALUES (:judul, :deskripsi, :penulis, :penerbit, :tahun)");
 		$state->execute([
@@ -95,6 +105,7 @@ require_once(BASE_PATH . '/service/session.php');
 		]);
 	}
 
+	#mengedit buku di administrator
 	function editBuku(int $id, array $data){
   		$state = DBH->prepare("UPDATE buku SET 
         			JUDUL = :judul, 
@@ -113,6 +124,7 @@ require_once(BASE_PATH . '/service/session.php');
 		]);
 	}
 
+	#hapus buku di administrator
 	function deleteBuku(int $id){
 		$state = DBH->prepare("DELETE FROM buku WHERE ID_BUKU = :id_buku");
   		$state->execute([':id_buku' => $id]);
@@ -128,18 +140,21 @@ require_once(BASE_PATH . '/service/session.php');
 		return $state->fetchAll();
 	}
 
+	#fungsi untuk menampilkan daftar buku di administrator
 	function getDaftarBuku(){
 		$state = DBH->prepare("SELECT * FROM buku");
 		$state->execute();
 		return $state->fetchAll();
 	}
 
+	#fungsi untuk mengambil data buku bergantung pada id buku
 	function getBukuOne(int $id){
 		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id");
 		$state->execute([':id' => $id]);
 		return $state->fetch();
 	}
 	
+	#menambahkan data di tabel peminjaman
 	function insertPeminjaman(int $id,array $data){
 		$idUser = $_SESSION['nama'];
 		
@@ -179,18 +194,20 @@ require_once(BASE_PATH . '/service/session.php');
     ]);
 
     return $state->fetchAll(PDO::FETCH_ASSOC);
-}
+	}
 
 
+	#menampilkan data semua pemustaka
 	function getPemustaka(){
 		$state = DBH->prepare("SELECT * FROM pemustaka");
 		$state->execute();
 		return $state->fetchAll();
 	}
 
+	#menampilkan daftar peminjaman jika pemustaka meminjam buku dan statusnya berupa proses dan pinjam
 	function getDaftarPeminjaman() {
 	    $stmt = DBH->prepare("
-			SELECT peminjaman.ID_PEMINJAMAN, buku.JUDUL, buku.PENULIS, buku.PENERBIT, buku.TAHUN, pemustaka.NAMA_LENGKAP, pemustaka.USERNAME, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA, peminjaman.STATUS
+			SELECT *
 			FROM peminjaman
 			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
 			JOIN buku ON peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN
@@ -200,6 +217,7 @@ require_once(BASE_PATH . '/service/session.php');
 	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
+	#menampilkan daftar peminjaman jika pemustaka meminjam buku dan statusnya selain proses dan pinjam
 	function getDaftarKembali() {
 	    $stmt = DBH->prepare("
 			SELECT peminjaman.ID_PEMINJAMAN, buku.JUDUL, buku.PENULIS, buku.PENERBIT, buku.TAHUN, pemustaka.NAMA_LENGKAP, pemustaka.USERNAME, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA, peminjaman.STATUS
@@ -212,18 +230,7 @@ require_once(BASE_PATH . '/service/session.php');
 	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	// Validasi password minimal mengandung:
-	// 1 huruf besar, 1 huruf kecil, dan 1 angka
-	function password($data) {
-	    return preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/", $data);
-	}
-
-	// Validasi format tanggal Y-m-d dan memastikan tanggal valid
-	function validTanggal($data) {
-	    $d = DateTime::createFromFormat("Y-m-d", $data); // parsing format tanggal
-	    return $d && $d->format("Y-m-d") === $data;      // cek valid dan format sesuai
-	}
-
+	#fungsi untuk mengganti data profil
 	function gantiDataProfil($username,array $data){
 		$stmnt = DBH->prepare("UPDATE pemustaka SET NAMA_LENGKAP = :nama, ALAMAT = :alamat, TANGGAL_LAHIR = :tanggal, TELEPON = :telepon WHERE username = :username");
 		$stmnt->execute([
@@ -234,32 +241,22 @@ require_once(BASE_PATH . '/service/session.php');
 			':username' => $username
 		]);
 	}
-	
+
+	#fungsi untuk menampilkan data dari user
 	function getProfil($data){
 		$stmnt = DBH->prepare("SELECT * FROM pemustaka WHERE username = :username ");
 		$stmnt->execute([':username' => $data]);
 		return $stmnt->fetch();
 	}
 
-
+	#menampilkan data peminjaman jika id peminjaman sama dengan id yg dibutuhkan
 	function getDataPeminjaman($id){
 		$stmt = DBH->prepare("SELECT * FROM peminjaman WHERE ID_PEMINJAMAN = :id");
 		$stmt->execute([':id'=>$id]);
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
-	function getUserByUsername($username){
-		$stmnt = DBH->prepare('SELECT * FROM pemustaka WHERE username = :username');
-		$stmnt->execute([':username' => $username]);
-		return $stmnt->fetch();
-	}
-
-	function getUserByAdmin($username){
-		$stmnt = DBH->prepare('SELECT * FROM administrator WHERE username_admin = :username');
-		$stmnt->execute([':username' => $username]);
-		return $stmnt->fetch();
-	}
-
+	#fungsi ini digunakan untuk mengecheck jika user tidak ada di table administrator
 	function isNotAdmin($data){
 		$stmnt = DBH->prepare("SELECT * FROM administrator WHERE USERNAME_ADMIN = :user");
 		$stmnt->execute([':user' => $data]);
