@@ -7,11 +7,6 @@
   margin-bottom: 10px;
 }
 
-/* Memberi jarak atas ekstra untuk grup pertama */
-.name-option.first {
-  margin-top: 20px;
-}
-
 /* Sidebar container */
 .side {
     margin: 10px 0;
@@ -29,7 +24,7 @@
     color: white;
     text-decoration: none;
     font-size: 100%;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 /* Efek hover link sidebar */
@@ -51,15 +46,18 @@
 
     .side > a {
         margin-bottom: 20px;
-        font-weight: 350;
+        font-weight: 370;
     }
 
     .name-option {
         font-size: 13px;
     }
+}
 
-    .name-option.first {
-        margin-top: 13px;
+/* Responsive setengah layar */
+@media (max-width: 915px) {
+    .side {
+        width: 135px;
     }
 }
 

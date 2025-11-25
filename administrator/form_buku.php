@@ -16,9 +16,9 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
     $tahun = test_input($_POST['tahun']);
 
     if(!wajib($judul)){
-        $error_judul = 'Masukan wajib diisi';
+      $error_judul = 'Masukan wajib diisi';
     }elseif(!digitMinim($judul)){
-        $error_judul = "Masukan minimal 3 digit";
+      $error_judul = "Masukan minimal 3 digit";
     } elseif(!alfaJudul($judul)){
       $error_judul = 'Masukan harus berupa Judul';
     }else{
@@ -40,7 +40,7 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
     }elseif(!digitMinim($penulis)){
       $error_penulis = "Masukan minimal 3 digit";
     } elseif(!alfabet($penulis)){
-      $error_penulis = '';
+      $error_penulis = 'Masukan harus alfabet';
     }else{
       $error_penulis = '';
     }
@@ -76,15 +76,15 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
 ?>
 
 <form action="#" method="POST">
-  <input type="text" name="judul" placeholder="judul" value="<?= $detail['JUDUL'] ?? $_POST['judul'] ?? '' ?>">
+  <input type="text" name="judul" placeholder="judul" value="<?= $_POST['judul'] ?? $detail['JUDUL'] ?? '' ?>">
 	<span class="error"><?= $error_judul ?></span>
-	<input type="text" name="deskripsi" placeholder="deskripsi" value="<?= $detail['DESKRIPSI'] ?? $_POST['deskripsi'] ?? '' ?>">
+	<input type="text" name="deskripsi" placeholder="deskripsi" value="<?= $_POST['deskripsi'] ?? $detail['DESKRIPSI'] ?? '' ?>">
 	<span class="error"><?= $error_deskripsi ?></span>
-	<input type="text" name="penulis" placeholder="penulis" value="<?= $detail['PENULIS'] ?? $_POST['penulis'] ?? '' ?>">
+	<input type="text" name="penulis" placeholder="penulis" value="<?= $_POST['penulis'] ?? $detail['PENULIS'] ?? '' ?>">
 	<span class="error"><?= $error_penulis ?></span>
-	<input type="text" name="penerbit" placeholder="penerbit" value="<?= $detail['PENERBIT'] ?? $_POST['penerbit'] ?? '' ?>">
+	<input type="text" name="penerbit" placeholder="penerbit" value="<?= $_POST['penerbit'] ?? $detail['PENERBIT'] ?? '' ?>">
 	<span class="error"><?= $error_penerbit ?></span>
-	<input type="text" name="tahun" placeholder="tahun" value="<?= $detail['TAHUN'] ?? $_POST['tahun'] ?? '' ?>">
+	<input type="text" name="tahun" placeholder="tahun" value="<?= $_POST['tahun'] ?? $detail['TAHUN'] ?? '' ?>">
 	<span class="error"><?= $error_tahun ?></span><br>
 	<button type="submit" name="simpan">Simpan</button>
 </form>

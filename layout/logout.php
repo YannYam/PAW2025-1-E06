@@ -2,7 +2,7 @@
     if(isset($_POST['logout'])){
         session_unset();
         session_destroy();
-        header('location: ' . BASE_URL . 'index.php');
+        header('location: ' . BASE_URL . '/index.php');
         exit();
     }
     $list_css_tambahan = [
