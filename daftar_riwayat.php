@@ -13,7 +13,7 @@ $daftar = daftarPinjaman($idUser);
 include_once(BASE_PATH . '/layout/header.php');
 
 ?>
-<link rel="stylesheet" href="asset/style.css?v=<?= time(); ?>">
+<link rel="stylesheet" href="asset/css/style.css?v=<?= time(); ?>">
 
 <main class="site-main">
     <!-- <div class="card-container"> -->

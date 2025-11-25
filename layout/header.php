@@ -28,6 +28,7 @@ if(!$_SESSION['nama']){
     <?php endif; ?>
 
 </head>
+
 <body>
 
 	<header class="navbar">
@@ -38,10 +39,15 @@ if(!$_SESSION['nama']){
         </div>
 
         <!-- Bagian Tengah: Menu Navigasi -->
+        <!--  -->
+		<?php if(isNotAdmin($_SESSION['nama'])): ?>
         <nav class="navbar-menu">
             <a href="<?= BASE_URL . '/daftar_buku.php' ?>" class="nav-link">Daftar Buku</a>
             <a href="<?= BASE_URL . '/daftar_riwayat.php' ?>" class="nav-link">Riwayat Pinjaman</a>
         </nav>
+		<?php endif ?>
+
+
 		<?php if(!isNotAdmin($_SESSION['nama'])): ?>
 		<nav class="navbar-right">
 			<h2><?= $_SESSION['nama'] ?></h2>
@@ -55,3 +61,4 @@ if(!$_SESSION['nama']){
 
         </div>
     </header>
+</body>
