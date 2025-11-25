@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="id"> <head>
+    <meta charset="UTF-8">
+    <title>Judul Halaman Anda</title>
+    </head>
+<body>
 <?php
 require_once('function.php');
 
@@ -15,7 +21,7 @@ include_once(BASE_PATH . '/layout/header.php');
 ?>
 
 <!-- <link rel="stylesheet" href="asset/table.css"> -->
-<link rel="stylesheet" href="asset/css/style.css?v=<?= time(); ?>">
+<link rel="stylesheet" href="asset/css/style.css?v=<?php echo time(); ?>">
 
 <main class="site-main">
         <div class="card-container">
