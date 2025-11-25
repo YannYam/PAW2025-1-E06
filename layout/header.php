@@ -51,7 +51,7 @@ if(!$_SESSION['nama']){
         <!-- Bagian Kanan: Icon/ Profile -->
         <div class="navbar-right">
             <img src="<?=BASE_URL . '/asset/images/libra.jpg' ?>" class="nav-icon" alt="logo">
-            <a href="<?= BASE_URL . '/index.php' ?>" class="nav-link">Logout</a>
+            <a href="<?= BASE_URL . '/layout/logout.php' ?>" class="nav-link">Logout</a>
 
         </div>
     </header>
