@@ -15,10 +15,9 @@ include_once(BASE_PATH . '/layout/header.php');
 ?>
 
 <!-- <link rel="stylesheet" href="asset/table.css"> -->
-<link rel="stylesheet" href="asset/style.css?v=<?= time(); ?>">
+<link rel="stylesheet" href="asset/css/style.css?v=<?= time(); ?>">
 
 <main class="site-main">
-    <!-- <div class="card-container"> -->
         <div class="card-container">
             <?php foreach ($buku as $book): ?> 
                 <div class="card-login">
@@ -35,9 +34,7 @@ include_once(BASE_PATH . '/layout/header.php');
                 </div>
             <?php endforeach ?>
         </div>
-
-    <!-- </div> -->
-</main>
+</main> 
 
 <?php
 // include footer jika ada

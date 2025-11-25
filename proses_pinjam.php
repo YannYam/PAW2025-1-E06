@@ -31,24 +31,36 @@ $list_css_tambahan = [
         }
     }
 
-
+    
     include_once BASE_PATH . '/layout/header.php';
     ?>
-        
-<main class="site-main">
-
-<div class="container-logout">
-        <div class="logout-box">
-            <h2>Hii, <?= $_SESSION['nama'];?> Ingin Pinjem Bukuu Yakk?</h2>
-            <h2><?= $idbuku['JUDUL'] ?></h2>
-            <p><?= $idbuku['DESKRIPSI'] ?></p>
-
-
-            <!-- FORM POST -->
-            <form action="#" method="POST">
-                <button type="submit" name="IYAA" class="btn-log btn-logout">IYAA </button>
-                <a class="btn-log btn-cancel-logout" href="<?= BASE_URL ?>/daftar_buku.php">TIDAKK</a>
-            </form>
-        </div>
-</div>
-</main>
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+     <main class="site-main">
+     
+     
+     <div class="container">
+             <div class="logout-box">
+                 <h2>Hii, <?= $_SESSION['nama'];?> Ingin Pinjem Bukuu Yakk?</h2>
+                 <h2><?= $idbuku['JUDUL'] ?></h2>
+                 <p><?= $idbuku['DESKRIPSI'] ?></p>
+     
+     
+                 <!-- FORM POST -->
+                 <form action="#" method="POST">
+                     <button type="submit" name="IYAA" class="btn-log btn-logout">IYAA </button>
+                     <a class="btn-log btn-cancel-logout" href="<?= BASE_URL ?>/daftar_buku.php">TIDAKK</a>
+                 </form>
+             </div>
+     </div>
+     </main>
+    
+ </body>
+ </html>
