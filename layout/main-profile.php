@@ -68,6 +68,7 @@ $list_css_tambahan = [
 include_once BASE_PATH . '/layout/header.php';
 ?>
 
+<main>
 <!-- code -->
     <div class="main-profile">
         <div class="profile">
