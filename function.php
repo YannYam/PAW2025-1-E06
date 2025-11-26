@@ -43,10 +43,11 @@ require_once(BASE_PATH . '/service/session.php');
 	function numerik($data) {
 		return is_numeric($data);
 	}
-
-	function noTelp($data){
-		return preg_match("/^(08 || 628)[0-9]{10,11}$/", $data);
-	}
+	
+	function cekNomorHP($data) {
+    // Hapus spasi di regex, dan gunakan satu garis |
+    return (preg_match("/^(08|628)[0-9]{8,11}$/", $data)) ;
+}
 
 	function email($data) {
 		return filter_var($data, FILTER_VALIDATE_EMAIL);

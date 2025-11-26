@@ -94,8 +94,9 @@ body {
     white-space: nowrap;
 }
 
-.navbar-right .nav-icon {
+.navbar-right img {
     width: 45px;
     height: 45px;
+    padding-right: 10px;
     object-fit: contain;
 }
