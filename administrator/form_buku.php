@@ -30,7 +30,7 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
     }elseif(!digitMinim($deskripsi)){
       $error_deskripsi = "Masukan minimal 3 digit";
     } elseif(!alfaDesc($deskripsi)){
-      $error_deskripsi = 'Masukan harus berupa alfanumerik';
+      $error_deskripsi = 'Masukan harus sesuai tatanan bahasa';
     }else{
       $error_deskripsi = '';
     }
