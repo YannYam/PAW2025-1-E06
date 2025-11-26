@@ -15,16 +15,16 @@ include "../layout/menu.administrator.php"
 				<caption>Daftar Pinjaman</caption>
 				<thead>
 					<tr>
-						<th>Nomer</th>
+						<th>No. Data</th>
 						<th>Nama Buku</th>
+						<th>Oleh</th>
+						<th>Status</th>
+						<th>Tanggal Pinjam</th>
+						<th>Jatuh Tempo</th>
 						<th>Penulis</th>
 						<th>Penerbit</th>
 						<th>tahun</th>
-						<th>Oleh</th>
-						<th>Tanggal Pinjam</th>
-						<th>Tanggal Rencana</th>
-						<th>Status</th>
-						<th>Option</th>
+						<th>Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -33,13 +33,13 @@ include "../layout/menu.administrator.php"
 					<tr>
 						<td><?= $hasil['ID_PEMINJAMAN'] ?></td>
 						<td><?= $hasil['JUDUL'] ?></td>
+						<td><?= $hasil['NAMA_LENGKAP'] ?><br>(<i><?= $hasil['USERNAME'] ?></i>)</td>
+						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
+						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
+						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>
-						<td><?= $hasil['NAMA_LENGKAP'] ?>(<i><?= $hasil['USERNAME'] ?></i>)</td>
-						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
-						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
-						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
 						<td><a href="edit_peminjaman.php?id=<?= $hasil['ID_PEMINJAMAN'] ?>" class="btn btn-edit">Edit</a></td>
 					</tr>
 					<?php endforeach ?>
@@ -52,15 +52,15 @@ include "../layout/menu.administrator.php"
 				<caption>Daftar Kembali</caption>
 				<thead>
 					<tr>
-						<th>Nomer</th>
+						<th>No. Data</th>
 						<th>Nama Buku</th>
+						<th>Oleh</th>
+						<th>Status</th>
+						<th>Tanggal Pinjam</th>
+						<th>Jatuh Tempo</th>
 						<th>Penulis</th>
 						<th>Penerbit</th>
 						<th>tahun</th>
-						<th>Oleh</th>
-						<th>Tanggal Pinjam</th>
-						<th>Tanggal Rencana</th>
-						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -69,13 +69,13 @@ include "../layout/menu.administrator.php"
 					<tr>
 						<td><?= $hasil['ID_PEMINJAMAN'] ?></td>
 						<td><?= $hasil['JUDUL'] ?></td>
+						<td><?= $hasil['NAMA_LENGKAP'] ?><br>(<i><?= $hasil['USERNAME'] ?></i>)</td>
+						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
+						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
+						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>
-						<td><?= $hasil['NAMA_LENGKAP'] ?></td>
-						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
-						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
-						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
 					</tr>
 					<?php endforeach ?>
 

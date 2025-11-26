@@ -93,6 +93,17 @@ main {
     counter-increment: rowNumber;
 }
 
+.table table th:last-child{
+    text-align: center;
+}
+
+.table-peminjaman table td:nth-child(5),
+.table-peminjaman table td:nth-child(6),
+.table-peminjaman table th:nth-child(10) {
+    white-space: nowrap;   /* Cegah turun baris */
+    text-align: center;
+}
+
 /* Kolom status: kapitalisasi & bisa diberi layout fleksibel */
 td.status {
     text-transform: capitalize;
@@ -146,10 +157,10 @@ td > a  {
 
 /* Edit button normal + hover */
 .btn-edit {
-    background: #3498db;
+    background: #D4AF37;
 }
 .btn-edit:hover {
-    background: #2980b9;
+    background: #b3942f;
 }
 
 /* Delete button normal + hover */
