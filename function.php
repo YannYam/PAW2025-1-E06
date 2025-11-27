@@ -301,4 +301,28 @@ require_once(BASE_PATH . '/service/session.php');
 			':cover' => $cover
 		]);
 	}
+
+	function updatePeminjaman(int $id, array $data) {
+		$stmt = DBH->prepare("
+			UPDATE peminjaman 
+			SET STATUS = :status, TANGGAL_RENCANA = :tanggal_rencana 
+			WHERE ID_PEMINJAMAN = :id
+		");
+		$stmt->execute([
+			':status' => $data['status'],
+			':tanggal_rencana' => $data['tanggal_rencana'],
+			':id' => $id
+		]);
+	}
+	function updateKembali(int $id, array $data) {
+		$stmt = DBH->prepare("
+			UPDATE peminjaman 
+			SET STATUS = 'Kembali' , TANGGAL_KEMBALI = :tanggal_kembali
+			WHERE ID_PEMINJAMAN = :id
+		");
+		$stmt->execute([
+			':tanggal_kembali' => $data['tanggal_kembali'],
+			':id' => $id
+		]);
+	}
 ?>
