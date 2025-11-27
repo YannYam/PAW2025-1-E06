@@ -61,7 +61,15 @@ body {
     margin: 0 20px;
 }
 
-.navbar-menu .nav-link {
+/* Bagian Kanan - Menu */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    margin: 0 20px;
+}
+
+.navbar-menu .nav-link, .navbar-right .nav-link{
     color: #ffffff;
     text-decoration: none;
     font-size: 16px;
@@ -70,33 +78,6 @@ body {
     white-space: nowrap;
 }
 
-.navbar-menu .nav-link:hover {
+.navbar-menu .nav-link:hover, .navbar-right .nav-link:hover {
     color: #D4AF37;
-}
-
-.navbar-menu .nav-link.active {
-    color: #D4AF37;
-    font-weight: 600;
-}
-
-/* Bagian Kanan - Icon */
-.navbar-right {
-    display: flex;
-    align-items: center;
-}
-
-.navbar-right h2 {
-    color: white;
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-size: 20px;
-    margin-right: 15px;
-    white-space: nowrap;
-}
-
-.navbar-right img {
-    width: 45px;
-    height: 45px;
-    padding-right: 10px;
-    object-fit: contain;
 }

@@ -20,8 +20,9 @@ include_once(BASE_PATH . '/layout/header.php');
         <div class="card-container">
             <?php foreach ($buku as $book): ?> 
                 <div class="card-login">
+                    <h2 class="card-title"><?= $book['COVER'] ?></h2>
                     <h2 class="card-title"><?= $book['JUDUL'] ?></h2>
-                    <p class="card-desc"><?= $book['DESKRIPSI'] ?></p>
+                    <p class="card-desc"><?= $book['DESKRIPSI'] ?></p> 
                     
                     <div class="card-info">
                         <p><strong>Penulis:</strong> <?= $book['PENULIS'] ?></p>
