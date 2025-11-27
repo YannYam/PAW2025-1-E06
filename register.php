@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         <!-- TANGGAL LAHIR -->
         <div class="form-item">
-            <input type="date" name="tanggal_lahir" value="<?= $tanggal_lahir ?>">
+            <input type="text" placeholder="YYYY-MM-DD" name="tanggal_lahir" value="<?= $tanggal_lahir ?>">
             <div class="error"><?= $error_tanggal_lahir ?></div>
         </div>
 
