@@ -225,7 +225,7 @@ require_once(BASE_PATH . '/service/session.php');
 	#menampilkan daftar peminjaman jika pemustaka meminjam buku dan statusnya selain proses dan pinjam
 	function getDaftarKembali() {
 	    $stmt = DBH->prepare("
-			SELECT peminjaman.ID_PEMINJAMAN, buku.JUDUL, buku.PENULIS, buku.PENERBIT, buku.TAHUN, pemustaka.NAMA_LENGKAP, pemustaka.USERNAME, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA, peminjaman.STATUS
+			SELECT *
 			FROM peminjaman
 			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
 			JOIN buku ON peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN
