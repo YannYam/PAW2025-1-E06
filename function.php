@@ -138,8 +138,8 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function getBuku(){
-		$state = DBH->prepare("SELECT * FROM buku LEFT JOIN peminjaman 
-		ON buku.ID_PEMINJAMAN = peminjaman.ID_PEMINJAMAN
+		$state = DBH->prepare("SELECT * FROM buku LEFT JOIN peminjaman ON 
+		peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN 
 		WHERE peminjaman.STATUS NOT IN ('Hilang', 'Pinjam','Proses')");
 		$state->execute();
 		return $state->fetchAll();
@@ -215,7 +215,7 @@ require_once(BASE_PATH . '/service/session.php');
 			SELECT *
 			FROM peminjaman
 			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
-			JOIN buku ON peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN
+			JOIN buku ON buku.ID_BUKU = peminjaman.ID_BUKU
 			WHERE peminjaman.STATUS IN ('Proses', 'Pinjam');
 	    ");
 	    $stmt->execute();
@@ -228,7 +228,7 @@ require_once(BASE_PATH . '/service/session.php');
 			SELECT *
 			FROM peminjaman
 			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
-			JOIN buku ON peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN
+			JOIN buku ON buku.ID_BUKU = peminjaman.ID_BUKU
 			WHERE peminjaman.STATUS NOT IN ('Proses', 'Pinjam');
 	    ");
 	    $stmt->execute();
