@@ -27,7 +27,7 @@ require_once "../function.php"; // Memuat file fungsi (koneksi, helper, dll)
                     <th>Penulis</th>
                     <th>Penerbit</th>
                     <th>tahun</th>
-                    <th>Option</th>
+                    <th>Tindakan</th>
                 </tr>
             </thead>
             <tbody>
