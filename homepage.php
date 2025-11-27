@@ -35,7 +35,7 @@ include_once(BASE_PATH . '/layout/header.php');
     <div class="container"> <div class="container-homepage">
             
             <div class="hero-section">
-                <h1>Halo, <?= htmlspecialchars($_SESSION['nama']); ?>! 🚀</h1>
+                <h1>Halo, <?= htmlspecialchars(ucfirst($_SESSION['nama'])); ?>! 🚀</h1>
                 <p>Selamat datang kembali di Libra. Pengetahuan semesta ada di genggamanmu.</p>
                 <a href="daftar_buku.php" class="search-btn">Jelajahi Buku Sekarang</a>
             </div>
