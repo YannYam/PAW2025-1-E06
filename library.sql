@@ -63,20 +63,6 @@ CREATE TABLE `buku` (
 -- Dumping data for table `buku`
 --
 
-INSERT INTO `buku` (`COVER`, `ID_BUKU`, `ID_PEMINJAMAN`, `JUDUL`, `DESKRIPSI`, `PENULIS`, `PENERBIT`, `TAHUN`) VALUES
-('Petualangan-Si-Kancil-2018.jpg', 1, 1, 'Petualangan Si Kancil', 'Cerita rakyat untuk anak-anak.', 'R. Suryani', 'Anak Nusantara', '2018'),
-('', 2, 2, 'Rahasia Hutan Ajaib', 'Novel petualangan remaja.', 'F. Widodo', 'Remaja Press', '2020'),
-('', 3, 3, 'Ensiklopedia Sains Junior', 'Pengetahuan dasar sains untuk anak.', 'L. Handayani', 'EduKids', '2019'),
-('', 4, 4, 'Matematika Mudah untuk Remaja', 'Belajar matematika dengan cara menyenangkan.', 'Andi Wijaya', 'SmartEdu', '2021'),
-('', 5, 5, 'Dongeng Dunia', 'Kumpulan dongeng internasional.', 'N. Anita', 'Cerita Kita', '2017'),
-('', 6, 6, 'Panduan Coding Anak', 'Belajar coding dasar.', 'R. Nugraha', 'TeknoKids', '2022'),
-('', 7, 7, 'Komik Sains Seru', 'Belajar sains lewat komik.', 'D. Permana', 'FunComics', '2019'),
-('', 8, 8, 'Petualangan Antariksa', 'Cerita fiksi ilmiah remaja.', 'S. Putra', 'Bintang Remaja', '2020'),
-('', 9, 9, 'Kisah Persahabatan', 'Novel drama remaja.', 'T. Ariyanti', 'Sahabat Press', '2021'),
-('', 10, 10, 'Belajar Hewan dan Tumbuhan', 'Edukasi dasar biologi anak.', 'R. Yuni', 'EduKids', '2018'),
-('', 11, 11, 'Komik Matematika', 'Cara mudah mengerti matematika.', 'B. Prasetyo', 'FunComics', '2020'),
-('', 12, 12, 'Detektif Cilik', 'Novel misteri untuk remaja.', 'A. Fadli', 'Remaja Ceria', '2019');
-
 -- --------------------------------------------------------
 
 --
@@ -92,23 +78,6 @@ CREATE TABLE `peminjaman` (
   `STATUS` enum('Proses','Pinjam','Kembali','Rusak','Hilang','Terlambat') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `peminjaman`
---
-
-INSERT INTO `peminjaman` (`ID_PEMINJAMAN`, `USERNAME`, `ID_BUKU`, `TANGGAL_PINJAM`, `TANGGAL_RENCANA`, `STATUS`) VALUES
-(1, 'andi', 1, '2025-11-23', '2025-11-23', 'Pinjam'),
-(2, 'budi', 2, '2025-11-02', '2025-11-09', 'Proses'),
-(3, 'citra', 3, '2025-11-03', '2025-11-10', 'Pinjam'),
-(4, 'dimas', 4, '2025-11-04', '2025-11-11', 'Kembali'),
-(5, 'eka', 5, '2025-11-05', '2025-11-12', 'Pinjam'),
-(6, 'fajar', 6, '2025-11-06', '2025-11-13', 'Rusak'),
-(7, 'gita', 7, '2025-11-07', '2025-11-14', 'Pinjam'),
-(8, 'hadi', 8, '2025-11-08', '2025-11-15', 'Hilang'),
-(9, 'intan', 9, '2025-11-09', '2025-11-16', 'Proses'),
-(10, 'joko', 10, '2025-11-10', '2025-11-17', 'Terlambat'),
-(11, 'kiki', 11, '2025-11-11', '2025-11-18', 'Kembali'),
-(12, 'lala', 12, '2025-11-12', '2025-11-19', 'Pinjam');
 
 -- --------------------------------------------------------
 

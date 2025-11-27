@@ -83,7 +83,7 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function alfaJudul($data){
-		return preg_match("/^[A-Za-z0-9 \s\!\-]+$/", $data);
+		return preg_match("/^[A-Za-z0-9 \s\!\-\,\(\)]+$/", $data);
 	}
 
 	// Validasi password minimal mengandung:
