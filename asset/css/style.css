@@ -115,7 +115,7 @@ body {
 
 .card-info p {
     margin-bottom: 6px;
-    line-height: 5px;
+    line-height: 12px;
 }
 
 .card-info p:last-child {
@@ -125,7 +125,6 @@ body {
 .card-info strong {
     color: #0B1C39; /* sesuai tema utama */
 }
-
 
 .tengah{
     text-align: center;

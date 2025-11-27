@@ -100,6 +100,95 @@ footer {
     padding: 15px 0;
     text-align: center;
 }
+/* Tambahkan text-decoration: none; agar tidak ada garis bawah */
+.btn-pinjam, .btn-kembali {
+    text-decoration: none; /* INI PENTING UNTUK TAG <a> */
+    display: inline-block; /* Agar paddingnya rapi */
+    
+    /* Style lama Anda tetap dipakai */
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    border: none;
+}
+/* Kotak Utama */
+.modal-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px; /* Sudut melengkung lebih halus */
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Bayangan lembut */
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Teks Header */
+.modal-header h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+/* Info Buku */
+.book-info {
+    background: #f8f9fa; /* Latar belakang tipis biar fokus */
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.book-title {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.book-desc {
+    font-size: 13px;
+    color: #7f8c8d;
+}
+
+/* Tombol */
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Jarak antar tombol */
+    margin-top: 20px;
+}
+
+/* Style Dasar Tombol */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Tombol Konfirmasi (Biru/Emas sesuai tema Anda) */
+.btn-pinjam {
+    background-color: #007bff; /* Atau warna #D4AF37 Anda */
+    color: white;
+}
+
+.btn-pinjam:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Efek naik sedikit saat di-hover */
+}
+
+/* Tombol Batal (Abu-abu/Netral) */
+.btn-kembali {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.btn-kembali:hover {
+    background-color: #dbe2ef;
+}
 
 /* Base reset & typography (menggantikan kebutuhan main.administrator.css untuk halaman ini) */
 *, *::before, *::after { box-sizing: border-box; }
