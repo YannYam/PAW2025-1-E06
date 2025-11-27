@@ -36,6 +36,10 @@ require_once(BASE_PATH . '/service/session.php');
 		return preg_match("/^[a-zA-Z\s]+$/", $data);
 	}
 
+	function alfaSpaceDot($data){
+		return preg_match("/^[A-Za-z\s\.]+$/", $data);
+	}
+
 	function digitMinim($data){
 		return preg_match('/^.{3,}$/', $data);
 	}
@@ -262,5 +266,13 @@ require_once(BASE_PATH . '/service/session.php');
 		$stmnt = DBH->prepare("SELECT * FROM administrator WHERE USERNAME_ADMIN = :user");
 		$stmnt->execute([':user' => $data]);
 		return !$stmnt->rowCount() > 0;
+	}
+
+	function isiCover($nama, $cover){
+		$stmnt = DBH->prepare("UPDATE buku SET COVER = :cover WHERE JUDUL = :judul");
+		$stmnt->execute([
+			':judul'=> $nama,
+			':cover' => $cover
+		]);
 	}
 ?>

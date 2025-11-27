@@ -5,10 +5,10 @@ if(!isset($_SESSION['nama'])){
   exit();
 }
 
-$error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahun = $error_stok = '';
 
-  if ($_SERVER['REQUEST_METHOD'] == "POST") {
+$error_cover = $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahun = $error_stok = '';
 
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $judul = test_input($_POST['judul']);
     $deskripsi = test_input($_POST['deskripsi']);
     $penulis = test_input($_POST['penulis']);
@@ -39,7 +39,7 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
       $error_penulis = 'Masukan wajib diisi';
     }elseif(!digitMinim($penulis)){
       $error_penulis = "Masukan minimal 3 digit";
-    } elseif(!alfabet($penulis)){
+    } elseif(!alfaSpaceDot($penulis)){
       $error_penulis = 'Masukan harus alfabet';
     }else{
       $error_penulis = '';
@@ -62,20 +62,46 @@ $error_judul = $error_deskripsi = $error_penulis = $error_penerbit = $error_tahu
     }else{
       $error_tahun = '';
     }
-	
+
 	  if(isset($add) AND empty($error_judul) AND empty($error_deskripsi) AND empty($error_penulis) AND empty($error_penerbit) AND empty($error_tahun) AND empty($error_stok) AND isset($_POST['simpan'])){
-    	tambahBuku($_POST);
+      tambahBuku($_POST);
+    	if($_FILES['cover']['name'] == ''){
+        $cover = 'default.png';
+        isiCover($judul,$cover);
+      }else{
+        $cover = $_FILES['cover']['name'];
+        $tmp = $_FILES['cover']['tmp_name'];
+        $ekstensi = pathinfo($cover, PATHINFO_EXTENSION);
+        $namaBaru = $judul . '-' . $tahun.'.'.$ekstensi;
+        $namaBaru = str_replace(' ', '-', $namaBaru);
+        move_uploaded_file($tmp, BASE_PATH . '/asset/images/cover/' . $namaBaru);
+        isiCover($judul,$namaBaru);
+      }
     	header('location: ' . BASE_URL . '/administrator/index.php');
     	exit();
   	}elseif(empty($error_judul) AND empty($error_deskripsi) AND empty($error_penulis) AND empty($error_penerbit) AND empty($error_tahun) AND empty($error_stok) AND isset($_POST['simpan'])){
-    	editBuku($_GET['id_buku'], $_POST);
+    	if($_FILES['cover']['name'] != ''){
+        $cover = $_FILES['cover']['name'];
+        $tmp = $_FILES['cover']['tmp_name'];
+        $ekstensi = pathinfo($cover, PATHINFO_EXTENSION);
+        $namaBaru = $judul . '-' . $tahun . '.' . $ekstensi;
+        $namaBaru = str_replace(' ', '-', $namaBaru);
+        isiCover($judul,$namaBaru);
+        unlink(BASE_PATH . '/asset/images/cover/' . $detail['COVER']);
+        move_uploaded_file($tmp, BASE_PATH . '/asset/images/cover/' . $namaBaru);
+      }
+      editBuku($_GET['id_buku'], $_POST);
     	header('location: ' . BASE_URL . '/administrator/index.php');
     	exit();
   	}
   }
 ?>
 
-<form action="#" method="POST">
+<form action="#" method="POST" enctype="multipart/form-data">
+  <fieldset> 
+    <legend>Cover buku</legend>
+    <input type="file" name="cover">
+  </fieldset>
   <input type="text" name="judul" placeholder="judul" value="<?= $_POST['judul'] ?? $detail['JUDUL'] ?? '' ?>">
 	<span class="error"><?= $error_judul ?></span>
 	<input type="text" name="deskripsi" placeholder="deskripsi" value="<?= $_POST['deskripsi'] ?? $detail['DESKRIPSI'] ?? '' ?>">

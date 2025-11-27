@@ -27,6 +27,19 @@ form > input[type="text"], input[type="date"],select {
     font-size: 16px;
 }
 
+form >fieldset> input[type='file'] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form>fieldset {
+    background-color: white;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
 form > button{
     padding: 10px 15px;
     background-color: #D4AF37;
