@@ -290,14 +290,15 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function cekUsernameExists($username) {
-    $stmt = DBH->prepare("SELECT username FROM pemustaka WHERE username = ?");
-    $stmt->execute([$username]);
-    return $stmt->fetchColumn() ? true : false;
-  }
+    	$stmt = DBH->prepare("SELECT username FROM pemustaka WHERE username = ?");
+    	$stmt->execute([$username]);
+    	return $stmt->fetchColumn() ? true : false;
+  	}
 	function isiCover($nama, $cover){
 		$stmnt = DBH->prepare("UPDATE buku SET COVER = :cover WHERE JUDUL = :judul");
 		$stmnt->execute([
 			':judul'=> $nama,
 			':cover' => $cover
 		]);
+	}
 ?>
