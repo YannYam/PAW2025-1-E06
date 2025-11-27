@@ -42,7 +42,7 @@ if(!$_SESSION['nama']){
         
         
 		<?php if(!isNotAdmin($_SESSION['nama'])): ?>
-            <nav class="navbar-right">
+            <nav class="admin-right">
                 <h2><?= $_SESSION['nama'] ?></h2>
             </nav>
         <?php endif ?>

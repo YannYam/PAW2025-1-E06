@@ -86,3 +86,9 @@ body {
     gap: 20px;
 }
 
+.admin-right h2 {
+    color: #ffffff;
+    font-size: 18px;
+    margin: 0;
+    white-space: nowrap;
+}
