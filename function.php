@@ -17,10 +17,6 @@ require_once(BASE_PATH . '/service/session.php');
 		return $stmnt->fetch();
 	}
 
-	function required($data) {
-		return $data == "";
-	}
-
 	function test_input($data){
 		$data = trim($data);
 		$data = stripslashes($data);
@@ -51,14 +47,6 @@ require_once(BASE_PATH . '/service/session.php');
 	function cekNomorHP($data) {
     // Hapus spasi di regex, dan gunakan satu garis |
     return (preg_match("/^(08|628)[0-9]{8,11}$/", $data)) ;
-}
-
-	function email($data) {
-		return filter_var($data, FILTER_VALIDATE_EMAIL);
-	}
-
-	function alfanumerik($data) {
-		return preg_match("/^[A-Za-z0-9]+$/", $data);
 	}
 
 	function alfaDesc($data){
@@ -71,11 +59,6 @@ require_once(BASE_PATH . '/service/session.php');
 
 	function alamat($data) {
 		return preg_match("/^(?=.*[A-Za-z])[A-Za-z0-9\s.,\/#()'-]+$/", $data);
-	}
-
-	function valid_tanggal($data) {
-		$d = DateTime::createFromFormat("Y-m-d", $data);
-		return $d && $d->format("Y-m-d") === $data;
 	}
 
 	function year($data){
@@ -138,8 +121,8 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function getBuku(){
-		$state = DBH->prepare("SELECT buku.*, peminjaman.STATUS FROM buku LEFT JOIN peminjaman ON 
-		peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN 
+		$state = DBH->prepare("SELECT buku.*, peminjaman.STATUS FROM buku LEFT JOIN peminjaman 
+		ON peminjaman.ID_BUKU = buku.ID_BUKU 
 		WHERE peminjaman.STATUS IS NULL OR peminjaman.STATUS NOT IN ('Hilang', 'Pinjam','Proses')");
 		$state->execute();
 		return $state->fetchAll();
