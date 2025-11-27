@@ -17,7 +17,8 @@ $list_css_tambahan = [
         $id_buku = test_input($_GET['id_buku']);
     } else {
         echo "ID buku tidak ditemukan!";
-    }
+        exit();
+    };
 
     $idbuku = getBukuOne($id_buku);
 

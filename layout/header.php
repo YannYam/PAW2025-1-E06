@@ -4,7 +4,6 @@ if(!$_SESSION['nama']){
 	header('Location: ' . BASE_URL . '/');
     exit();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="id">

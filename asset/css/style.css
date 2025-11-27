@@ -20,6 +20,13 @@ body {
     padding-top: 100px; /* sesuai tinggi navbar */
 }
 
+footer {
+    width: 100%;
+    background: gray;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
 
 /* Navbar */
 .navbar {
@@ -144,6 +151,23 @@ h1{
     font-weight: 700;
 }
 
+.card-img {
+    /* 1. Mengatur Ukuran Kecil & Kotak */
+    width: 150px;       /* Lebar gambar */
+    height: 220px;      /* Tinggi gambar (samakan jika ingin kotak sempurna) */
+    
+    /* 2. Agar Gambar Rapi (Tidak Gepeng/Penyok) */
+    object-fit: cover;  /* SANGAT PENTING: Memotong gambar agar pas di kotak tanpa distorsi */
+    
+    /* 3. Posisi di Tengah (Center) */
+    display: block;
+    margin: 10px auto;  /* auto membuat gambar ke tengah horizontal */
+    
+    /* 4. Estetika Tambahan (Opsional) */
+    border-radius: 8px; /* Membuat sudut sedikit melengkung */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Memberi bayangan tipis agar elegan */
+    border: 1px solid #ddd; /* Garis tepi tipis */
+}
 /* Deskripsi kecil */
 .card-login p {
     font-size: 13px;
