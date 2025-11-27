@@ -21,7 +21,7 @@ include_once(BASE_PATH . '/layout/header.php');
                 <div class="card-login">
                     <img src="asset/images/cover/<?= $book['COVER'] ?>" alt="<?= $book['JUDUL'] ?>" class="card-img">
                     <h2 class="card-title"><?= $book['JUDUL'] ?></h2>
-                    <p class="card-desc"><?= $book['DESKRIPSI'] ?></p>
+                    <p class="card-desc"><?= $book['DESKRIPSI'] ?></p> 
                     
                     <div class="card-info">
                         <p><strong>Penulis:</strong> <?= $book['PENULIS'] ?></p>
