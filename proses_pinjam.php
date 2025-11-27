@@ -17,11 +17,12 @@ $list_css_tambahan = [
         $id_buku = test_input($_GET['id_buku']);
     } else {
         echo "ID buku tidak ditemukan!";
-    }
+        exit();
+    };
 
     $idbuku = getBukuOne($id_buku);
 
-    if(isset($_POST['IYAA'])){
+    if(isset($_POST['pinjam'])){
         $pinjam = insertPeminjaman($id_buku,[]);
         if ($pinjam){
             header('location: daftar_buku.php');
@@ -39,15 +40,15 @@ $list_css_tambahan = [
      
      <div class="container">
              <div class="logout-box">
-                 <h2>Hii, <?= $_SESSION['nama'];?> Ingin Pinjem Bukuu Yakk?</h2>
+                 <h4>Hai, <?= ucfirst($_SESSION['nama']);?> mau pinjam buku ini?</h4>
                  <h2><?= $idbuku['JUDUL'] ?></h2>
                  <p><?= $idbuku['DESKRIPSI'] ?></p>
      
      
                  <!-- FORM POST -->
                  <form action="#" method="POST">
-                     <button type="submit" name="IYAA" class="btn-log btn-logout">IYAA </button>
-                     <a class="btn-log btn-cancel-logout" href="<?= BASE_URL ?>/daftar_buku.php">TIDAKK</a>
+                     <button type="submit" name="pinjam" class="btn-pinjam">Pinjam</button>
+                     <a class="btn-kembali" href="<?= BASE_URL ?>/daftar_buku.php">Kembali</a>
                  </form>
              </div>
      </div>

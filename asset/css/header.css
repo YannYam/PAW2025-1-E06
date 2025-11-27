@@ -61,15 +61,7 @@ body {
     margin: 0 20px;
 }
 
-/* Bagian Kanan - Menu */
-.navbar-right {
-    display: flex;
-    align-items: center;
-    gap: 35px;
-    margin: 0 20px;
-}
-
-.navbar-menu .nav-link, .navbar-right .nav-link{
+.nav-link {
     color: #ffffff;
     text-decoration: none;
     font-size: 16px;
@@ -78,6 +70,42 @@ body {
     white-space: nowrap;
 }
 
-.navbar-menu .nav-link:hover, .navbar-right .nav-link:hover {
+.nav-link:hover {
     color: #D4AF37;
+}
+
+.nav-link.active {
+    color: #D4AF37;
+    font-weight: 600;
+}
+
+/* Bagian Kanan - Icon */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.admin-right h2 {
+    color: #ffffff;
+    font-size: 18px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.container-footer {
+    width: 100%;
+    background: rgb(109, 109, 109);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Footer halaman */
+footer {
+    width: 100%;
+    background: rgb(172, 172, 172);
+    color: white;
+    padding: 2px 0;
+    text-align: center;
 }

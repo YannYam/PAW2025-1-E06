@@ -21,7 +21,7 @@ include "../layout/menu.administrator.php"
 				<tr>
 					<th>Username</th>
 					<th>Nama Lengkap</th>
-					<th>Umur</th>
+					<th>Tanggal Lahir</th>
 					<th>Alamat</th>
 					<th>No Telepon</th>
 				</tr>

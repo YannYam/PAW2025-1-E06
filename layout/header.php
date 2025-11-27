@@ -4,7 +4,6 @@ if(!$_SESSION['nama']){
 	header('Location: ' . BASE_URL . '/');
     exit();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -42,7 +41,7 @@ if(!$_SESSION['nama']){
         
         
 		<?php if(!isNotAdmin($_SESSION['nama'])): ?>
-            <nav class="navbar-right">
+            <nav class="admin-right">
                 <h2><?= $_SESSION['nama'] ?></h2>
             </nav>
         <?php endif ?>
@@ -56,7 +55,7 @@ if(!$_SESSION['nama']){
         </div>
         <!-- Bagian Kanan: Icon/ Profile -->
         <div class="navbar-right">
-            <a href="<?= BASE_URL . '/layout/main-profile.php' ?>" class="nav-link profile"><?= $_SESSION['nama']?></a>
+            <a href="<?= BASE_URL . '/layout/main-profile.php' ?>" class="nav-link"><?= ucfirst($_SESSION['nama']); ?></a>            
             <a href="<?= BASE_URL . '/layout/logout.php' ?>" class="nav-link">Logout</a>
         </div>
         <?php endif ?>

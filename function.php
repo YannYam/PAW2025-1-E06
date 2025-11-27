@@ -17,10 +17,6 @@ require_once(BASE_PATH . '/service/session.php');
 		return $stmnt->fetch();
 	}
 
-	function required($data) {
-		return $data == "";
-	}
-
 	function test_input($data){
 		$data = trim($data);
 		$data = stripslashes($data);
@@ -37,7 +33,7 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function alfaSpaceDot($data){
-		return preg_match("/^[A-Za-z\s\.]+$/", $data);
+		return preg_match("/^[A-Za-z\s\.\&\'\(\)\,]+$/", $data);
 	}
 
 	function digitMinim($data){
@@ -51,14 +47,6 @@ require_once(BASE_PATH . '/service/session.php');
 	function cekNomorHP($data) {
     // Hapus spasi di regex, dan gunakan satu garis |
     return (preg_match("/^(08|628)[0-9]{8,11}$/", $data)) ;
-}
-
-	function email($data) {
-		return filter_var($data, FILTER_VALIDATE_EMAIL);
-	}
-
-	function alfanumerik($data) {
-		return preg_match("/^[A-Za-z0-9]+$/", $data);
 	}
 
 	function alfaDesc($data){
@@ -73,17 +61,12 @@ require_once(BASE_PATH . '/service/session.php');
 		return preg_match("/^(?=.*[A-Za-z])[A-Za-z0-9\s.,\/#()'-]+$/", $data);
 	}
 
-	function valid_tanggal($data) {
-		$d = DateTime::createFromFormat("Y-m-d", $data);
-		return $d && $d->format("Y-m-d") === $data;
-	}
-
 	function year($data){
 		return preg_match("/^[0-9]{4}$/", $data);
 	}
 
 	function alfaJudul($data){
-		return preg_match("/^[A-Za-z0-9 \s\!\-]+$/", $data);
+		return preg_match("/^[A-Za-z0-9\s\!\-\,\(\)\'\"\:\.\?\&]+$/", $data);
 	}
 
 	// Validasi password minimal mengandung:
@@ -138,9 +121,9 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function getBuku(){
-		$state = DBH->prepare("SELECT * FROM buku LEFT JOIN peminjaman ON 
-		peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN 
-		WHERE peminjaman.STATUS NOT IN ('Hilang', 'Pinjam','Proses')");
+		$state = DBH->prepare("SELECT buku.*, peminjaman.STATUS FROM buku LEFT JOIN peminjaman 
+		ON peminjaman.ID_BUKU = buku.ID_BUKU 
+		WHERE peminjaman.STATUS IS NULL OR peminjaman.STATUS NOT IN ('Hilang', 'Pinjam','Proses')");
 		$state->execute();
 		return $state->fetchAll();
 	}
@@ -154,7 +137,8 @@ require_once(BASE_PATH . '/service/session.php');
 
 	#fungsi untuk mengambil data buku bergantung pada id buku
 	function getBukuOne(int $id){
-		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id");
+		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id"
+	);
 		$state->execute([':id' => $id]);
 		return $state->fetch();
 	}
@@ -186,19 +170,15 @@ require_once(BASE_PATH . '/service/session.php');
 	} 
 
 	function daftarPinjaman($idUser){
-    $state = DBH->prepare("
-        SELECT p.ID_PEMINJAMAN, b.JUDUL, p.TANGGAL_PINJAM, p.TANGGAL_RENCANA, p.STATUS
-        FROM peminjaman p
-        INNER JOIN buku b ON p.ID_PEMINJAMAN = b.ID_PEMINJAMAN
-        WHERE p.USERNAME = :username
-        ORDER BY p.TANGGAL_PINJAM DESC
-    ");
-
-    $state->execute([
+    	$state = DBH->prepare("SELECT p.ID_PEMINJAMAN, b.JUDUL, p.TANGGAL_PINJAM, p.TANGGAL_RENCANA, p.STATUS
+            FROM peminjaman p
+            LEFT JOIN buku b ON p.ID_BUKU = b.ID_BUKU 
+            WHERE p.USERNAME = :username
+            ORDER BY p.TANGGAL_PINJAM DESC");
+    	$state->execute([
         ':username' => $idUser
-    ]);
-
-    return $state->fetchAll(PDO::FETCH_ASSOC);
+    	]);
+    	return $state->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 
@@ -215,7 +195,7 @@ require_once(BASE_PATH . '/service/session.php');
 			SELECT *
 			FROM peminjaman
 			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
-			JOIN buku ON peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN
+			JOIN buku ON buku.ID_BUKU = peminjaman.ID_BUKU
 			WHERE peminjaman.STATUS IN ('Proses', 'Pinjam');
 	    ");
 	    $stmt->execute();
@@ -225,10 +205,10 @@ require_once(BASE_PATH . '/service/session.php');
 	#menampilkan daftar peminjaman jika pemustaka meminjam buku dan statusnya selain proses dan pinjam
 	function getDaftarKembali() {
 	    $stmt = DBH->prepare("
-			SELECT peminjaman.ID_PEMINJAMAN, buku.JUDUL, buku.PENULIS, buku.PENERBIT, buku.TAHUN, pemustaka.NAMA_LENGKAP, pemustaka.USERNAME, peminjaman.TANGGAL_PINJAM, peminjaman.TANGGAL_RENCANA, peminjaman.STATUS
+			SELECT *
 			FROM peminjaman
 			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
-			JOIN buku ON peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN
+			JOIN buku ON buku.ID_BUKU = peminjaman.ID_BUKU
 			WHERE peminjaman.STATUS NOT IN ('Proses', 'Pinjam');
 	    ");
 	    $stmt->execute();
@@ -268,11 +248,61 @@ require_once(BASE_PATH . '/service/session.php');
 		return !$stmnt->rowCount() > 0;
 	}
 
+	function registerPemustaka(array $data) {
+    // Hash password dari $data
+    $hash = hash('sha256', $data['password']);
+
+    $stmt = DBH->prepare(
+        "INSERT INTO pemustaka 
+        (NAMA_LENGKAP, USERNAME, PASSWORD, TELEPON, TANGGAL_LAHIR, ALAMAT)
+        VALUES (:nama, :username, :password, :nomor, :tanggal_lahir, :alamat)"
+    );
+
+    return $stmt->execute([
+        ":nama"          => $data['nama'],
+        ":username"      => $data['username'],
+        ":password"      => $hash,                  // ← HASH dipakai di sini
+        ":nomor"         => $data['nomor'],
+        ":tanggal_lahir" => $data['tanggal_lahir'],
+        ":alamat"        => $data['alamat']
+    ]);
+
+	}
+
+	function cekUsernameExists($username) {
+    	$stmt = DBH->prepare("SELECT username FROM pemustaka WHERE username = ?");
+    	$stmt->execute([$username]);
+    	return $stmt->fetchColumn() ? true : false;
+  	}
 	function isiCover($nama, $cover){
 		$stmnt = DBH->prepare("UPDATE buku SET COVER = :cover WHERE JUDUL = :judul");
 		$stmnt->execute([
 			':judul'=> $nama,
 			':cover' => $cover
+		]);
+	}
+
+	function updatePeminjaman(int $id, array $data) {
+		$stmt = DBH->prepare("
+			UPDATE peminjaman 
+			SET STATUS = :status, TANGGAL_RENCANA = :tanggal_rencana 
+			WHERE ID_PEMINJAMAN = :id
+		");
+		$stmt->execute([
+			':status' => $data['status'],
+			':tanggal_rencana' => $data['tanggal_rencana'],
+			':id' => $id
+		]);
+	}
+	function updateKembali(int $id, array $data) {
+		$stmt = DBH->prepare("
+			UPDATE peminjaman 
+			SET STATUS = 'Kembali' , TANGGAL_KEMBALI = :tanggal_kembali
+			WHERE ID_PEMINJAMAN = :id
+		");
+		$stmt->execute([
+			':tanggal_kembali' => $data['tanggal_kembali'],
+			':id' => $id
 		]);
 	}
 ?>

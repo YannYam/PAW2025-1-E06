@@ -59,10 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 }
 
-
 $list_css_tambahan = [
-    'main.administrator.css',
-    'menu.administrator.css'
 ];
 
 include_once BASE_PATH . '/layout/header.php';
@@ -95,4 +92,3 @@ include_once BASE_PATH . '/layout/header.php';
     </div>
 
 <?php include_once BASE_PATH . '/layout/footer.php' ?>
-

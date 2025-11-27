@@ -40,9 +40,10 @@ main {
 
 /* Pembeda ruang untuk tiap jenis tabel */
 .table-pemustaka, .table-peminjaman, .table-books{
-    margin: 15px;
     padding: 20px;
     height: 100%;
+    margin: 20px auto;
+    width: 82%; 
 }
 
 /* Styling elemen table dasar */
@@ -51,13 +52,13 @@ main {
     border-collapse: collapse;
     background: white;
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Elevasi */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Judul tabel */
 .table caption {
     padding: 1vw;
-    font-size: 1.7vw; /* Skala relatif viewport */
+    font-size: 1.7vw;
     font-weight: bold;
     background: #f0f0f0;
     border-bottom: 1px solid #ddd;
@@ -191,77 +192,6 @@ td > a  {
     margin-bottom: 50px;
 }
 
-/* Wrapper profil utama */
-.main-profile {
-    height: 100%;
-    width: 40%;
-    margin: 10% auto;
-    padding: 2%;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.main-profile h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-/* Box profil internal */
-.profile {
-    background-color: white;
-    padding: 20%;
-    border-radius: 8px;
-}
-
-/* Form detail profil (kolom vertikal) */
-.detail-profile form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Input teks & tanggal */
-.detail-profile input[type="text"], input[type="date"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* Link kembali / navigasi dalam profil */
-.detail-profile a {
-    text-decoration: none;
-    color: #555;
-    font-weight: 500;
-    margin-right: auto;
-}
-.detail-profile a:hover {
-    color: #1E90FF;
-}
-
-/* Tombol submit profil */
-.detail-profile button {
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-}
-.detail-profile button:hover {
-    background-color: #218838;
-}
-
-/* Footer halaman */
-footer {
-    width: 100%;
-    background: gray;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-}
-
 /* Pesan error (validasi) */
 .error {
     color: red;
@@ -272,6 +202,13 @@ footer {
 .table th:last-child,
 .table td:last-child {
   white-space: nowrap;   /* Cegah turun baris */
+}
+
+.img-cover {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
 }
 
 /* Responsif medium (tablet besar) */

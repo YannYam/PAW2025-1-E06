@@ -71,8 +71,8 @@ include "../layout/menu.administrator.php"
 						<td><?= $hasil['JUDUL'] ?></td>
 						<td><?= $hasil['NAMA_LENGKAP'] ?><br>(<i><?= $hasil['USERNAME'] ?></i>)</td>
 						<td class="status <?= $hasil['STATUS'] ?>"><?= $hasil['STATUS'] ?></td>
-						<td><?= $hasil['TANGGAL_PINJAM'] ?></td>
 						<td><?= $hasil['TANGGAL_RENCANA'] ?></td>
+						<td><?= $hasil['TANGGAL_KEMBALI'] ?></td>
 						<td><?= $hasil['PENULIS'] ?></td>
 						<td><?= $hasil['PENERBIT'] ?></td>
 						<td><?= $hasil['TAHUN'] ?></td>

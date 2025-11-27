@@ -22,6 +22,7 @@ require_once "../function.php"; // Memuat file fungsi (koneksi, helper, dll)
             <thead>
                 <tr>
                     <th>Nomer Buku</th>
+                    <th>Cover</th>
                     <th>Judul</th>
                     <th>Deskripsi</th>
                     <th>Penulis</th>
@@ -35,6 +36,7 @@ require_once "../function.php"; // Memuat file fungsi (koneksi, helper, dll)
                 <?php foreach ($buku as $book): ?>
                 <tr>
                     <td><?= $book['ID_BUKU'] ?></td>
+                    <td><img src="<?= BASE_URL . '/asset/images/cover/' . ($book['COVER'] ?? 'default.png') ?>" alt="Cover Buku" style="width: 50px; height: auto;"></td>
                     <td><?= $book['JUDUL'] ?></td>
                     <td><?= $book['DESKRIPSI'] ?></td>
                     <td><?= $book['PENULIS'] ?></td>
