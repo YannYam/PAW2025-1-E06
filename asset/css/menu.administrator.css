@@ -14,7 +14,7 @@
     width: 15%;
     padding: 30px;
     background-color: #0C2644; /* Warna latar sidebar */
-    min-height: 84vh; /* Tinggi minimum */
+    min-height: 82.5vh; /* Tinggi minimum */
 }
 
 /* Link navigasi dalam sidebar */
