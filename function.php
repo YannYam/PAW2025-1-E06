@@ -268,11 +268,36 @@ require_once(BASE_PATH . '/service/session.php');
 		return !$stmnt->rowCount() > 0;
 	}
 
+	function registerPemustaka(array $data) {
+    // Hash password dari $data
+    $hash = hash('sha256', $data['password']);
+
+    $stmt = DBH->prepare(
+        "INSERT INTO pemustaka 
+        (NAMA_LENGKAP, USERNAME, PASSWORD, TELEPON, TANGGAL_LAHIR, ALAMAT)
+        VALUES (:nama, :username, :password, :nomor, :tanggal_lahir, :alamat)"
+    );
+
+    return $stmt->execute([
+        ":nama"          => $data['nama'],
+        ":username"      => $data['username'],
+        ":password"      => $hash,                  // ← HASH dipakai di sini
+        ":nomor"         => $data['nomor'],
+        ":tanggal_lahir" => $data['tanggal_lahir'],
+        ":alamat"        => $data['alamat']
+    ]);
+
+	}
+
+	function cekUsernameExists($username) {
+    $stmt = DBH->prepare("SELECT username FROM pemustaka WHERE username = ?");
+    $stmt->execute([$username]);
+    return $stmt->fetchColumn() ? true : false;
+  }
 	function isiCover($nama, $cover){
 		$stmnt = DBH->prepare("UPDATE buku SET COVER = :cover WHERE JUDUL = :judul");
 		$stmnt->execute([
 			':judul'=> $nama,
 			':cover' => $cover
 		]);
-	}
 ?>
