@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <form action="#" method="POST" enctype="multipart/form-data">
   <fieldset> 
-    <legend>Cover buku</legend>
+    <legend>Cover buku (Optional)</legend>
     <input type="file" name="cover">
   </fieldset>
   <input type="text" name="judul" placeholder="judul" value="<?= $_POST['judul'] ?? $detail['JUDUL'] ?? '' ?>">
