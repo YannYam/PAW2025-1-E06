@@ -92,3 +92,20 @@ body {
     margin: 0;
     white-space: nowrap;
 }
+
+.container-footer {
+    width: 100%;
+    background: rgb(109, 109, 109);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Footer halaman */
+footer {
+    width: 100%;
+    background: rgb(172, 172, 172);
+    color: white;
+    padding: 2px 0;
+    text-align: center;
+}

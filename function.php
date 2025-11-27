@@ -139,8 +139,8 @@ require_once(BASE_PATH . '/service/session.php');
 
 	function getBuku(){
 		$state = DBH->prepare("SELECT * FROM buku LEFT JOIN peminjaman ON 
-		peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN 
-		WHERE peminjaman.STATUS NOT IN ('Hilang', 'Pinjam','Proses')");
+		peminjaman.ID_PEMINJAMAN = null AND buku.ID_PEMINJAMAN = peminjaman.ID_PEMINJAMAN
+		WHERE peminjaman.STATUS NOT IN ('Hilang', 'Pinjam','Proses') OR peminjaman.ID_PEMINJAMAN IS NULL");
 		$state->execute();
 		return $state->fetchAll();
 	}

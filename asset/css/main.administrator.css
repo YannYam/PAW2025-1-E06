@@ -253,15 +253,6 @@ td > a  {
     background-color: #218838;
 }
 
-/* Footer halaman */
-footer {
-    width: 100%;
-    background: gray;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-}
-
 /* Pesan error (validasi) */
 .error {
     color: red;
