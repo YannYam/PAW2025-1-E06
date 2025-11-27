@@ -87,7 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $namaBaru = $judul . '-' . $tahun . '.' . $ekstensi;
         $namaBaru = str_replace(' ', '-', $namaBaru);
         isiCover($judul,$namaBaru);
-        unlink(BASE_PATH . '/asset/images/cover/' . $detail['COVER']);
+        if($detail['COVER'] != 'default.png'){
+          unlink(BASE_PATH . '/asset/images/cover/' . $detail['COVER']);
+        }
         move_uploaded_file($tmp, BASE_PATH . '/asset/images/cover/' . $namaBaru);
       }
       editBuku($_GET['id_buku'], $_POST);
