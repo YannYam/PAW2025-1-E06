@@ -7,12 +7,12 @@
     }
     $list_css_tambahan = [
         'logout.css',
-        'main.administrator.css',
-        // 'footer.css'
+        'header.css'
     ];
 
     include_once BASE_PATH . '/layout/header.php';
 ?>
+<main>
     <div class="container-logout">
         <div class="logout-box">
             <h2>Keluar Akun?</h2>
@@ -27,4 +27,3 @@
         </div>
     </div>
     <?php include_once BASE_PATH . '/layout/footer.php'; ?>
-</body>
