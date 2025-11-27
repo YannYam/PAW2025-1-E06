@@ -3,7 +3,8 @@ require_once 'function.php';
 
 // Inisialisasi variabel
 $nama = $tanggal_lahir = $nomor = $alamat = $username = $password = '';
-$error_nama = $error_tanggal_lahir = $error_nomor = $error_alamat = $error_username = $error_password = '';
+$error_nama = $error_tanggal_lahir = $error_nomor = $error_alamat = $error_username = $error_password =  '';
+$pesan_error = '';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -86,9 +87,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         empty($error_alamat) &&
         empty($error_username) &&
         empty($error_password)
-    ) {
-        header("Location: index.php");
-        exit();
+    ) 
+    if (cekUsernameExists($username)) {
+        $error_username = "Username sudah digunakan!";
+    } else {
+        if (registerPemustaka($_POST)) {
+            header("Location:index.php");
+            exit();
+        } else {
+            $pesan_error = "Gagal menyimpan data ke database!";
+        }
     }
 }
 ?>
@@ -99,12 +107,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Libra - Daftar Akun</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="asset/style.css">
 </head>
 <body>
 
 <header class="navbar">
-    <img src="libra.jpg" class="logo" alt="logo Libra">
+    <img src="asset/images/libra.jpg" class="logo" alt="logo Libra">
     <h2>Libra</h2>
 </header>
 
