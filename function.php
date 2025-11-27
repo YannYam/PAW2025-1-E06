@@ -138,9 +138,9 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function getBuku(){
-		$state = DBH->prepare("SELECT * FROM buku LEFT JOIN peminjaman ON 
+		$state = DBH->prepare("SELECT buku.*, peminjaman.STATUS FROM buku LEFT JOIN peminjaman ON 
 		peminjaman.ID_PEMINJAMAN = buku.ID_PEMINJAMAN 
-		WHERE peminjaman.STATUS NOT IN ('Hilang', 'Pinjam','Proses')");
+		WHERE peminjaman.STATUS IS NULL OR peminjaman.STATUS NOT IN ('Hilang', 'Pinjam','Proses')");
 		$state->execute();
 		return $state->fetchAll();
 	}
@@ -154,7 +154,8 @@ require_once(BASE_PATH . '/service/session.php');
 
 	#fungsi untuk mengambil data buku bergantung pada id buku
 	function getBukuOne(int $id){
-		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id");
+		$state = DBH->prepare("SELECT * FROM buku WHERE ID_BUKU = :id"
+	);
 		$state->execute([':id' => $id]);
 		return $state->fetch();
 	}
@@ -186,19 +187,15 @@ require_once(BASE_PATH . '/service/session.php');
 	} 
 
 	function daftarPinjaman($idUser){
-    $state = DBH->prepare("
-        SELECT p.ID_PEMINJAMAN, b.JUDUL, p.TANGGAL_PINJAM, p.TANGGAL_RENCANA, p.STATUS
-        FROM peminjaman p
-        INNER JOIN buku b ON p.ID_PEMINJAMAN = b.ID_PEMINJAMAN
-        WHERE p.USERNAME = :username
-        ORDER BY p.TANGGAL_PINJAM DESC
-    ");
-
-    $state->execute([
+    	$state = DBH->prepare("SELECT p.ID_PEMINJAMAN, b.JUDUL, p.TANGGAL_PINJAM, p.TANGGAL_RENCANA, p.STATUS
+            FROM peminjaman p
+            LEFT JOIN buku b ON p.ID_BUKU = b.ID_BUKU 
+            WHERE p.USERNAME = :username
+            ORDER BY p.TANGGAL_PINJAM DESC");
+    	$state->execute([
         ':username' => $idUser
-    ]);
-
-    return $state->fetchAll(PDO::FETCH_ASSOC);
+    	]);
+    	return $state->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 

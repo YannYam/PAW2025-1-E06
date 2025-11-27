@@ -56,8 +56,6 @@ include_once(BASE_PATH . '/layout/header.php');
 
     </div>
 </main>
-
 <?php
-// Footer opsional
-// include_once(BASE_PATH . '/layout/footer.php');
+// 
 ?>
