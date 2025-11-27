@@ -27,11 +27,8 @@ require_once '../function.php';
   <div class="container-logout">
     <div class="konten">
       <div class="logout-box">
-        <b><?= $judul['JUDUL'] ?></b>
-        <hr>
-      <p><?= $judul['DESKRIPSI'] ?></p>
-      <span>Penulis: <i><?= $judul['PENULIS'] ?></i></span>
-      <hr>
+        <img src="<?= BASE_URL . '/asset/images/cover/' . $judul['COVER'] ?>" alt="cover buku" class="img-cover">
+        <p><b><?= $judul['JUDUL'] ?></b></p>
     </div>
     <div class="logout-box">
       <h2>Delete Buku ini?</h2>

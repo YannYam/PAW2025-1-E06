@@ -204,6 +204,13 @@ td > a  {
   white-space: nowrap;   /* Cegah turun baris */
 }
 
+.img-cover {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
 /* Responsif medium (tablet besar) */
 @media (max-width: 1150px) {
     .table-pemustaka, .table-peminjaman, .table-books {
