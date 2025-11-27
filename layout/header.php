@@ -56,7 +56,7 @@ if(!$_SESSION['nama']){
         </div>
         <!-- Bagian Kanan: Icon/ Profile -->
         <div class="navbar-right">
-            <a href="<?= BASE_URL . '/layout/main-profile.php' ?>" class="nav-link"><?= $_SESSION['nama']?></a>            
+            <a href="<?= BASE_URL . '/layout/main-profile.php' ?>" class="nav-link"><?= ucfirst($_SESSION['nama']); ?></a>            
             <a href="<?= BASE_URL . '/layout/logout.php' ?>" class="nav-link">Logout</a>
         </div>
         <?php endif ?>
