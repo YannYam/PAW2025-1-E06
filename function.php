@@ -157,7 +157,7 @@ require_once(BASE_PATH . '/service/session.php');
 	} 
 
 	function daftarPinjaman($idUser){
-    	$state = DBH->prepare("SELECT p.ID_PEMINJAMAN, b.JUDUL, p.TANGGAL_PINJAM, b.COVER, p.TANGGAL_RENCANA, p.STATUS
+    	$state = DBH->prepare("SELECT p.ID_PEMINJAMAN, b.JUDUL, b.DESKRIPSI,  p.TANGGAL_PINJAM, b.COVER, p.TANGGAL_RENCANA, p.STATUS
             FROM peminjaman p
             LEFT JOIN buku b ON p.ID_BUKU = b.ID_BUKU 
             WHERE p.USERNAME = :username
