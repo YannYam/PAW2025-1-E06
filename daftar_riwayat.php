@@ -20,7 +20,7 @@ include_once(BASE_PATH . '/layout/header.php');
         <div class="card-container">
             <?php foreach ($daftar as $list): ?> 
                 <div class="card-login">
-                    <h2 class="card-title">Daftar Riwayat</h2>
+                    <img src="asset/images/cover/<?= $list['COVER'] ?>" alt="<?= $list['JUDUL'] ?>" class="card-img">
                     <div class="card-info">
 
                         <p><strong>ID_Peminjaman</strong> <?= $list['ID_PEMINJAMAN'] ?></p>
