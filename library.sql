@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2025 at 05:50 PM
+-- Generation Time: Nov 28, 2025 at 09:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.5.0
 
@@ -109,15 +109,8 @@ CREATE TABLE `peminjaman` (
   `TANGGAL_PINJAM` date DEFAULT NULL,
   `TANGGAL_RENCANA` date DEFAULT NULL,
   `TANGGAL_KEMBALI` date DEFAULT NULL,
-  `STATUS` ENUM('Proses', 'Pinjam', 'Kembali', 'Hilang','Rusak') NOT NULL
+  `STATUS` enum('Proses','Pinjam','Kembali','Hilang','Rusak') DEFAULT 'Proses'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `peminjaman`
---
-
-INSERT INTO `peminjaman` (`ID_PEMINJAMAN`, `USERNAME`, `ID_BUKU`, `TANGGAL_PINJAM`, `TANGGAL_RENCANA`, `TANGGAL_KEMBALI`, `STATUS`) VALUES
-(1, 'andi', NULL, '2025-11-27', '2025-11-27', NULL, 'Proses');
 
 -- --------------------------------------------------------
 
