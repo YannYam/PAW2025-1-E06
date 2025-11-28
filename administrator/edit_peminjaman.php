@@ -4,7 +4,7 @@ require_once(BASE_PATH . '/function.php');
 
 $id = $_GET['id'] ?? 1;
 $current = getDataPeminjaman($id);
-$error_hari = '';
+$error_hari =  $error_status = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statusBaru = $_POST['status_baru'] ?? '';
@@ -18,7 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $error_hari = '';
     }
     
-    if (empty($error_hari) && ($current['STATUS'] == 'Proses' && isset($_POST['submit']))) {
+    if(!wajib($statusBaru) && empty($error_hari)){
+      $error_status = 'Status wajib diisi';
+    }elseif (empty($error_hari) && ($current['STATUS'] == 'Proses' && isset($_POST['submit']))) {
       $tanggal = date('Y-m-d', strtotime('+'.$durasiPinjam.' days'));
       $data = [
         'status' => test_input($statusBaru),
@@ -54,16 +56,17 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
           <label>Status</label>
         <select name="status_baru">
           <?php if($current['STATUS'] == 'Proses'): ?>
-          <option value="Proses"  <?= $current['STATUS']=='Proses'?'selected':'' ?>>Proses</option>
+          <option <?= $current['STATUS']=='Proses'?'selected':'' ?>>Proses</option>
           <option value="Pinjam"  <?= $current['STATUS']=='Pinjam'?'selected':'' ?>>Pinjam</option>
           <?php else: ?>
-          <option value="Pinjam"  <?= $current['STATUS']=='Pinjam'?'selected':'' ?>>Pinjam</option>
+          <option <?= $current['STATUS']=='Pinjam'?'selected':'' ?>>Pinjam</option>
           <option value="Kembali">Kembali</option>
           <option value="Rusak">Rusak</option>
           <option value="Hilang">Hilang</option>
           <option value="Terlambat">Terlambat</option>
           <?php endif; ?>
         </select>
+        <span class="error"><?= $error_status ?></span>
       </div>
       <?php if($current['STATUS'] == 'Proses' ): ?>
       <label>Durasi Pinjam (hari)</label>
