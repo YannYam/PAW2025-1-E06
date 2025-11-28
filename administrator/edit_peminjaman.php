@@ -9,6 +9,7 @@ $error_hari =  $error_status = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statusBaru = $_POST['status_baru'] ?? '';
     $durasiPinjam = $_POST['tanggal_rencana'] ?? '';
+    $sama = $current['STATUS'] == $statusBaru;
 
     if(!wajib($durasiPinjam)){
       $error_hari = 'Masukkan wajib diisi';
@@ -18,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $error_hari = '';
     }
     
-    if(!wajib($statusBaru)){
+    if($sama){
       $error_status = 'Status wajib diisi';
     }else{
       $error_status = '';
     }
 
-    if (empty($error_hari) && empty($error_status) && ($current['STATUS'] == 'Proses' && isset($_POST['submit']))) {
+    if (!$sama && empty($error_hari) && empty($error_status) && ($current['STATUS'] == 'Proses' && isset($_POST['submit']))) {
       $tanggal = date('Y-m-d', strtotime('+'.$durasiPinjam.' days'));
       $data = [
         'status' => test_input($statusBaru),
@@ -35,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       updatePeminjaman($id, $data);
       header("Location: kelola_peminjaman.php");
       exit();
-    }elseif ($statusBaru == 'Pinjam' && empty($error_hari) && empty($error_status) && isset($_POST['submit'])) {
+    }elseif (!$sama && empty($error_hari) && empty($error_status) && isset($_POST['submit'])) {
       $data = [
         'tanggal_kembali' => date('Y-m-d'),
         'status' => test_input($statusBaru)
@@ -60,10 +61,10 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
           <label>Status</label>
         <select name="status_baru">
           <?php if($current['STATUS'] == 'Proses'): ?>
-          <option <?= $current['STATUS']=='Proses'?'selected':'' ?>>Proses</option>
+          <option value="Proses" <?= $current['STATUS']=='Proses'?'selected':'' ?>>Proses</option>
           <option value="Pinjam"  <?= $current['STATUS']=='Pinjam'?'selected':'' ?>>Pinjam</option>
           <?php else: ?>
-          <option <?= $current['STATUS']=='Pinjam'?'selected':'' ?>>Pinjam</option>
+          <option value="Pinjam" <?= $current['STATUS']=='Pinjam'?'selected':'' ?>>Pinjam</option>
           <option value="Kembali">Kembali</option>
           <option value="Rusak">Rusak</option>
           <option value="Hilang">Hilang</option>
