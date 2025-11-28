@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $error_hari = '';
     }
     
-    if (empty($error_tanggal) && $current['STATUS'] == 'Proses' && isset($_POST['submit'])) {
+    if (empty($error_hari) && ($current['STATUS'] == 'Proses' && isset($_POST['submit']))) {
       $tanggal = date('Y-m-d', strtotime('+'.$durasiPinjam.' days'));
       $data = [
         'status' => test_input($statusBaru),
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       updatePeminjaman($id, $data);
       header("Location: kelola_peminjaman.php");
       exit();
-    }else{
+    }elseif ($statusBaru == 'Pinjam' && empty($error_hari) && isset($_POST['submit'])) {
       $data = [
         'tanggal_kembali' => date('Y-m-d'),
         'status' => test_input($statusBaru)
