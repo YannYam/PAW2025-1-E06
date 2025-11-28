@@ -109,7 +109,7 @@ CREATE TABLE `peminjaman` (
   `TANGGAL_PINJAM` date DEFAULT NULL,
   `TANGGAL_RENCANA` date DEFAULT NULL,
   `TANGGAL_KEMBALI` date DEFAULT NULL,
-  `STATUS` enum('Proses','Pinjam','Kembali','Hilang','Rusak') DEFAULT 'Proses'
+  `STATUS` enum('Proses','Pinjam','Kembali','Hilang','Rusak','Terlambat') DEFAULT 'Proses'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
