@@ -29,7 +29,7 @@ include_once(BASE_PATH . '/layout/header.php');
 
 
                         <?php if (isset($list['STATUS']) && $list['STATUS'] == 'Pinjam'): ?>
-                            <p><strong>Tanggal pengembalian:</strong> <?= $list['DAFTAR_RENCANA'] ?></p>
+                            <p><strong>Tanggal pengembalian:</strong> <?= $list['TANGGAL_RENCANA'] ?></p>
                         <?php endif; ?>
 
                     </div>
