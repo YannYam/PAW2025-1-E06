@@ -28,6 +28,25 @@ footer {
     text-align: center;
 }
 
+/* Logo */
+.logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+/* Judul Navbar */
+.navbar h2 {
+    color: #D4AF37; /* gold */
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 26px;
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
 /* Navbar */
 .navbar {
     background: #0B1C39; 

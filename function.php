@@ -144,11 +144,11 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 	
 	#menambahkan data di tabel peminjaman
-	function insertPeminjaman(int $id,array $data){
+	function insertPeminjaman(int $id){
 		$idUser = $_SESSION['nama'];
 		
 		$state = DBH-> prepare("
-		INSERT INTO peminjaman (USERNAME,TANGGAL_PINJAM,TANGGAL_RENCANA,STATUS) 
+		INSERT INTO peminjaman (USERNAME, ,STATUS) 
 		VALUES (:username, :tanggalpinjam, :tanggalrencana, :status)");
 		$state->execute([
 			':username' => $idUser,
