@@ -10,9 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $statusBaru = $_POST['status_baru'] ?? '';
     $durasiPinjam = $_POST['tanggal_rencana'] ?? '';
 
-    if(wajib($durasiPinjam)){
+    if(!wajib($durasiPinjam)){
       $error_hari = 'Masukkan wajib diisi';
-    }elseif(numerik($durasiPinjam)){
+    }elseif(!numerik($durasiPinjam)){
       $error_hari = "Masukkan harus berupa numerik";
     } else{
       $error_hari = '';
