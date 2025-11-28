@@ -18,9 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $error_hari = '';
     }
     
-    if(!wajib($statusBaru) && empty($error_hari)){
+    if(!wajib($statusBaru)){
       $error_status = 'Status wajib diisi';
-    }elseif (empty($error_hari) && ($current['STATUS'] == 'Proses' && isset($_POST['submit']))) {
+    }else{
+      $error_status = '';
+    }
+
+    if (empty($error_hari) && empty($error_status) && ($current['STATUS'] == 'Proses' && isset($_POST['submit']))) {
       $tanggal = date('Y-m-d', strtotime('+'.$durasiPinjam.' days'));
       $data = [
         'status' => test_input($statusBaru),
@@ -31,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       updatePeminjaman($id, $data);
       header("Location: kelola_peminjaman.php");
       exit();
-    }elseif ($statusBaru == 'Pinjam' && empty($error_hari) && isset($_POST['submit'])) {
+    }elseif ($statusBaru == 'Pinjam' && empty($error_hari) && empty($error_status) && isset($_POST['submit'])) {
       $data = [
         'tanggal_kembali' => date('Y-m-d'),
         'status' => test_input($statusBaru)
