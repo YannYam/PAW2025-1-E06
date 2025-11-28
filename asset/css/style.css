@@ -100,11 +100,30 @@ footer {
     border-radius: 14px;
     box-shadow: 0 5px 18px rgba(0,0,0,0.15);
 }
-.card-login.Kembali{
-    filter: brightness(0.85);
+/* --- STATUS AKTIF (Jangan digelapkan, kasih border biar menyala) --- */
+.card-login.Pinjam {
+    border: 2px solid #00ff08; /* Hijau */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
 }
-.card-login.Pinjam{
-    filter: brightness(0.85);
+
+.card-login.Proses {
+    border: 2px solid #ffc107; /* Kuning/Oranye */
+    background-color: #fffbf0; /* Background agak kuning tipis */
+}
+
+/* --- STATUS RIWAYAT/SELESAI (Gelapkan sedikit biar terlihat 'masa lalu') --- */
+.card-login.Kembali {
+    filter: grayscale(100%) opacity(0.8); /* Jadi hitam putih & agak transparan */
+    border: 1px solid #ddd;
+}
+
+/* --- STATUS MASALAH (Merah & Gelap) --- */
+.card-login.Hilang, 
+.card-login.Rusak, 
+.card-login.Terlambat {
+    filter: brightness(0.95);
+    border: 2px solid #dc3545; /* Merah */
+    background-color: #fff5f5;
 }
 
 .card-info {
