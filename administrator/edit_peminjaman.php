@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       ];
       
       updatePeminjaman($id, $data);
-        header("Location: kelola_peminjaman.php");
-        exit();
+      header("Location: kelola_peminjaman.php");
+      exit();
     }else{
       $data = [
         'tanggal_kembali' => date('Y-m-d'),
@@ -57,7 +57,8 @@ include_once(BASE_PATH . '/layout/menu.administrator.php');
           <option value="Proses"  <?= $current['STATUS']=='Proses'?'selected':'' ?>>Proses</option>
           <option value="Pinjam"  <?= $current['STATUS']=='Pinjam'?'selected':'' ?>>Pinjam</option>
           <?php else: ?>
-            <option value="Kembali">Kembali</option>
+          <option value="Pinjam"  <?= $current['STATUS']=='Pinjam'?'selected':'' ?>>Pinjam</option>
+          <option value="Kembali">Kembali</option>
           <option value="Rusak">Rusak</option>
           <option value="Hilang">Hilang</option>
           <option value="Terlambat">Terlambat</option>
