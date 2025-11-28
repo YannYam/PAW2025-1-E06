@@ -23,9 +23,10 @@ include_once(BASE_PATH . '/layout/header.php');
                     <img src="asset/images/cover/<?= $list['COVER'] ?>" alt="<?= $list['JUDUL'] ?>" class="card-img">
                     <div class="card-info">
 
-                        <p><strong>ID_Peminjaman</strong> <?= $list['ID_PEMINJAMAN'] ?></p>
                         <p><strong>Judul</strong> <?= $list['JUDUL'] ?></p>
+                        <p><strong>Deskripsi:</strong> <?= $list['DESKRIPSI'] ?></p>
                         <p><strong>Status Peminjaman:</strong> <?= $list['STATUS'] ?></p>
+
 
 
                         <?php if (isset($list['STATUS']) && ($list['STATUS'] == 'Pinjam' || $list['proses'])): ?>
