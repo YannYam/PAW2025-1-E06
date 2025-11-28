@@ -57,7 +57,7 @@ include "../layout/menu.administrator.php"
 						<th>Oleh</th>
 						<th>Status</th>
 						<th>Tanggal Pinjam</th>
-						<th>Jatuh Tempo</th>
+						<th>Tanggal Kembali</th>
 						<th>Penulis</th>
 						<th>Penerbit</th>
 						<th>tahun</th>

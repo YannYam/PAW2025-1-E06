@@ -144,29 +144,15 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 	
 	#menambahkan data di tabel peminjaman
-	function insertPeminjaman(int $id){
-		$idUser = $_SESSION['nama'];
-		
+	function insertPeminjaman(int $id, string $username){
 		$state = DBH-> prepare("
-		INSERT INTO peminjaman (USERNAME, ,STATUS) 
-		VALUES (:username, :tanggalpinjam, :tanggalrencana, :status)");
+		INSERT INTO peminjaman (USERNAME, ID_BUKU, STATUS) 
+		VALUES (:username, :idbuku, :status)");
 		$state->execute([
-			':username' => $idUser,
-			':tanggalpinjam' => date("Y-m-d"),
-			':tanggalrencana' => date("Y-m-d"),
+			':username' => $username,
+			':idbuku' => $id,
 			':status' => 'Proses'
 		]);
-
-		$idPeminjaman = DBH->lastInsertId();
-		$state2 = DBH->prepare("
-            UPDATE buku SET ID_PEMINJAMAN = :idpinjam WHERE ID_BUKU = :idbuku
-        ");
-		$state2->execute([
-            ':idpinjam' => $idPeminjaman,
-            ':idbuku' => $id
-        ]);
-
-	    return True;
 	} 
 
 	function daftarPinjaman($idUser){
@@ -285,12 +271,13 @@ require_once(BASE_PATH . '/service/session.php');
 	function updatePeminjaman(int $id, array $data) {
 		$stmt = DBH->prepare("
 			UPDATE peminjaman 
-			SET STATUS = :status, TANGGAL_RENCANA = :tanggal_rencana 
+			SET STATUS = :status, TANGGAL_RENCANA = :tanggal_rencana, TANGGAL_PINJAM = :tanggal_pinjam
 			WHERE ID_PEMINJAMAN = :id
 		");
 		$stmt->execute([
 			':status' => $data['status'],
 			':tanggal_rencana' => $data['tanggal_rencana'],
+			':tanggal_pinjam' => $data['tanggal_pinjam'],
 			':id' => $id
 		]);
 	}

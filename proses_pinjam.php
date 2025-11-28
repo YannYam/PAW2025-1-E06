@@ -11,25 +11,14 @@ $list_css_tambahan = [
         exit();
     }
 
-    $id_buku = null;
-
-    if (isset($_GET['id_buku']) && !empty($_GET['id_buku'])) {
-        $id_buku = test_input($_GET['id_buku']);
-    } else {
-        echo "ID buku tidak ditemukan!";
-        exit();
-    };
+    $id_buku = isset($_GET['id_buku']) ? (int)$_GET['id_buku'] : 0;
 
     $idbuku = getBukuOne($id_buku);
 
     if(isset($_POST['pinjam'])){
-        $pinjam = insertPeminjaman($id_buku,[]);
-        if ($pinjam){
-            header('location: daftar_buku.php');
-            exit();
-        } else {
-            echo "<p>Gagal meminjam buku!</p>";
-        }
+        insertPeminjaman($id_buku, $_SESSION['nama']);
+        header('location: daftar_buku.php');
+        exit();
     }
 
     
