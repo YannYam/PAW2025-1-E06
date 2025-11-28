@@ -3,6 +3,7 @@
     padding: 50px;
     background-color: #f9f9f9;
     border-radius: 8px;
+    margin: 10px auto;
 }
 
 a[href="index.php"],a[href="kelola_peminjaman.php"] {
@@ -18,7 +19,7 @@ a[href="index.php"]:hover,a[href="kelola_peminjaman.php"]:hover {
     background-color: darkred;
 }
 
-form > input[type="text"], input[type="date"],select {
+form > input[type="text"], select {
     width: 100%;
     padding: 10px;
     margin-top: 20px;
@@ -54,6 +55,12 @@ form > button{
 form > button:hover {
     background-color: #b3942f;
 }
+
+form input.hari {
+    width: 35px;
+}
+
+
 
 .page-header h1 {
     margin-bottom: 20px;
