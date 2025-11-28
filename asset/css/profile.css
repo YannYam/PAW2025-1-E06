@@ -1,83 +1,103 @@
-.mini-profile {
+/* --- 1. Background Halaman (.main-profile) --- */
+.main-profile {
+    background-color: #f4f7f6; /* Abu-abu muda bersih */
+    min-height: 120vh;          
     display: flex;
-    gap: 12px;
-    align-items: center;
-    padding: 15px 20px;
-    background: #ffffff;
+    justify-content: center;   /* Rata tengah horizontal */
+    align-items: center;       /* Rata tengah vertikal */
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* --- 2. Kartu Putih (.profile) --- */
+.profile {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 450px;          /* Lebar maksimal kartu */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* Bayangan modern */
+    border: 1px solid #e1e4e8;
+}
+
+/* Judul (H1) */
+.profile h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    border-bottom: 3px solid #0B1C39; /* Garis hijau di bawah judul */
+    padding-bottom: 10px;
+    display: block;
+}
+
+/* --- 3. Area Form (.detail-profile) --- */
+.detail-profile form {
+    display: flex;
+    flex-direction: column;    /* Susun input ke bawah */
+    gap: 15px;                 /* Jarak antar elemen */
+}
+
+/* Input Text & Date */
+.detail-profile input[type="text"],
+.detail-profile input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;    /* Agar padding tidak merusak lebar */
+    transition: 0.3s;
 }
 
-.mini-profile:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
-  border-color: #e2e4ea;
+/* Efek saat input diklik/fokus */
+.detail-profile input:focus {
+    border-color: #4CAF50;     /* Jadi Hijau */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
 }
 
-.mini-profile img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #ddd;
-    border: 1px solid black;
-}
-
-.mini-profile-info {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.2;
-    min-width: 0;
-}
-
-.mini-profile-info p {
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.username {
-    overflow: hidden;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.role {
+/* --- 4. Pesan Error (.error) --- */
+.error {
+    color: #e74c3c;            /* Merah */
     font-size: 13px;
-    color: #555;
+    margin-top: -10px;         /* Dekatkan ke input */
+    margin-bottom: 5px;
+    font-style: italic;
 }
 
-.touchable a {
+/* --- 5. Tombol Simpan & Cancel --- */
+
+/* Tombol Simpan (Button) */
+.detail-profile button {
+    background-color: #4CAF50; /* Hijau Daun */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.detail-profile button:hover {
+    background-color: #45a049; /* Hijau agak gelap saat hover */
+}
+
+/* Link Cancel (A) */
+.detail-profile a {
+    text-align: center;
     text-decoration: none;
-    color: inherit;
+    color: #666;
+    padding: 10px;
+    display: block;            /* Supaya area klik luas */
+    border-radius: 8px;
+    transition: 0.3s;
 }
 
-@media (max-width: 992px) {
-    .mini-profile {
-        padding: 12px 17px;
-        gap: 8px;
-    }
-
-    .mini-profile img {
-        width: 32px;
-        height: 32px;
-    }
-
-    .username {
-        font-size: 1.5vw;
-    }
-
-    .role {
-        font-size: 1.4vw;
-    }
-}
-
-@media (max-width: 600px) {
-    .username {
-        font-size: 14px;
-    }
-
-    .role {
-        font-size: 13px;
-    }
+.detail-profile a:hover {
+    background-color: #f1f1f1;
+    color: #333;
 }
