@@ -10,28 +10,15 @@ $list_css_tambahan = [
         header('Location: index.php');
         exit();
     }
+    $idBuku = $_GET['id_buku'] ?? 0;
 
-    $id_buku = null;
-
-    if (isset($_GET['id_buku']) && !empty($_GET['id_buku'])) {
-        $id_buku = test_input($_GET['id_buku']);
-    } else {
-        echo "ID buku tidak ditemukan!";
-        exit();
-    };
-
-    $idbuku = getBukuOne($id_buku);
+    $idbuku = getBukuOne($idBuku);
 
     if(isset($_POST['pinjam'])){
-        $pinjam = insertPeminjaman($id_buku,[]);
-        if ($pinjam){
-            header('location: daftar_buku.php');
-            exit();
-        } else {
-            echo "<p>Gagal meminjam buku!</p>";
-        }
-    }
-
+        insertPeminjaman($idBuku);
+        header('location: daftar_buku.php');
+        exit();
+    } 
     
     include_once BASE_PATH . '/layout/header.php';
     ?>

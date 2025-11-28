@@ -147,26 +147,13 @@ require_once(BASE_PATH . '/service/session.php');
 	function insertPeminjaman(int $id){
 		$idUser = $_SESSION['nama'];
 		
-		$state = DBH-> prepare("
-		INSERT INTO peminjaman (USERNAME, ,STATUS) 
-		VALUES (:username, :tanggalpinjam, :tanggalrencana, :status)");
+		$state = DBH-> prepare("INSERT INTO peminjaman (USERNAME, ID_BUKU, STATUS) 
+            VALUES (:username, :idbuku, :status)");
 		$state->execute([
 			':username' => $idUser,
-			':tanggalpinjam' => date("Y-m-d"),
-			':tanggalrencana' => date("Y-m-d"),
+			':idbuku' => $id,
 			':status' => 'Proses'
 		]);
-
-		$idPeminjaman = DBH->lastInsertId();
-		$state2 = DBH->prepare("
-            UPDATE buku SET ID_PEMINJAMAN = :idpinjam WHERE ID_BUKU = :idbuku
-        ");
-		$state2->execute([
-            ':idpinjam' => $idPeminjaman,
-            ':idbuku' => $id
-        ]);
-
-	    return True;
 	} 
 
 	function daftarPinjaman($idUser){
