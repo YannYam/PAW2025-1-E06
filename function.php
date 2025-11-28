@@ -143,13 +143,14 @@ require_once(BASE_PATH . '/service/session.php');
 		return $state->fetch();
 	}
 	
-	#menambahkan data di tabel peminjaman
-	function insertPeminjaman(int $id, string $username){
-		$state = DBH-> prepare("
-		INSERT INTO peminjaman (USERNAME, ID_BUKU, STATUS) 
-		VALUES (:username, :idbuku, :status)");
+	#menambahkan data di tabel peminjama
+	function insertPeminjaman(int $id){
+		$idUser = $_SESSION['nama'];
+		
+		$state = DBH-> prepare("INSERT INTO peminjaman (USERNAME, ID_BUKU, STATUS) 
+            VALUES (:username, :idbuku, :status)");
 		$state->execute([
-			':username' => $username,
+      ':username' => $idUser,
 			':idbuku' => $id,
 			':status' => 'Proses'
 		]);
