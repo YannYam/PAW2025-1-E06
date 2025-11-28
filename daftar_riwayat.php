@@ -28,8 +28,8 @@ include_once(BASE_PATH . '/layout/header.php');
                         <p><strong>Status Peminjaman:</strong> <?= $list['STATUS'] ?></p>
 
 
-                        <?php if (isset($list['STATUS']) && $list['STATUS'] == 'Pinjam' OR 'proses'): ?>
-                            <p><strong>Tanggal pengembalian:</strong> <?= $list['TANGGAL_RENCANA'] ?></p>
+                        <?php if (isset($list['STATUS']) && ($list['STATUS'] == 'Pinjam' || $list['proses'])): ?>
+                            <p><strong>Tanggal pengembalian:</strong> <br> <?= $list['TANGGAL_RENCANA'] ?></p>
                         <?php endif; ?>
 
                     </div>
