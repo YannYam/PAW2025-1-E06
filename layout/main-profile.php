@@ -60,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 $list_css_tambahan = [
+    'profile.css'
 ];
 
 include_once BASE_PATH . '/layout/header.php';
 ?>
 
 <main>
-<!-- code -->
     <div class="main-profile">
         <div class="profile">
             <h1>Profile</h1>
