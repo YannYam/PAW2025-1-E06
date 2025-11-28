@@ -19,7 +19,7 @@ include_once(BASE_PATH . '/layout/header.php');
     <!-- <div class="card-container"> -->
         <div class="card-container">
             <?php foreach ($daftar as $list): ?> 
-                <div class="card-login">
+                <div class="card-login <?= $list['STATUS'] ?>" >
                     <img src="asset/images/cover/<?= $list['COVER'] ?>" alt="<?= $list['JUDUL'] ?>" class="card-img">
                     <div class="card-info">
 
@@ -28,7 +28,7 @@ include_once(BASE_PATH . '/layout/header.php');
                         <p><strong>Status Peminjaman:</strong> <?= $list['STATUS'] ?></p>
 
 
-                        <?php if (isset($list['STATUS']) && $list['STATUS'] == 'Pinjam'): ?>
+                        <?php if (isset($list['STATUS']) && $list['STATUS'] == 'Pinjam' OR 'proses'): ?>
                             <p><strong>Tanggal pengembalian:</strong> <?= $list['TANGGAL_RENCANA'] ?></p>
                         <?php endif; ?>
 
