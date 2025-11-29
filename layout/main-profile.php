@@ -5,7 +5,7 @@ $nama = $alamat = $telepon = $tanggal= '';
 $error_nama = $error_alamat = $error_telepon = $error_tanggal = '';
 $pesan_sukses= '';
 
-$profile = getProfil($_SESSION['nama']);
+$profile = getUserByUsername($_SESSION['nama']);
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -13,13 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $nama    = test_input($_POST['nama']);
     $alamat  = test_input($_POST['alamat']);
     $telepon = test_input($_POST['telepon']);
+    $tanggal = test_input($_POST['tanggal']);
 
+    // validasi nama
     if(!wajib($nama)){
         $error_nama = "Nama Wajib Diisi";
     } elseif (!alfabet($nama)){
         $error_nama = "Nama hanya boleh huruf dan spasi";
     } 
 
+    // validasi alamat
     if (!wajib($alamat)) {
         $error_alamat = 'Alamat wajib diisi.';
     } elseif (!alamat($alamat)) {
@@ -27,32 +30,44 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     } elseif (strlen($alamat) > 30) {
         $error_alamat = 'Alamat maksimal 30 karakter.';
     }
-    // --- PERBAIKAN LOGIKA TANGGAL ---
-    // Cek: Kalau user kirim tanggal kosong, pakai tanggal lama dari database.
-    // Kalau tanggal lama juga kosong, biarkan NULL (jangan string kosong "").
-    if (!empty($_POST['tanggal'])) {
-        $tanggal = $_POST['tanggal'];
-    } elseif (!empty($profile['TANGGAL_LAHIR'])) {
-        $tanggal = $profile['TANGGAL_LAHIR'];
-    } else {
-        $tanggal = null; // Kirim NULL agar MySQL tidak error
-    }
 
-    // validasi telepon
+    // validasi tanggal
+    if (!wajib($tanggal)) {
+        $error_tanggal = "Tanggal lahir wajib diisi.";
+    } elseif (!validTanggal($tanggal)) {
+        $error_tanggal = "Format tanggal tidak valid.";
+    } else {
+        $lahir = new DateTime($tanggal);
+        $hari_ini = new DateTime();
+        $umur = $hari_ini->diff($lahir)->y;
+
+        if ($umur >= 6 && $umur <= 11) {
+            $kategori = "Anak-anak";
+        } elseif ($umur >= 12) {
+            $kategori = "Remaja";
+        } else {
+            $error_tanggal = "Umur minimal harus 6 tahun.";
+        }
+    }
+    
+    // validasi nomor
     if (!wajib($telepon)) {
-        $error_telepon = 'nomer telepon wajib diisi.';
+        $error_telepon = 'Nomor telepon wajib diisi.';
     } elseif (!numerik($telepon)) {
-        $error_telepon = 'nomer telepon hanya boleh berisi angka.';
-    } elseif (!cekNomorHP($telepon)) {
-        $error_telepon = "Format salah. Nomor harus diawali '08' atau '628' (10-13 digit).";
+        $error_telepon = 'Nomor hanya boleh berisi angka.';
+    } elseif (strlen($telepon) < 10 || strlen($telepon) > 12) {
+        $error_telepon = 'Nomor harus 10–12 digit.';
     }
     
     if (
         empty($error_nama) &&
         empty($error_alamat) &&
-        empty($error_telepon) && isset($_POST['simpan'])
+        empty($error_telepon) && 
+        empty($error_tanggal) &&
+        isset($_POST['simpan'])
     ){
 
+        $_POST['tanggal'] = $tanggal;
         gantiDataProfil($_SESSION['nama'], $_POST);
         header('Location: ' . BASE_URL .'/homepage.php');
     }
@@ -72,15 +87,17 @@ include_once BASE_PATH . '/layout/header.php';
             <h1>Profile</h1>
             <div class="detail-profile">
                 <form action="#" method="POST">
-                    <input type="text" value="<?= $profile['NAMA_LENGKAP'] ?>" name="nama">
+	
+                    <input type="text" name=nama value="<?= !empty($nama) ? $nama : $profile['NAMA_LENGKAP'] ?>">
                     <span class="error"><?= $error_nama ?></span>
 
-                    <input type="text" value="<?= $profile['ALAMAT'] ?>" name="alamat">
+                    <input type="text" name=alamat value="<?= !empty($alamat) ? $alamat : $profile['ALAMAT'] ?>">
                     <span class="error"><?= $error_alamat ?></span>
 
-                    <input type="text" value="<?= $profile['TELEPON'] ?>" name="telepon">
+                    <input type="text" name=telepon value="<?= !empty($telepon) ? $telepon : $profile['TELEPON'] ?>">
                     <span class="error"><?= $error_telepon ?></span>
-                    <input type="date" value="<?= $profile['TANGGAL_LAHIR'] ?>" name="tanggal">
+
+                    <input type="text" name=tanggal value="<?= !empty($tanggal) ? $tanggal : $profile['TANGGAL_LAHIR'] ?>">
                     <span class="error"><?= $error_tanggal ?></span>
 
 

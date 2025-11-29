@@ -44,10 +44,6 @@ require_once(BASE_PATH . '/service/session.php');
 		return is_numeric($data);
 	}
 	
-	function cekNomorHP($data) {
-    // Hapus spasi di regex, dan gunakan satu garis |
-    return (preg_match("/^(08|628)[0-9]{8,11}$/", $data)) ;
-	}
 
 	function alfaDesc($data){
 		return preg_match("/^[A-Za-z0-9 \s\.\,\'\?\-]+$/", $data);
@@ -212,13 +208,6 @@ require_once(BASE_PATH . '/service/session.php');
 			':telepon' => test_input($data['telepon']),
 			':username' => $username
 		]);
-	}
-
-	#fungsi untuk menampilkan data dari user
-	function getProfil($data){
-		$stmnt = DBH->prepare("SELECT * FROM pemustaka WHERE username = :username ");
-		$stmnt->execute([':username' => $data]);
-		return $stmnt->fetch();
 	}
 
 	#menampilkan data peminjaman jika id peminjaman sama dengan id yg dibutuhkan
