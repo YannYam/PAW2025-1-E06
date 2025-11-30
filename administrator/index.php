@@ -17,6 +17,7 @@ require_once "../function.php"; // Memuat file fungsi (koneksi, helper, dll)
 ?>
 
     <div class="table table-books">
+        <a href="add.php?tambah=true">Tambah buku</a>
         <table>
             <caption>Daftar buku perpustakaan</caption>
             <thead>
@@ -50,8 +51,6 @@ require_once "../function.php"; // Memuat file fungsi (koneksi, helper, dll)
                 <?php endforeach ?>
             </tbody>
         </table>
-    
-        <a href="add.php?tambah=true">Tambah buku</a>
     </div>
 
 <?php include_once BASE_PATH . '/layout/footer.php'; // Memuat footer (menutup <main> dan halaman) ?>
