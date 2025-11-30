@@ -1,6 +1,9 @@
 <?php 
 require_once "../function.php";
 
+$current_page = basename($_SERVER['PHP_SELF']);
+$_SESSION['current_page'] = $current_page;
+
 // mengambil data dari tabel user dengan peran pemustaka
 $user = getPemustaka();
 

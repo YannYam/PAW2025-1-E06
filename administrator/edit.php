@@ -5,7 +5,7 @@
 
   $detail = getBukuOne($_GET['id_buku']) ?? 1;
 
-  $list_css_tambahan = ['form-buku.css', 'menu.administrator.css', 'main.administrator.css'];
+  $list_css_tambahan = ['main.administrator.css','form-buku.css', 'menu.administrator.css'];
 
   include_once(BASE_PATH . '/layout/header.php');
   include_once(BASE_PATH . '/layout/menu.administrator.php'); 

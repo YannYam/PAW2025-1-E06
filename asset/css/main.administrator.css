@@ -29,7 +29,8 @@ body {
 main {
     padding-top: 90px;
     display: flex;  
-    min-height: 100%;
+    min-height: 93.6vh; /* Sesuaikan tinggi konten */
+    margin-left: 15%; /* Ruang untuk sidebar */
 }
 
 /* Wrapper tabel umum */
@@ -43,7 +44,7 @@ main {
     padding: 20px;
     height: 100%;
     margin: 20px auto;
-    width: 82%; 
+    width: auto; 
 }
 
 /* Styling elemen table dasar */
@@ -176,6 +177,7 @@ td > a  {
 /* Link "Tambah buku" dibuat seperti tombol */
 .table a[href="add.php?tambah=true"] {
     display: inline-block;
+    margin-bottom: 15px;
     margin-top: 15px;
     background: #D4AF37;
     padding: 10px 15px;

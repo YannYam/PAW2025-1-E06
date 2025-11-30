@@ -1,4 +1,8 @@
 <?php require_once "../function.php";
+
+$current_page = basename($_SERVER['PHP_SELF']);
+$_SESSION['current_page'] = $current_page;
+
 $pinjam = getDaftarPeminjaman();
 $kembali = getDaftarKembali();
 $list_css_tambahan = [
