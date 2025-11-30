@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$list_css_tambahan = ['menu.administrator.css', 'form-buku.css','main.administrator.css'];
+$list_css_tambahan = ['main.administrator.css','menu.administrator.css', 'form-buku.css'];
 include_once(BASE_PATH . '/layout/header.php');
 include_once(BASE_PATH . '/layout/menu.administrator.php');
 ?>
