@@ -1,6 +1,9 @@
 <?php
 require_once "../function.php"; // Memuat file fungsi (koneksi, helper, dll)
 
+    $current_page = basename($_SERVER['PHP_SELF']);
+    $_SESSION['current_page'] = $current_page;
+
     # mengambil isi database dari tabel buku melalui function
     $buku = getDaftarBuku(); // Mendapatkan array data semua buku
 

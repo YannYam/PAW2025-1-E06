@@ -6,7 +6,7 @@ $add = $_GET['tambah'];
 
 
 #menambahkan css
-$list_css_tambahan = ['menu.administrator.css','form-buku.css','main.administrator.css'];
+$list_css_tambahan = ['main.administrator.css','menu.administrator.css','form-buku.css'];
 
 #menambahkan header dan menu administrator
 include_once(BASE_PATH . '/layout/header.php');

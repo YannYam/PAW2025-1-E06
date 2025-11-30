@@ -3,7 +3,7 @@
     padding: 50px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    margin: 10px auto;
+    margin: 10px;
 }
 
 a[href="index.php"],a[href="kelola_peminjaman.php"] {
@@ -59,8 +59,6 @@ form > button:hover {
 form input.hari {
     width: 35px;
 }
-
-
 
 .page-header h1 {
     margin-bottom: 20px;
