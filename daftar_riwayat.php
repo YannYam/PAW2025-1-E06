@@ -4,6 +4,9 @@ require_once('function.php');
 if (!isset($_SESSION['nama'])){
     header('Location: index.php');
     exit();
+}else if (!isNotAdmin($_SESSION['nama'])) {
+    header('location: administrator/index.php');
+    exit();
 }
 
 $idUser = $_SESSION['nama'];

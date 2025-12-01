@@ -4,6 +4,10 @@ require_once('function.php');
 if (!isset($_SESSION['nama'])){
     header('Location: index.php');
     exit();
+}else if (!isNotAdmin($_SESSION['nama'])) {
+    // Kembalikan dia ke habitatnya (Halaman Admin)
+    header('location: administrator/index.php');
+    exit();
 }
 
 $list_css_tambahan = [
