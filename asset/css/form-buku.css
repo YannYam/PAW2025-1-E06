@@ -63,3 +63,7 @@ form input.hari {
 .page-header h1 {
     margin-bottom: 20px;
 }
+
+.error.hari-error {
+    margin-top: 5px;
+}

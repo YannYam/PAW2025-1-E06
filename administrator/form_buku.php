@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if(!wajib($_POST['judul'])){
       $error_judul = 'Masukan wajib diisi';
-    }elseif(!digitMinim($_POST['judul'])){
+    }elseif(!digitMinim3($_POST['judul'])){
       $error_judul = "Masukan minimal 3 digit";
     } elseif(!alfaJudul($_POST['judul'])){
       $error_judul = 'Masukan harus berupa Judul';
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if(!wajib($_POST['deskripsi'])){
       $error_deskripsi = 'Masukan wajib diisi';
-    }elseif(!digitMinim($_POST['deskripsi'])){
+    }elseif(!digitMinim3($_POST['deskripsi'])){
       $error_deskripsi = "Masukan minimal 3 digit";
     } elseif(!alfaDesc($_POST['deskripsi'])){
       $error_deskripsi = 'Masukan harus sesuai tatanan bahasa';
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if(!wajib($_POST['penulis'])){
       $error_penulis = 'Masukan wajib diisi';
-    }elseif(!digitMinim($_POST['penulis'])){
+    }elseif(!digitMinim3($_POST['penulis'])){
       $error_penulis = "Masukan minimal 3 digit";
     } elseif(!alfaSpaceDot($_POST['penulis'])){
       $error_penulis = 'Masukan harus berupa alfabet, spasi, titik, atau &';
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if(!wajib($_POST['penerbit'])){
       $error_penerbit = 'Masukan wajib diisi';
-    }elseif(!digitMinim($_POST['penerbit'])){
+    }elseif(!digitMinim3($_POST['penerbit'])){
       $error_penerbit = "Masukan minimal 3 digit";
     } elseif(!alfaSpaceDot($_POST['penerbit'])){
       $error_penerbit = 'Masukan harus berupa alfabet, spasi, titik, atau &';
