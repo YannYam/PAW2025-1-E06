@@ -30,7 +30,7 @@ main {
     padding-top: 90px;
     display: flex;  
     min-height: 93.6vh; /* Sesuaikan tinggi konten */
-    margin-left: 15%; /* Ruang untuk sidebar */
+    margin-left: 15vw; /* Ruang untuk sidebar */
 }
 
 /* Wrapper tabel umum */
@@ -228,14 +228,17 @@ td > a  {
     }
 }
 
+@media (max-width: 810px) {
+    main {
+        margin-left: 18vw; /* Sesuaikan margin kiri untuk sidebar */
+    }
+}
 /* Responsif mobile kecil */
 @media (max-width: 600px) {
     main {
-        margin-top: 85%;
         margin-left: 0;
-        padding-top: 0;
+        margin-top: 35vh;
     }
-
     .table {
       width: auto;
       padding: 10px;
