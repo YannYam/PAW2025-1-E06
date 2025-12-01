@@ -1,6 +1,6 @@
 <?php
     if(isNotAdmin($_SESSION['nama'])){
-        header('Location: ' . BASE_URL . '/daftar_buku.php');
+        header('Location: ' . BASE_URL . '/homepage.php');
         exit();
     }
 ?>

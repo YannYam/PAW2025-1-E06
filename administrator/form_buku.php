@@ -1,7 +1,11 @@
-<?php 
+<?php require_once '../function.php';
+require_once BASE_PATH . '/service/session.php';
 
 if(!isset($_SESSION['nama'])){
   header('Location: ../');
+  exit();
+}else if(isNotAdmin($_SESSION['nama'])){
+  header('Location: ' . BASE_URL . '/homepage.php');
   exit();
 }
 

@@ -2,7 +2,7 @@
 require_once '../function.php';
 
   if(isNotAdmin($_SESSION['nama'])){
-    header('Location: ' . BASE_URL . '/');
+    header('Location: ' . BASE_URL . '/homepage.php');
     exit();
   }
 
