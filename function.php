@@ -59,7 +59,7 @@ require_once(BASE_PATH . '/service/session.php');
 	}
 
 	function username($data) {
-		return preg_match("/^(?=.*\d)[a-zA-Z0-9\_]+$/", $data);
+		return preg_match('/^(?=.*[a-z])(?=.*[0-9])[a-z0-9]+$/', $data);
 	}
 
 	function alamat($data) {
