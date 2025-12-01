@@ -43,8 +43,8 @@ main {
 .table-pemustaka, .table-peminjaman, .table-books{
     padding: 20px;
     height: 100%;
-    margin: 20px auto;
-    width: auto; 
+    margin: 20px;
+    width: 100%; 
 }
 
 /* Styling elemen table dasar */
@@ -230,8 +230,14 @@ td > a  {
 
 /* Responsif mobile kecil */
 @media (max-width: 600px) {
+    main {
+        margin-top: 85%;
+        margin-left: 0;
+        padding-top: 0;
+    }
+
     .table {
-      width: 100%;
+      width: auto;
       padding: 10px;
     }
 
@@ -251,8 +257,8 @@ td > a  {
         font-size: 7px;
     }
 
-    .table-pemustaka, .table-peminjaman {
-        margin: 10px 3px;
+    .table-pemustaka, .table-peminjaman,.table-books {
+        margin: 10px;
         padding: 10px;
     }
 
@@ -261,4 +267,5 @@ td > a  {
         padding: 3px 7px;
         font-size: 7px;
     }
+
 }
