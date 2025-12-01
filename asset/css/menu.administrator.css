@@ -73,7 +73,7 @@
 @media (max-width: 600px) {
     main {
       flex-direction: column;
-      min-height: 70vh;  /* Sesuaikan tinggi konten */
+      min-height: 58vh;  /* Sesuaikan tinggi konten */
     }
 
     .side {
