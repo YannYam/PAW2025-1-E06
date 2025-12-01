@@ -9,7 +9,10 @@ $list_css_tambahan = [
     if (!isset($_SESSION['nama'])){
         header('Location: index.php');
         exit();
-    }
+    }else if (!isNotAdmin($_SESSION['nama'])) {
+    header('location: administrator/index.php');
+    exit();
+}
     $idBuku = $_GET['id_buku'] ?? 0;
 
     $idbuku = getBukuOne($idBuku);

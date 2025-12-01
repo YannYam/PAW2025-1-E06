@@ -101,3 +101,35 @@
     background-color: #f1f1f1;
     color: #333;
 }
+/* --- RESPONSIF KHUSUS HP (Profile) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Dorong Form ke Bawah (Supaya Header Muncul) */
+    .main-profile {
+        padding-top: 180px !important; /* Samakan dengan angka di Homepage tadi */
+        align-items: flex-start;       /* Jangan rata tengah vertikal, biar bisa di-scroll */
+        height: auto;                  /* Tinggi bebas */
+        padding-bottom: 50px;          /* Jarak bawah biar tombol gak mepet layar */
+    }
+
+    /* 2. Tombol Jadi Atas-Bawah (Biar Jempol Enak) */
+    .detail-profile form {
+        gap: 10px;
+    }
+
+    /* Ubah Link 'Cancel' jadi Tombol Abu-abu Besar */
+    .detail-profile a {
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        width: 100%;       /* Lebar penuh */
+        box-sizing: border-box;
+        order: 2;          /* Taruh di bawah tombol simpan (opsional) */
+    }
+
+    /* Tombol Simpan Besar */
+    .detail-profile button[name="simpan"] {
+        width: 100%;
+        margin-top: 0;
+        order: 1;          /* Taruh di atas (prioritas) */
+    }
+}

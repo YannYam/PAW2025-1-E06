@@ -403,3 +403,75 @@ h1{
     letter-spacing: 1px;
     opacity: 0.9;
 }
+
+/* --- MEDIA QUERY KHUSUS HP (Max-Width 768px) --- */
+@media (max-width: 768px) {
+    
+    /* 1. HEADER & NAVBAR: Wajib memanjang ke bawah (Auto Height) */
+    header, .navbar {
+        height: auto !important;    /* Biarkan tinggi menyesuaikan isi menu */
+        flex-direction: column;     /* Susun Logo, Menu, Profile ke bawah */
+        padding: 15px 0;            /* Beri jarak napas atas-bawah */
+        align-items: center;        /* Semua elemen rata tengah */
+    }
+
+    /* 2. MENU NAVIGASI: Disusun vertikal */
+    nav, nav ul {
+        display: flex;
+        flex-direction: column;     /* Menu Home dll disusun ke bawah */
+        width: 100%;
+        align-items: center;        /* Teks rata tengah */
+        gap: 15px;                  /* Jarak antar menu */
+        margin: 10px 0;
+        padding: 0;
+    }
+
+    /* 3. PROFILE & LOGOUT: Muncul di paling bawah header */
+    /* Pastikan class '.touchable' sesuai dengan div pembungkus profile kamu */
+    .touchable, .user-menu {
+        display: flex;
+        flex-direction: column;     /* Foto dan Logout disusun ke bawah */
+        align-items: center;
+        margin-top: 10px;
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* 4. KONTEN UTAMA: Dorong ke bawah agar tidak ketutupan Header */
+    .site-main {
+        /* PENTING: Ubah angka 180px ini jika masih kurang turun atau kejauhan */
+        padding-top: 180px !important; 
+        padding-left: 20px;         /* Biar konten gak mepet kiri layar HP */
+        padding-right: 20px;        /* Biar konten gak mepet kanan layar HP */
+    }
+
+    /* 5. HOMEPAGE: Ubah susunan jadi Atas-Bawah */
+    .container-homepage {
+        flex-direction: column !important;
+        gap: 30px;
+        padding-top: 20px;
+    }
+    
+    /* 6. DAFTAR BUKU: Kartu jadi lebar 1 kolom */
+    .card-container {
+        display: block;             /* Matikan grid/flex row */
+        padding: 0;
+    }
+
+    .card-login {
+        width: 100% !important;     /* Kartu memenuhi lebar area */
+        max-width: 400px;           /* Batasi biar ga terlalu raksasa di tablet */
+        margin: 0 auto 20px auto;   /* Tengahin kartu & kasih jarak bawah */
+    }
+
+    .card-title {
+        font-size: 1.2rem;          /* Kecilkan judul dikit biar muat */
+    }
+    
+    /* 7. PROFILE PAGE: Reset posisi kartu form */
+    .main-profile {
+        padding-top: 200px !important; /* Dorong form profile lebih jauh */
+        align-items: flex-start !important; /* Matikan center vertikal */
+        height: auto !important;
+    }
+}

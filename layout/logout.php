@@ -7,7 +7,8 @@
     }
     $list_css_tambahan = [
         'logout.css',
-        'header.css'
+        'header.css',
+        'style.css'
     ];
 
     include_once BASE_PATH . '/layout/header.php';
