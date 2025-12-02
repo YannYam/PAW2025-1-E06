@@ -1,6 +1,16 @@
 <?php
 require_once 'function.php';
 
+if (isset($_SESSION['nama'])){
+    if (isNotAdmin($_SESSION['nama'])){
+        header('Location: homepage.php');
+        exit();
+    } else if (!isNotAdmin($_SESSION['nama'])){
+        header('location: administrator/index.php');    
+        exit();
+    }
+}
+
 // Inisialisasi variabel
 $nama = $tanggal_lahir = $nomor = $alamat = $username = $password = '';
 $error_nama = $error_tanggal_lahir = $error_nomor = $error_alamat = $error_username = $error_password =  '';
