@@ -15,15 +15,15 @@ require_once '../function.php';
   $judul = getBukuOne($_GET['id_buku']);
 
   $list_css_tambahan = [
+    'delete.css',
     'logout.css',
     'header.css',
-    'main.administrator.css',
     'footer.css'
   ];
 
   include_once BASE_PATH . '/layout/header.php';
 ?>
-<body>
+<main>
   <div class="container-logout">
     <div class="konten">
       <div class="logout-box">
@@ -35,7 +35,7 @@ require_once '../function.php';
       <p>Anda yakin ingin menghapus ini?</p>
       
         <!-- FORM POST -->
-        <form action="" method="POST">
+        <form action="#" method="POST">
             <button type="submit" name="delete" class="btn-log btn-logout">Delete</button>
             <a class="btn-log btn-cancel-logout" href="<?= BASE_URL . '/administrator/' ?>">Batal</a>
         </form>
@@ -44,4 +44,3 @@ require_once '../function.php';
   </div>
     
   <?php include_once BASE_PATH . '/layout/footer.php' ?>
-  </body>

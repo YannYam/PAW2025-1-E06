@@ -20,13 +20,6 @@ body {
     padding-top: 100px; /* sesuai tinggi navbar */
 }
 
-footer {
-    width: 100%;
-    background: gray;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-}
 
 /* Logo */
 .logo {
