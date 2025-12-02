@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $error_hari = 'Masukkan wajib diisi';
   } elseif (!numerik($durasiPinjam)) {
     $error_hari = "Masukkan harus berupa numerik";
-  }elseif(!digitMinim2($durasiPinjam)) {
-    $error_hari = "Masukkan harus maksimal 2 digit";
+  }elseif(!digitMinim1($durasiPinjam)) {
+    $error_hari = "Masukkan harus maksimal 1 digit";
   } else {
     $error_hari = '';
   }
