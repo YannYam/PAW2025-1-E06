@@ -106,10 +106,10 @@
     
     /* 1. Dorong Form ke Bawah (Supaya Header Muncul) */
     .main-profile {
-        padding-top: 180px !important; /* Samakan dengan angka di Homepage tadi */
-        align-items: flex-start;       /* Jangan rata tengah vertikal, biar bisa di-scroll */
-        height: auto;                  /* Tinggi bebas */
-        padding-bottom: 50px;          /* Jarak bawah biar tombol gak mepet layar */
+        padding-top: 180px !important;
+        align-items: flex-start;      
+        height: auto;                 
+        padding-bottom: 50px;         
     }
 
     /* 2. Tombol Jadi Atas-Bawah (Biar Jempol Enak) */
@@ -121,9 +121,9 @@
     .detail-profile a {
         background-color: #f1f1f1;
         border: 1px solid #ccc;
-        width: 100%;       /* Lebar penuh */
+        width: 100%; 
         box-sizing: border-box;
-        order: 2;          /* Taruh di bawah tombol simpan (opsional) */
+        order: 2;
     }
 
     /* Tombol Simpan Besar */

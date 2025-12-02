@@ -170,16 +170,11 @@ h1{
 .card-img {
     /* 1. Mengatur Ukuran Kecil & Kotak */
     width: 150px;       /* Lebar gambar */
-    height: 220px;      /* Tinggi gambar (samakan jika ingin kotak sempurna) */
-    
+    height: 220px;      /* Tinggi gambar (samakan jika ingin kotak sempurna) */    
     /* 2. Agar Gambar Rapi (Tidak Gepeng/Penyok) */
     object-fit: cover;  /* SANGAT PENTING: Memotong gambar agar pas di kotak tanpa distorsi */
-    
-    /* 3. Posisi di Tengah (Center) */
     display: block;
     margin: 10px auto;  /* auto membuat gambar ke tengah horizontal */
-    
-    /* 4. Estetika Tambahan (Opsional) */
     border-radius: 8px; /* Membuat sudut sedikit melengkung */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Memberi bayangan tipis agar elegan */
     border: 1px solid #ddd; /* Garis tepi tipis */
@@ -383,11 +378,6 @@ h1{
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     transition: 0.3s;
 }
-
-/* .stat-card:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: scale(1.02);
-} */
 
 .stat-number {
     font-size: 2.8rem;

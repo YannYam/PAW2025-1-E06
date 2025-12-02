@@ -32,7 +32,7 @@ include_once(BASE_PATH . '/layout/header.php');
 
 
 
-                        <?php if (isset($list['STATUS']) && ($list['STATUS'] == 'Pinjam' || $list['proses'])): ?>
+                        <?php if (isset($list['STATUS']) && $list['STATUS'] != 'Proses'): ?>
                             <p><strong>Tanggal pengembalian:</strong> <br> <?= $list['TANGGAL_RENCANA'] ?></p>
                         <?php endif; ?>
 
