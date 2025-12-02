@@ -1,6 +1,16 @@
 <?php  
 require_once 'function.php'; 
 
+if (isset($_SESSION['nama'])){
+    if (isNotAdmin($_SESSION['nama'])){
+        header('Location: homepage.php');
+        exit();
+    } else if (!isNotAdmin($_SESSION['nama'])){
+        header('location: administrator/index.php');    
+        exit();
+    }
+}
+
 $username = $password = '';
 $error_username = $error_password = '';
 
