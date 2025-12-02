@@ -46,8 +46,8 @@ require_once(BASE_PATH . '/service/session.php');
 		return preg_match('/^.{3,}$/', $data);
 	}
 
-	function digitMinim2($data){
-		return preg_match('/^.{,2}$/', $data);
+	function digitMinim1($data){
+		return preg_match('/^.{1}$/', $data);
 	}
 
 	function numerik($data) {
@@ -192,7 +192,19 @@ require_once(BASE_PATH . '/service/session.php');
 			FROM peminjaman
 			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
 			JOIN buku ON buku.ID_BUKU = peminjaman.ID_BUKU
-			WHERE peminjaman.STATUS IN ('Proses', 'Pinjam');
+			WHERE peminjaman.STATUS = 'Pinjam';
+	    ");
+	    $stmt->execute();
+	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	function getDaftarProses() {
+	    $stmt = DBH->prepare("
+			SELECT *
+			FROM peminjaman
+			JOIN pemustaka ON peminjaman.USERNAME = pemustaka.USERNAME
+			JOIN buku ON buku.ID_BUKU = peminjaman.ID_BUKU
+			WHERE peminjaman.STATUS = 'Proses';
 	    ");
 	    $stmt->execute();
 	    return $stmt->fetchAll(PDO::FETCH_ASSOC);

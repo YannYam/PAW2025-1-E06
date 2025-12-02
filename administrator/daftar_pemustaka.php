@@ -16,8 +16,10 @@ include_once(BASE_PATH . '/layout/header.php');
 include "../layout/menu.administrator.php" 
 
 ?>
-
 	<div class="table table-pemustaka">
+		<?php if(empty($user)): ?>
+			<h1>Belum ada data pemustaka</h1>
+		<?php else: ?>
 		<table>
 			<caption>Daftar Pemustaka</caption>
 			<thead>
@@ -44,6 +46,7 @@ include "../layout/menu.administrator.php"
 				
 			</tbody>
 		</table>
+		<?php endif; ?>
 	</div>
 
 <?php include_once BASE_PATH . '/layout/footer.php'; ?>

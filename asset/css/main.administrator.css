@@ -190,7 +190,7 @@ td > a  {
 }
 
 /* Spasi khusus bagian peminjaman */
-.pinjam {
+.pinjam, .request {
     margin-bottom: 50px;
 }
 
