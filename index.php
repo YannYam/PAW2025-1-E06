@@ -23,17 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty($error_username) && empty($error_password)) {
 
         // Login Pemustaka
-        if ($user && $user['USERNAME'] == $username) {
-            if (hash('sha256', $password) == $user['PASSWORD']) {
-                $_SESSION['nama'] = $user['USERNAME'];
-                header('location: homepage.php');
-                exit();
-            } else {
-                $error_password = 'Password salah!';
-            }
-
-        // Login Admin
-        } elseif ($userAdmin && $userAdmin['USERNAME_ADMIN'] == $username) {
+        if ($userAdmin && $userAdmin['USERNAME_ADMIN'] == $username) {
 
             if (hash('sha256', $password) == $userAdmin['PASSWORD_ADMIN']) {
                 $_SESSION['nama'] = $userAdmin['USERNAME_ADMIN'];
@@ -42,7 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 $error_password = 'Password admin salah!';
             }
-
+        // Login Admin
+        } elseif ($user && $user['USERNAME'] == $username) {
+            if (hash('sha256', $password) == $user['PASSWORD']) {
+                $_SESSION['nama'] = $user['USERNAME'];
+                header('location: homepage.php');
+                exit();
+            } else {
+                $error_password = 'Password salah!';
+            }
         // Username tidak ada di kedua tabel
         } else {
             $error_username = 'Username tidak ditemukan!';
