@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     updatePeminjaman($id, $data);
     header("Location: kelola_peminjaman.php");
     exit();
-  } elseif (!$sama && empty($error_hari) && empty($error_status) && isset($_POST['submit'])) {
+  } elseif (!$sama && empty($error_status) && isset($_POST['submit'])) {
     $data = [
       'tanggal_kembali' => date('Y-m-d'),
       'status' => test_input($statusBaru)
